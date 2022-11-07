@@ -7,13 +7,14 @@ import { loggerMiddleware } from './common/middlewares/logger.middleware';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const logger = new Logger('bootstrap');
-  // const logger = Logger;
   const configService = app.get(ConfigService);
   const port = configService.get('PORT');
-  // app.use(loggerMiddleware);
+
+  app.use(loggerMiddleware);
 
   await app.listen(port, () => {
     logger.log(`Server is running on port: ${port}`);
+    // Logger.log(`Server is running on port: ${port}`);
   });
 }
 bootstrap();

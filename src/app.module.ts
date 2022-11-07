@@ -15,6 +15,7 @@ import { UserModule } from './user/user.module';
     ConfigModule.forRoot({
       envFilePath: join(process.cwd(), '.env'),
       isGlobal: true,
+      expandVariables: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
