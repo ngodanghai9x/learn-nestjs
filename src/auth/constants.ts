@@ -3,6 +3,6 @@ import { JwtModuleOptions } from '@nestjs/jwt';
 
 export const jwtConstants: JwtModuleOptions = {
   // await ConfigModule.envVariablesLoaded;
-  secret: process.env.JWT_SERCET,
+  secret: process.env.JWT_SECRET,
   signOptions: { expiresIn: '60s', algorithm: 'HS256' },
 };
