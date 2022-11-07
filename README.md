@@ -59,3 +59,18 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Structure
+- Auth module:
+- User module: 
+  - entity
+  - controller
+  - service
+- Common module:
+  - decorators
+  - filters
+  - guards
+  - helpers
+  - interceptors
+  - middlewares
+  - pipes
