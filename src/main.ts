@@ -28,7 +28,7 @@ async function bootstrap() {
   // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately. Generally, Helmet is just a collection of smaller middleware functions that set security-related HTTP headers (read more).
   app.use(helmet());
   // Cross-site request forgery (also known as CSRF or XSRF) is a type of malicious exploit of a website where unauthorized commands are transmitted from a user that the web application trusts. To mitigate this kind of attack you can use the csurf package.
-  app.use(csurf());
+  // app.use(csurf());
 
   await app.listen(port, () => {
     logger.log(`Server is running on port: ${port}`);

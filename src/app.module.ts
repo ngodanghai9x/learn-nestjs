@@ -10,7 +10,8 @@ import { AuthModule } from './auth/auth.module';
 import { loggerMiddleware, LoggerMiddleware } from './common/middlewares/logger.middleware';
 import { UserModule } from './user/user.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './common/guards/roles.guard';
 
 @Module({
   imports: [
@@ -36,12 +37,17 @@ import { APP_FILTER } from '@nestjs/core';
         };
       },
     }),
-
     AuthModule,
     UserModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
