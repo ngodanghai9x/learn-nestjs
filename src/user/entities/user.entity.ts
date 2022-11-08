@@ -41,11 +41,10 @@ export class User {
   fullName: string;
 
   // one to one force unique??
-  @Column({ name: 'user_detail_id', unique: false })
-  userDetailId: number;
+  // @Column({ name: 'user_detail_id', unique: false })
+  // userDetailId: number;
 
-  @OneToOne(() => Role)
-  @JoinColumn({ name: 'user_detail_id', referencedColumnName: 'id' })
+  @OneToOne(() => UserDetail)
   userDetail: UserDetail;
 
   @Column({ name: 'role_id' })
@@ -96,6 +95,7 @@ export class User {
   createdAt: Date;
 
   @UpdateDateColumn({
+    name: 'updated_at',
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
     onUpdate: 'CURRENT_TIMESTAMP(6)',
