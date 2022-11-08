@@ -9,8 +9,6 @@ async function bootstrap() {
   const logger = new Logger('bootstrap');
   const configService = app.get(ConfigService);
   const port = configService.get('PORT');
-  app.use(logger);
-  // app.use(loggerMiddleware);
 
   app.use(loggerMiddleware);
 

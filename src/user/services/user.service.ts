@@ -1,13 +1,16 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { User } from '../entities/user.entity';
 import { DataSource, Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
+import { UserDetail } from '../entities/user_detail.entity';
+import { Role } from '../entities/role.entity';
 
 @Injectable()
 export class UserService {
+  private readonly logger = new Logger(UserService.name);
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
@@ -15,7 +18,30 @@ export class UserService {
     private readonly dataSource: DataSource,
     private readonly configService: ConfigService,
   ) {}
-  create(createUserDto: CreateUserDto) {
+  async create(createUserDto: CreateUserDto) {
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      const role = await queryRunner.manager.findOne(Role, {});
+      const userResponse = await queryRunner.manager.save(User, {
+        ...createUserDto,
+        roleId: role.id,
+      });
+      const userDetailResponse = await queryRunner.manager.save(UserDetail, {
+        userId: userResponse.id,
+        moreDetail: '',
+      });
+      console.log('Saved userResponse id', userResponse.id);
+      console.log('Saved userDetailResponse id', userDetailResponse.id);
+      await queryRunner.commitTransaction();
+    } catch (err) {
+      this.logger.error(err);
+      await queryRunner.rollbackTransaction();
+      throw err;
+    } finally {
+      await queryRunner.release();
+    }
     return 'This action adds a new user';
   }
 
