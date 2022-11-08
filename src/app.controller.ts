@@ -1,7 +1,9 @@
 import { Controller, Get } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger/dist/decorators/api-use-tags.decorator';
 import { AppService } from './app.service';
 import { MyForbiddenException } from './common/exceptions/forbidden.exception';
 
+@ApiTags('default')
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
@@ -10,11 +12,6 @@ export class AppController {
   // @UseFilters(HttpExceptionFilter)
   async testFilter() {
     throw new Error(`123Error`);
-    // throw new MyForbiddenException();
-  }
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+    throw new MyForbiddenException();
   }
 }
