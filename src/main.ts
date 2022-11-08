@@ -1,7 +1,8 @@
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { NestFactory } from '@nestjs/core';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { AllExceptionsFilter } from './common/filters/all-exception.filter';
 import { loggerMiddleware } from './common/middlewares/logger.middleware';
 
 async function bootstrap() {
@@ -9,7 +10,9 @@ async function bootstrap() {
   const logger = new Logger('bootstrap');
   const configService = app.get(ConfigService);
   const port = configService.get('PORT');
+  // const { httpAdapter } = app.get(HttpAdapterHost<any>);
 
+  // app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
   app.use(loggerMiddleware);
 
   await app.listen(port, () => {

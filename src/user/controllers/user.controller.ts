@@ -1,11 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseFilters } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { HttpExceptionFilter } from 'src/common/filters/http-exception.filter';
+import { MyForbiddenException } from 'src/common/exceptions/forbidden.exception';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
+
+  @Get('testFilter')
+  // @UseFilters(HttpExceptionFilter)
+  async testFilter() {
+    throw new Error(`123Error`);
+    throw new MyForbiddenException();
+  }
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {

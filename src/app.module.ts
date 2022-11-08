@@ -9,6 +9,8 @@ import { AuthController } from './auth/controllers/auth.controller';
 import { AuthModule } from './auth/auth.module';
 import { loggerMiddleware, LoggerMiddleware } from './common/middlewares/logger.middleware';
 import { UserModule } from './user/user.module';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
+import { APP_FILTER } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -34,6 +36,7 @@ import { UserModule } from './user/user.module';
         };
       },
     }),
+
     AuthModule,
     UserModule,
   ],
