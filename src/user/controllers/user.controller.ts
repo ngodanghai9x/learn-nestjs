@@ -1,13 +1,26 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+  UseInterceptors,
+} from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { HttpExceptionFilter } from 'src/common/filters/http-exception.filter';
 import { MyForbiddenException } from 'src/common/exceptions/forbidden.exception';
 import { ApiTags } from '@nestjs/swagger/dist';
+import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor.ts';
+import { sleep } from 'src/common/utils/sleep';
 
 @ApiTags('user')
 @Controller('user')
+@UseInterceptors(LoggingInterceptor)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -24,7 +37,9 @@ export class UserController {
   }
 
   @Get()
-  findAll(@Query('abc') abc: string) {
+  @UseInterceptors(LoggingInterceptor)
+  async findAll(@Query('abc') abc: string) {
+    await sleep(1200);
     return this.userService.findAll();
   }
 
