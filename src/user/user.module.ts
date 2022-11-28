@@ -8,12 +8,22 @@ import { Role } from './entities/role.entity';
 import { UserDetail } from './entities/user_detail.entity';
 import { APP_FILTER } from '@nestjs/core';
 import { AllExceptionsFilter } from 'src/common/filters/all-exception.filter';
+import { BullModule } from '@nestjs/bull/dist/bull.module';
+import { EQueue } from 'src/common/constants/queue';
+import { UserProcessor } from './user.processor';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User, Role, UserDetail]), ConfigModule],
+  imports: [
+    TypeOrmModule.forFeature([User, Role, UserDetail]),
+    ConfigModule,
+    BullModule.registerQueue({
+      name: EQueue.User,
+    }),
+  ],
   controllers: [UserController],
   providers: [
     UserService,
+    UserProcessor,
     {
       // apply entire app, not only UserModule
       provide: APP_FILTER,

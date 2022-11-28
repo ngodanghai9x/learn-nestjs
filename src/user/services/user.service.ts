@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
@@ -7,9 +7,12 @@ import { DataSource, Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { UserDetail } from '../entities/user_detail.entity';
 import { Role } from '../entities/role.entity';
+import { Queue } from 'bull';
+import { InjectQueue } from '@nestjs/bull';
+import { EQueue, UserMessage } from 'src/common/constants/queue';
 
 @Injectable()
-export class UserService {
+export class UserService implements OnModuleInit {
   private readonly logger = new Logger(UserService.name);
   constructor(
     @InjectRepository(User)
@@ -17,7 +20,16 @@ export class UserService {
     // private readonly httpService: HttpService,
     private readonly dataSource: DataSource,
     private readonly configService: ConfigService,
+    @InjectQueue(EQueue.User)
+    private readonly userQueue: Queue<UserMessage>,
   ) {}
+
+  onModuleInit() {
+    this.logger.log(`The module ${UserService.name} has been initialized.`);
+    this.userQueue.add({ age: 1, name: 'abc' }, { priority: 2 });
+    this.userQueue.add({ age: 2, name: 'abc2' }, { priority: 1 });
+  }
+
   async create(createUserDto: CreateUserDto) {
     const queryRunner = this.dataSource.createQueryRunner();
     await queryRunner.connect();

@@ -12,6 +12,7 @@ import { UserModule } from './user/user.module';
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './common/guards/roles.guard';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports: [
@@ -35,6 +36,12 @@ import { RolesGuard } from './common/guards/roles.guard';
           autoLoadEntities: true,
           synchronize: true,
         };
+      },
+    }),
+    BullModule.forRoot({
+      redis: {
+        host: 'localhost',
+        port: 6379,
       },
     }),
     AuthModule,
