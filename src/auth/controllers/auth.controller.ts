@@ -1,6 +1,6 @@
 import { Controller, UseFilters, Query } from '@nestjs/common';
 import { Post, UseGuards, Get, Body } from '@nestjs/common/decorators';
-import { ApiTags } from '@nestjs/swagger/dist/decorators';
+import { ApiOperation, ApiTags } from '@nestjs/swagger/dist/decorators';
 import { ApiBody } from '@nestjs/swagger/dist/decorators/api-body.decorator';
 import { ApiQuery } from '@nestjs/swagger/dist/decorators/api-query.decorator';
 import { ERole } from 'src/common/constants/role';
@@ -21,6 +21,7 @@ export class AuthController {
   // @ApiBody({ type: [LoginInput] })
   @UseGuards(LocalAuthGuard)
   @Post('login')
+  @ApiOperation({ summary: '123summary goes here' })
   async login(@Body() body: LoginInput) {
     return this.authService.createJwt(body.user);
   }
@@ -36,8 +37,9 @@ export class AuthController {
   @Get('testFilter')
   @UseFilters(HttpExceptionFilter)
   async testFilter() {
-    throw new Error(`123Error`);
-    throw new MyForbiddenException();
+    // throw new Error(`123Error`);
+    // throw new MyForbiddenException();
+    throw { abc: 1 };
   }
 
   @HasRoles(ERole.Admin)
