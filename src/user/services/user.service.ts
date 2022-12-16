@@ -1,4 +1,4 @@
-import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { forwardRef, Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
@@ -10,6 +10,7 @@ import { Role } from '../entities/role.entity';
 import { Queue } from 'bull';
 import { InjectQueue } from '@nestjs/bull';
 import { EQueue, UserMessage } from 'src/common/constants/queue';
+import { IdentityService } from './identity.service';
 
 @Injectable()
 export class UserService implements OnModuleInit {
@@ -19,6 +20,8 @@ export class UserService implements OnModuleInit {
     private readonly userRepository: Repository<User>,
     // private readonly httpService: HttpService,
     private readonly dataSource: DataSource,
+    @Inject(forwardRef(() => IdentityService))
+    private readonly identityService: IdentityService,
     private readonly configService: ConfigService,
     @InjectQueue(EQueue.User)
     private readonly userQueue: Queue<UserMessage>,
@@ -28,6 +31,8 @@ export class UserService implements OnModuleInit {
     this.logger.log(`The module ${UserService.name} has been initialized.`);
     this.userQueue.add({ age: 1, name: 'abc' }, { priority: 2 });
     this.userQueue.add({ age: 2, name: 'abc2' }, { priority: 1 });
+    this.remove(123);
+    this.identityService.hello(123);
   }
 
   async create(createUserDto: CreateUserDto) {
@@ -70,7 +75,12 @@ export class UserService implements OnModuleInit {
     return `This action updates a #${id} user`;
   }
 
+  hello(id: number) {
+    return console.log(`${UserService.name} hello a #${id} user`);
+  }
+
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    this.identityService.remove(1);
+    return console.log(`${UserService.name} This action removes a #${id} user`);
   }
 }

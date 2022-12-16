@@ -11,6 +11,7 @@ import { AllExceptionsFilter } from 'src/common/filters/all-exception.filter';
 import { BullModule } from '@nestjs/bull/dist/bull.module';
 import { EQueue } from 'src/common/constants/queue';
 import { UserProcessor } from './user.processor';
+import { IdentityService } from './services/identity.service';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { UserProcessor } from './user.processor';
   providers: [
     UserService,
     UserProcessor,
+    IdentityService,
     {
       // apply entire app, not only UserModule
       provide: APP_FILTER,
