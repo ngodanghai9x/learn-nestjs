@@ -1,14 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Query,
-  UseInterceptors,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, UseInterceptors } from '@nestjs/common';
 import { HttpExceptionFilter } from 'src/common/filters/http-exception.filter';
 import { MyForbiddenException } from 'src/common/exceptions/forbidden.exception';
 import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger/dist';
@@ -18,6 +8,7 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 import { UploadedFile, UploadedFiles } from '@nestjs/common/decorators';
 import { FileFieldsInterceptor, FileInterceptor } from '@nestjs/platform-express/multer';
 import { ApiFile, ApiFileFields, ApiFiles } from 'src/common/decorators/files.decorator';
+import { ParseFile } from 'src/common/pipes/parse-file.pipe';
 
 @Controller('file')
 @ApiTags('file')
@@ -29,7 +20,7 @@ export class FileController {
     age: { type: 'integer' },
   })
   // https://notiz.dev/blog/type-safe-file-uploads
-  testUploadFile(@Body() body, @UploadedFile() file: Express.Multer.File) {
+  testUploadFile(@Body() body, @UploadedFile(ParseFile) file: Express.Multer.File) {
     console.log('🚀 ~testUploadedFiles body', body);
     console.log('🚀 ~testUploadedFiles file', file);
   }
@@ -44,7 +35,7 @@ export class FileController {
     'filesParams',
   )
   // @UseInterceptors(FileExtender)
-  testUploadedFiles(@Body() body, @UploadedFiles() filesParams: Express.Multer.File[]) {
+  testUploadedFiles(@Body() body, @UploadedFiles(ParseFile) filesParams: Express.Multer.File[]) {
     console.log('🚀 ~testUploadedFiles body', body);
     console.log('🚀 ~testUploadedFiles files', filesParams);
   }
@@ -79,7 +70,7 @@ export class FileController {
   )
   testUploadMultipleFiles(
     @Body() body,
-    @UploadedFiles()
+    @UploadedFiles(ParseFile)
     bodyFiles: {
       avatar?: Express.Multer.File[];
       background?: Express.Multer.File[];
@@ -96,7 +87,7 @@ export class FileController {
     { name: 'avatar', maxCount: 1, required: true },
     { name: 'background', maxCount: 1 },
   ])
-  uploadMultipleFiles(@UploadedFiles() files: Express.Multer.File[]) {
+  uploadMultipleFiles(@UploadedFiles(ParseFile) files: Express.Multer.File[]) {
     console.log(files);
   }
 }
