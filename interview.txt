@@ -9,3 +9,4 @@ thứ tự thực thi mấy cái promise vs setTimeOut
 tại sao js là đơn luồng mà vẫn xử lý đc nhiều request cùng 1 lúc
 fetch api vs ssr
 event loop
+arrow func vs func (this)

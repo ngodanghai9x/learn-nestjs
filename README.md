@@ -9,7 +9,7 @@ npm install
 ```
 
 ## Migration
- [Guide](https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/)
+[Guide](https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/)
 ```bash
 ./node_modules/.bin/typeorm migration:create ./migrations/Init 
 

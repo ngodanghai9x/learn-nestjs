@@ -12,6 +12,7 @@ import { BullModule } from '@nestjs/bull/dist/bull.module';
 import { EQueue } from 'src/common/constants/queue';
 import { UserProcessor } from './user.processor';
 import { IdentityService } from './services/identity.service';
+import { FileController } from './controllers/file.controller';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { IdentityService } from './services/identity.service';
       name: EQueue.User,
     }),
   ],
-  controllers: [UserController],
+  controllers: [UserController, FileController],
   providers: [
     UserService,
     UserProcessor,
