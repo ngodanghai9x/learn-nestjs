@@ -17,27 +17,18 @@ import { sleep } from 'src/common/utils/sleep';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { UploadedFile, UploadedFiles } from '@nestjs/common/decorators';
 import { FileFieldsInterceptor, FileInterceptor } from '@nestjs/platform-express/multer';
+import { ApiFile, ApiFileFields, ApiFiles } from 'src/common/decorators/files.decorator';
 
 @Controller('file')
 @ApiTags('file')
 // @UseInterceptors(LoggingInterceptor)
 export class FileController {
   @Post('upload')
-  @ApiConsumes('multipart/form-data')
-  @ApiBody({
-    schema: {
-      type: 'object',
-      properties: {
-        name: { type: 'string' },
-        age: { type: 'integer' },
-        file: {
-          type: 'string',
-          format: 'binary',
-        },
-      },
-    },
+  @ApiFile({
+    name: { type: 'string' },
+    age: { type: 'integer' },
   })
-  @UseInterceptors(FileInterceptor('file')) // 👈 field name must match
+  // https://notiz.dev/blog/type-safe-file-uploads
   testUploadFile(@Body() body, @UploadedFile() file: Express.Multer.File) {
     console.log('🚀 ~testUploadedFiles body', body);
     console.log('🚀 ~testUploadedFiles file', file);
@@ -45,27 +36,17 @@ export class FileController {
 
   @Post('uploadFiles')
   @ApiConsumes('multipart/form-data')
-  @ApiBody({
-    schema: {
-      type: 'object',
-      properties: {
-        name: { type: 'string' },
-        age: { type: 'integer' },
-        files: {
-          type: 'array', // 👈  array of files
-          items: {
-            type: 'string',
-            format: 'binary',
-          },
-        },
-      },
+  @ApiFiles(
+    {
+      name: { type: 'string' },
+      age: { type: 'integer' },
     },
-  })
+    'filesParams',
+  )
   // @UseInterceptors(FileExtender)
-  @UseInterceptors(FilesInterceptor('files'))
-  testUploadedFiles(@Body() body, @UploadedFiles() files: Express.Multer.File[]) {
+  testUploadedFiles(@Body() body, @UploadedFiles() filesParams: Express.Multer.File[]) {
     console.log('🚀 ~testUploadedFiles body', body);
-    console.log('🚀 ~testUploadedFiles files', files);
+    console.log('🚀 ~testUploadedFiles files', filesParams);
   }
 
   @Post('uploadFields')
@@ -108,5 +89,14 @@ export class FileController {
     // console.log('🚀 ~ bodyFiles', bodyFiles);
     console.log('🚀 ~ avatar', bodyFiles?.avatar);
     console.log('🚀 ~ background', bodyFiles?.background);
+  }
+
+  @Post('v2/uploadFields')
+  @ApiFileFields([
+    { name: 'avatar', maxCount: 1, required: true },
+    { name: 'background', maxCount: 1 },
+  ])
+  uploadMultipleFiles(@UploadedFiles() files: Express.Multer.File[]) {
+    console.log(files);
   }
 }
