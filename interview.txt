@@ -1,0 +1,11 @@
+các khái niệm trong express, nestjs
+làm paging
+group by, order by, having
+các loại index, FK
+trigger
+promise async await
+callback hell
+thứ tự thực thi mấy cái promise vs setTimeOut
+tại sao js là đơn luồng mà vẫn xử lý đc nhiều request cùng 1 lúc
+fetch api vs ssr
+event loop

@@ -29,8 +29,8 @@ export class UserService implements OnModuleInit {
 
   onModuleInit() {
     this.logger.log(`The module ${UserService.name} has been initialized.`);
-    this.userQueue.add({ age: 1, name: 'abc' }, { priority: 2 });
-    this.userQueue.add({ age: 2, name: 'abc2' }, { priority: 1 });
+    // this.userQueue.add({ age: 1, name: 'abc' }, { priority: 2 });
+    // this.userQueue.add({ age: 2, name: 'abc2' }, { priority: 1 });
     this.remove(123);
     this.identityService.hello(123);
   }
