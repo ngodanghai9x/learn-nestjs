@@ -21,18 +21,35 @@ import { BullModule } from '@nestjs/bull';
       isGlobal: true,
       expandVariables: true,
     }),
+    // TypeOrmModule.forRootAsync({
+    //   imports: [ConfigModule],
+    //   inject: [ConfigService],
+    //   useFactory: (configService: ConfigService) => {
+    //     console.log('MYSQL_PORT', configService.get('MYSQL_PORT'));
+    //     return {
+    //       type: 'mysql',
+    //       host: configService.get('MYSQL_HOST'),
+    //       port: configService.get('MYSQL_PORT'),
+    //       username: configService.get('MYSQL_USERNAME'),
+    //       password: configService.get('MYSQL_PASSWORD'),
+    //       database: configService.get('MYSQL_DATABASE'),
+    //       autoLoadEntities: true,
+    //       synchronize: true,
+    //     };
+    //   },
+    // }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        console.log('MYSQL_PORT', configService.get('MYSQL_PORT'));
+        console.log('PG_PORT', configService.get('PG_PORT'));
         return {
-          type: 'mysql',
-          host: configService.get('MYSQL_HOST'),
-          port: configService.get('MYSQL_PORT'),
-          username: configService.get('MYSQL_USERNAME'),
-          password: configService.get('MYSQL_PASSWORD'),
-          database: configService.get('MYSQL_DATABASE'),
+          type: 'postgres',
+          host: configService.get('PG_HOST'),
+          port: configService.get('PG_PORT'),
+          username: configService.get('PG_USERNAME'),
+          password: configService.get('PG_PASSWORD'),
+          database: configService.get('PG_DATABASE'),
           autoLoadEntities: true,
           synchronize: true,
         };
