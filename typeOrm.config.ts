@@ -1,9 +1,9 @@
 import { DataSource } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
-import { Role } from './src/user/entities/role.entity';
-import { User } from './src/user/entities/user.entity';
-import { UserDetail } from './src/user/entities/user_detail.entity';
+import { Role } from './src/entities/role.entity';
+import { User } from './src/entities/user.entity';
+import { UserDetail } from './src/entities/user_detail.entity';
 import { Init1671965498960 } from './migrations/1671965498960-Init';
 
 config();

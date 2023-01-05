@@ -4,19 +4,19 @@ import { ExecutionContext } from '@nestjs/common/interfaces';
 import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
 import { Observable } from 'rxjs';
-import { User } from 'src/user/entities/user.entity';
+import { User } from 'src/entities/user.entity';
 
 @Injectable()
+// package: passport-local
 export class LocalAuthGuard extends AuthGuard('local') implements CanActivate {
-  // canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
-  //   console.log(LocalAuthGuard.name, context);
-  //   const req = context.switchToHttp().getRequest<Request>();
-  //   console.log('switchToHttp', req.body);
+  canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
+    const req = context.switchToHttp().getRequest<Request>();
+    console.log(LocalAuthGuard.name, 'switchToHttp', req.body);
 
-  //   // Add your custom authentication logic here
-  //   // for example, call super.logIn(request) to establish a session.
-  //   return super.canActivate(context);
-  // }
+    // Add your custom authentication logic here
+    // for example, call super.logIn(request) to establish a session.
+    return super.canActivate(context);
+  }
 
   handleRequest(
     err: any,
@@ -25,7 +25,7 @@ export class LocalAuthGuard extends AuthGuard('local') implements CanActivate {
     context: ExecutionContext,
     status?: any,
   ) {
-    console.log(`handleRequest`, LocalAuthGuard.name, err, user, info, status);
+    console.log(LocalAuthGuard.name, `handleRequest`, err, user, info, status);
     // You can throw an exception based on either "info" or "err" arguments
     if (err || !user) {
       throw err || new UnauthorizedException();

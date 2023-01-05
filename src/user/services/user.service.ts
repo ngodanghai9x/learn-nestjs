@@ -2,11 +2,11 @@ import { forwardRef, Inject, Injectable, Logger, OnModuleInit } from '@nestjs/co
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
-import { User } from '../entities/user.entity';
+import { User } from 'src/entities/user.entity';
 import { DataSource, Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
-import { UserDetail } from '../entities/user_detail.entity';
-import { Role } from '../entities/role.entity';
+import { UserDetail } from 'src/entities/user_detail.entity';
+import { Role } from 'src/entities/role.entity';
 import { Queue } from 'bull';
 import { InjectQueue } from '@nestjs/bull';
 import { EQueue, UserMessage } from 'src/common/constants/queue';

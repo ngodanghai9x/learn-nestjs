@@ -3,7 +3,7 @@ import { UserController } from './user.controller';
 import { UserService } from '../services/user.service';
 import { getDataSourceToken, getRepositoryToken } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { User } from '../entities/user.entity';
+import { User } from 'src/entities/user.entity';
 
 describe('UserController', () => {
   let controller: UserController;
