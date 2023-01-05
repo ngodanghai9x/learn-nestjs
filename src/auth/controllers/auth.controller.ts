@@ -1,4 +1,4 @@
-import { Controller, UseFilters, Query } from '@nestjs/common';
+import { Controller, UseFilters, Query, Request } from '@nestjs/common';
 import { Post, UseGuards, Get, Body } from '@nestjs/common/decorators';
 import { ApiOperation, ApiTags } from '@nestjs/swagger/dist/decorators';
 import { ApiBody } from '@nestjs/swagger/dist/decorators/api-body.decorator';
@@ -19,11 +19,11 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   // @ApiBody({ type: [LoginInput] })
-  @UseGuards(LocalAuthGuard)
+  @UseGuards(LocalAuthGuard) // POST: auth/login > LocalStrategy > LocalAuthGuard (append user into req) > login
   @Post('login')
   @ApiOperation({ summary: '123summary goes here' })
-  async login(@Body() body: LoginInput) {
-    return this.authService.createJwt(body.user);
+  async login(@Body() body: LoginInput, @Request() req) {
+    return this.authService.createJwt(req.user); // from: LocalAuthGuard.name
   }
 
   // @UseGuards(AuthGuard('jwt'))

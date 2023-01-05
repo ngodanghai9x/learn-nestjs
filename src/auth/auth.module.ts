@@ -17,11 +17,15 @@ import { RolesGuard } from 'src/common/guards/roles.guard';
     PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
-        ...jwtConstants,
-        secret: configService.get<string>('JWT_SERCET'),
-      }),
       inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => {
+        await ConfigModule.envVariablesLoaded;
+        console.log('useFactory', configService.get<string>('JWT_SERCET'), jwtConstants);
+        return {
+          ...jwtConstants,
+          // secret: configService.get<string>('JWT_SERCET'),
+        };
+      },
     }),
   ],
 

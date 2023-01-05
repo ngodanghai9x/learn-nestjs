@@ -2,8 +2,8 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export interface ILoginInput {
   user?: any;
-  username: string;
-  password: string;
+  email: string;
+  pw: string;
 }
 
 export class LoginInput implements ILoginInput {
@@ -11,8 +11,8 @@ export class LoginInput implements ILoginInput {
   user?: any;
 
   @ApiProperty()
-  username: string;
+  email: string;
 
   @ApiProperty()
-  password: string;
+  pw: string;
 }
