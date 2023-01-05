@@ -33,6 +33,7 @@ async function bootstrap() {
 
   await app.listen(port, () => {
     logger.log(`Server is running on port: ${port}`);
+    logger.log(`Swagger is running on: http://localhost:${port}/swagger`);
     // Logger.log(`Server is running on port: ${port}`);
   });
 }

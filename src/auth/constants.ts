@@ -9,5 +9,5 @@ console.log('🚀 ~ process.env.JWT_SECRET', process.env.JWT_SECRET);
 export const jwtConstants: JwtModuleOptions = {
   // await ConfigModule.envVariablesLoaded;
   secret: process.env.JWT_SECRET || null,
-  signOptions: { expiresIn: '60s', algorithm: 'HS256' },
+  signOptions: { expiresIn: process.env.JWT_LIFE, algorithm: 'HS256' },
 };
