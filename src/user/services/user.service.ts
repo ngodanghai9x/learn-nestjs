@@ -15,7 +15,6 @@ import { ERole } from 'src/common/constants/role';
 
 @Injectable()
 export class UserService implements OnModuleInit {
-  private readonly logger = new Logger(UserService.name);
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
@@ -29,6 +28,8 @@ export class UserService implements OnModuleInit {
     @InjectQueue(EQueue.User)
     private readonly userQueue: Queue<UserMessage>,
   ) {}
+
+  private readonly logger = new Logger(UserService.name);
 
   async onModuleInit() {
     this.logger.log(`The module ${UserService.name} has been initialized.`);

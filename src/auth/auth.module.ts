@@ -20,7 +20,11 @@ import { RolesGuard } from 'src/common/guards/roles.guard';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         await ConfigModule.envVariablesLoaded;
-        console.log('useFactory', configService.get<string>('JWT_SERCET'), jwtConstants);
+        console.log(
+          'useFactory configService.get',
+          configService.get<string>('JWT_SERCET'),
+          jwtConstants,
+        );
         return {
           ...jwtConstants,
           // secret: configService.get<string>('JWT_SERCET'),
