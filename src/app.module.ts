@@ -12,6 +12,7 @@ import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './common/guards/roles.guard';
 import { BullModule } from '@nestjs/bull';
+import { ExternalModule } from './external/external.module';
 
 @Module({
   imports: [
@@ -76,6 +77,7 @@ import { BullModule } from '@nestjs/bull';
     }),
     AuthModule,
     UserModule,
+    ExternalModule,
   ],
   controllers: [AppController],
   providers: [
