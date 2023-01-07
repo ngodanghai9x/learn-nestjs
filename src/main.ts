@@ -1,19 +1,15 @@
-import { Logger } from '@nestjs/common';
+import { INestApplication, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import helmet from 'helmet';
-import csurf from 'csurf';
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/all-exception.filter';
 import { loggerMiddleware } from './common/middlewares/logger.middleware';
 import { DocumentBuilder } from '@nestjs/swagger';
 import { SwaggerModule } from '@nestjs/swagger/dist';
+import { ExternalService } from './external/services/external.service';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
-  const logger = new Logger('bootstrap');
-  const configService = app.get(ConfigService);
-  const port = configService.get('PORT');
+function setupSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
     .setTitle('Learn nestjs example')
     .setDescription('')
@@ -21,20 +17,44 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);
-  // const { httpAdapter } = app.get(HttpAdapterHost<any>);
+}
 
-  // app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
-  // app.useGlobalInterceptors(new LoggingInterceptor());
-  app.use(loggerMiddleware);
+async function runService(app: INestApplication) {
+  const externalService = app.get(ExternalService); // get any service (AppService)
+  const worldIndexes = await externalService
+    .getWorldIndexes2()
+    .then((res) => res.data)
+    .catch((err) => {
+      console.error(err);
+    });
+  console.log('Get worldIndexes success');
+}
+
+function applyMiddleware(app: INestApplication) {
   // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately. Generally, Helmet is just a collection of smaller middleware functions that set security-related HTTP headers (read more).
   app.use(helmet());
-  // Cross-site request forgery (also known as CSRF or XSRF) is a type of malicious exploit of a website where unauthorized commands are transmitted from a user that the web application trusts. To mitigate this kind of attack you can use the csurf package.
-  // app.use(csurf());
+  app.use(loggerMiddleware);
+  // const { httpAdapter } = app.get(HttpAdapterHost<any>);
+  // app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
+  // app.useGlobalInterceptors(new LoggingInterceptor());
+}
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  const logger = new Logger('bootstrap');
+  const configService = app.get(ConfigService); // get any service (AppService)
+
+  const port = configService.get('PORT');
+  const host = configService.get('HOST');
+
+  setupSwagger(app);
+  applyMiddleware(app);
 
   await app.listen(port, () => {
-    logger.log(`Server is running on port: ${port}`);
-    logger.log(`Swagger is running on: http://localhost:${port}/swagger`);
-    // Logger.log(`Server is running on port: ${port}`);
+    Logger.log(`Server is running on port: ${port}`);
+    logger.log(`Swagger is running on: http://${host}:${port}/swagger`);
   });
+
+  await runService(app);
 }
 bootstrap();

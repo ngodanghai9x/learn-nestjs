@@ -18,6 +18,8 @@ export class UserService implements OnModuleInit {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    @InjectRepository(UserDetail)
+    private readonly userDetailRepository: Repository<UserDetail>,
     @InjectRepository(Role)
     private readonly roleRepository: Repository<Role>,
     // private readonly httpService: HttpService,
@@ -103,8 +105,42 @@ export class UserService implements OnModuleInit {
     return `This action returns all user`;
   }
 
-  findOne(email: string) {
-    return this.userRepository.findOne({ where: { email } });
+  findOne(idOrEmail: string) {
+    // return this.userRepository.findOne({
+    //   where: [{ email: idOrEmail }, Number.isInteger(+idOrEmail) ? { id: +idOrEmail } : {}],
+    //   relations: {
+    //     // userDetail: true,
+    //     role: true,
+    //   },
+    // });
+    return this.userDetailRepository
+      .findOne({
+        select: {
+          user: {
+            password: false,
+            id: true,
+            username: true,
+            email: true,
+            fullName: true,
+            role: {
+              description: false,
+              id: true,
+              roleName: true,
+            },
+          },
+        },
+        where: {
+          user: [{ email: idOrEmail }, Number.isInteger(+idOrEmail) ? { id: +idOrEmail } : {}],
+        },
+        relations: {
+          user: { role: true },
+        },
+      })
+      .then((data) => {
+        console.log('🚀 ~ file: user.service.ts:131 ~ UserService ~ .then ~ data', data);
+        const { user, ...userDetail } = data;
+        return { ...user, userDetail };
+      });
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

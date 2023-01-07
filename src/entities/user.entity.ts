@@ -51,8 +51,8 @@ export class User {
   roleId: number;
 
   @ManyToOne(() => Role, (role) => role.users)
-  @JoinColumn({ name: 'role_id', referencedColumnName: 'id' })
-  role: Role;
+  @JoinColumn({ name: 'role_id', referencedColumnName: 'id' }) // column name, entity field name
+  role?: Role;
 
   @Column()
   @IsEmail()

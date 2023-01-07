@@ -20,5 +20,5 @@ export class UserDetail {
 
   @OneToOne(() => User)
   @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
-  user: User;
+  user?: User;
 }
