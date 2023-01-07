@@ -2,6 +2,8 @@ import { Injectable, OnModuleInit, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserService } from 'src/user/services/user.service';
 import { CronjobService } from './cronjob.service';
+import { UtilityService } from 'src/common/utils/utility.service';
+import { CommonService } from 'src/common/common.service';
 
 @Injectable()
 export class CronjobInitializerService implements OnModuleInit {
@@ -9,6 +11,8 @@ export class CronjobInitializerService implements OnModuleInit {
   constructor(
     private readonly cronjobService: CronjobService,
     private readonly userService: UserService,
+    private readonly utilityService: UtilityService,
+    private readonly commonService: CommonService,
   ) {}
 
   async onModuleInit() {
@@ -21,5 +25,7 @@ export class CronjobInitializerService implements OnModuleInit {
       jobName: 'MyJob123',
       scheduleTime: '*/30 * * * * *',
     });
+    await this.utilityService.sleep(1234, true);
+    this.commonService.doNothing();
   }
 }

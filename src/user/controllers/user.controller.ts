@@ -16,7 +16,6 @@ import { HttpExceptionFilter } from 'src/common/filters/http-exception.filter';
 import { MyForbiddenException } from 'src/common/exceptions/forbidden.exception';
 import { ApiTags } from '@nestjs/swagger/dist';
 import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor.ts';
-import { sleep } from 'src/common/utils/sleep';
 
 @ApiTags('user')
 @Controller('user')
@@ -39,7 +38,6 @@ export class UserController {
   @Get()
   @UseInterceptors(LoggingInterceptor)
   async findAll(@Query('abc') abc: string) {
-    await sleep(1200);
     return this.userService.findAll();
   }
 
