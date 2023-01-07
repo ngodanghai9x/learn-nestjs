@@ -12,11 +12,11 @@ export class IdentityService {
 
   remove(id: number) {
     // this.userService.remove(1);
-    return console.log(`${IdentityService.name} This action removes a #${id} identity`);
+    return this.logger.log(`This action removes a #${id} identity`);
   }
 
   hello(id: number) {
     this.userService.hello(1);
-    return console.log(`${IdentityService.name} hello a #${id} identity`);
+    return this.logger.log(`hello a #${id} identity`);
   }
 }

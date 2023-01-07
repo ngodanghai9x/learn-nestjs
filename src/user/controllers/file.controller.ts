@@ -27,8 +27,8 @@ export class FileController {
   })
   // https://notiz.dev/blog/type-safe-file-uploads
   testUploadFile(@Body() body, @UploadedFile(ParseFile) file: Express.Multer.File) {
-    console.log('🚀 ~testUploadedFiles body', body);
-    console.log('🚀 ~testUploadedFiles file', file);
+    this.logger.log('🚀 ~testUploadedFiles body', body);
+    this.logger.log('🚀 ~testUploadedFiles file', file);
   }
 
   @Post('uploadFiles')
@@ -42,8 +42,8 @@ export class FileController {
   )
   // @UseInterceptors(FileExtender)
   testUploadedFiles(@Body() body, @UploadedFiles(ParseFile) filesParams: Express.Multer.File[]) {
-    console.log('🚀 ~testUploadedFiles body', body);
-    console.log('🚀 ~testUploadedFiles files', filesParams);
+    this.logger.log('🚀 ~testUploadedFiles body', body);
+    this.logger.log('🚀 ~testUploadedFiles files', filesParams);
   }
 
   @Post('uploadFields')
@@ -82,10 +82,10 @@ export class FileController {
       background?: Express.Multer.File[];
     },
   ) {
-    console.log('🚀 ~ body', body);
-    // console.log('🚀 ~ bodyFiles', bodyFiles);
-    console.log('🚀 ~ avatar', bodyFiles?.avatar);
-    console.log('🚀 ~ background', bodyFiles?.background);
+    this.logger.log('🚀 ~ body', body);
+    // this.logger.log('🚀 ~ bodyFiles', bodyFiles);
+    this.logger.log('🚀 ~ avatar', bodyFiles?.avatar);
+    this.logger.log('🚀 ~ background', bodyFiles?.background);
   }
 
   @Post('v2/uploadFields')
@@ -94,7 +94,7 @@ export class FileController {
     { name: 'background', maxCount: 1 },
   ])
   uploadMultipleFiles(@UploadedFiles(ParseFile) files: Express.Multer.File[]) {
-    console.log(files);
+    this.logger.log(files);
   }
 
   @Get('download')

@@ -1,4 +1,4 @@
-import { ExceptionFilter, Catch, ArgumentsHost, HttpException } from '@nestjs/common';
+import { ExceptionFilter, Catch, ArgumentsHost, HttpException, Logger } from '@nestjs/common';
 import { Request, Response } from 'express';
 /*
  * When an exception is not handled by your application code, it is caught by this layer,
@@ -15,7 +15,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
     try {
-      console.log('HttpExceptionFilter exception', exception);
+      Logger.log('HttpExceptionFilter exception', exception);
       const status = exception.getStatus();
       const exceptionRes = exception.getResponse();
 

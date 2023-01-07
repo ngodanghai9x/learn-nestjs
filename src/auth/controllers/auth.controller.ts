@@ -1,4 +1,4 @@
-import { Controller, UseFilters, Query, Request } from '@nestjs/common';
+import { Controller, UseFilters, Query, Request, Logger } from '@nestjs/common';
 import { Post, UseGuards, Get, Body } from '@nestjs/common/decorators';
 import { ApiOperation, ApiTags } from '@nestjs/swagger/dist/decorators';
 import { ApiBody } from '@nestjs/swagger/dist/decorators/api-body.decorator';
@@ -46,7 +46,7 @@ export class AuthController {
   @UseGuards(RolesGuard)
   @Get('testAuthorz')
   testAuthorz(@Query('roles') roles: string[]) {
-    console.log('testAuthorz roles', roles);
+    Logger.log('testAuthorz roles', roles);
     return 'authenticated';
   }
 }

@@ -5,11 +5,12 @@ import { Role } from './src/entities/role.entity';
 import { User } from './src/entities/user.entity';
 import { UserDetail } from './src/entities/user_detail.entity';
 import { Init1671965498960 } from './migrations/1671965498960-Init';
+import { Logger } from '@nestjs/common';
 
 config();
 
 const configService = new ConfigService();
-console.log(`🚀 ~  configService.get('PG_HOST')`, configService.get('PG_HOST'));
+Logger.log(`🚀 ~  configService.get('PG_HOST')`, configService.get('PG_HOST'));
 
 export default new DataSource({
   type: 'postgres',

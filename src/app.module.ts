@@ -13,6 +13,7 @@ import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './common/guards/roles.guard';
 import { BullModule } from '@nestjs/bull';
 import { ExternalModule } from './external/external.module';
+import { CronjobModule } from './cronjob/cronjob.module';
 
 @Module({
   imports: [
@@ -78,6 +79,7 @@ import { ExternalModule } from './external/external.module';
     AuthModule,
     UserModule,
     ExternalModule,
+    CronjobModule,
   ],
   controllers: [AppController],
   providers: [

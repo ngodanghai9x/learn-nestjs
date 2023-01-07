@@ -25,9 +25,9 @@ async function runService(app: INestApplication) {
     .getWorldIndexes2()
     .then((res) => res.data)
     .catch((err) => {
-      console.error(err);
+      Logger.error(err);
     });
-  console.log('Get worldIndexes success');
+  Logger.log('Get worldIndexes success');
 }
 
 function applyMiddleware(app: INestApplication) {

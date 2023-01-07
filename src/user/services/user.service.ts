@@ -1,4 +1,4 @@
-import { forwardRef, Inject, Injectable, Logger, OnModuleInit } from '@nestjs/common';
+import { forwardRef, Inject, Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
@@ -14,7 +14,7 @@ import { IdentityService } from './identity.service';
 import { ERole } from 'src/common/constants/role';
 
 @Injectable()
-export class UserService implements OnModuleInit {
+export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
@@ -33,10 +33,7 @@ export class UserService implements OnModuleInit {
 
   private readonly logger = new Logger(UserService.name);
 
-  async onModuleInit() {
-    this.logger.log(`The module ${UserService.name} has been initialized.`);
-    await this.initRoles();
-    await this.initUser();
+  async initQueue() {
     // this.userQueue.add({ age: 1, name: 'abc' }, { priority: 2 });
     // this.userQueue.add({ age: 2, name: 'abc2' }, { priority: 1 });
     this.remove(123);
@@ -45,26 +42,28 @@ export class UserService implements OnModuleInit {
 
   async initRoles(): Promise<void> {
     const roles = await this.roleRepository.find();
+    let res = null;
     if (!roles.length) {
-      const res = await this.roleRepository.save(
+      res = await this.roleRepository.save(
         [ERole.Admin, ERole.User].map((roleName) => ({ roleName, description: 'auto generate' })),
       );
-      this.logger.log(`initRoles: ${JSON.stringify(res)}`);
     }
+    this.logger.log(`initRoles: ${JSON.stringify(res)}`);
   }
 
   async initUser(): Promise<void> {
     const users = await this.userRepository.find();
+    let res = null;
     if (!users.length) {
-      const res = await this.create({
+      res = await this.create({
         fullName: 'fullName',
         password: '123456',
         username: 'haind3',
         email: 'haind3@yopmail.com',
         moreDetail: 'more detail',
       });
-      this.logger.log(`initUser: ${JSON.stringify(res)}`);
     }
+    this.logger.log(`initUser: ${JSON.stringify(res)}`);
   }
 
   async create(payload: CreateUserDto) {
@@ -105,14 +104,14 @@ export class UserService implements OnModuleInit {
     return `This action returns all user`;
   }
 
-  findOne(idOrEmail: string) {
-    // return this.userRepository.findOne({
-    //   where: [{ email: idOrEmail }, Number.isInteger(+idOrEmail) ? { id: +idOrEmail } : {}],
-    //   relations: {
-    //     // userDetail: true,
-    //     role: true,
-    //   },
-    // });
+  async findOne(idOrEmail: string) {
+    return this.userRepository.findOne({
+      where: [{ email: idOrEmail }, Number.isInteger(+idOrEmail) ? { id: +idOrEmail } : {}],
+      relations: {
+        // userDetail: true,
+        role: true,
+      },
+    });
     return this.userDetailRepository
       .findOne({
         select: {
@@ -137,7 +136,7 @@ export class UserService implements OnModuleInit {
         },
       })
       .then((data) => {
-        console.log('🚀 ~ file: user.service.ts:131 ~ UserService ~ .then ~ data', data);
+        Logger.log('🚀 ~ file: user.service.ts:131 ~ UserService ~ .then ~ data', data);
         const { user, ...userDetail } = data;
         return { ...user, userDetail };
       });
@@ -148,11 +147,11 @@ export class UserService implements OnModuleInit {
   }
 
   hello(id: number) {
-    return console.log(`${UserService.name} hello a #${id} user`);
+    return this.logger.log(`hello a #${id} user`);
   }
 
   remove(id: number) {
     this.identityService.remove(1);
-    return console.log(`${UserService.name} This action removes a #${id} user`);
+    return this.logger.log(`This action removes a #${id} user`);
   }
 }

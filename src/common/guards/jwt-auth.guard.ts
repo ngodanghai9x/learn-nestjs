@@ -1,4 +1,4 @@
-import { Injectable, CanActivate } from '@nestjs/common';
+import { Injectable, CanActivate, Logger } from '@nestjs/common';
 import { UnauthorizedException } from '@nestjs/common/exceptions';
 import { ExecutionContext } from '@nestjs/common/interfaces';
 import { AuthGuard } from '@nestjs/passport';
@@ -14,7 +14,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') implements CanActivate {
   // }
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     const req = context.switchToHttp().getRequest<Request>();
-    console.log(JwtAuthGuard.name, 'switchToHttp', req.body);
+    Logger.log(JwtAuthGuard.name, 'switchToHttp', req.body);
 
     // Add your custom authentication logic here
     // for example, call super.logIn(request) to establish a session.
@@ -28,7 +28,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') implements CanActivate {
     context: ExecutionContext,
     status?: any,
   ) {
-    console.log(JwtAuthGuard.name, `handleRequest`, err, user, info, status);
+    Logger.log(JwtAuthGuard.name, `handleRequest`, err, user, info, status);
     // You can throw an exception based on either "info" or "err" arguments
     if (err || !user) {
       throw err || new UnauthorizedException();
