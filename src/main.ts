@@ -5,14 +5,14 @@ import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/all-exception.filter';
 import { loggerMiddleware } from './common/middlewares/logger.middleware';
-import { DocumentBuilder } from '@nestjs/swagger';
-import { SwaggerModule } from '@nestjs/swagger/dist';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+// import { SwaggerModule } from '@nestjs/swagger/dist';
 import { ExternalService } from './external/services/external.service';
 
 function setupSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
-    .setTitle('Learn nestjs example')
-    .setDescription('')
+    .setTitle('Main server')
+    .setDescription('Learn nestjs')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
@@ -52,7 +52,7 @@ async function bootstrap() {
   setupSwagger(app);
   applyMiddleware(app);
 
-  await app.listen(port, () => {
+  await app.listen(port, host, () => {
     Logger.log(`Main server is running on port: ${port}`);
     logger.log(`Main swagger is running on: http://${host}:${port}/swagger`);
   });
