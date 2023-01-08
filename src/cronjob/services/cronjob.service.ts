@@ -12,7 +12,7 @@ export class CronjobService {
   constructor(private schedulerRegistry: SchedulerRegistry) {}
 
   async getOrCreateCronJob({
-    scheduleTime = CronExpression.EVERY_10_MINUTES,
+    scheduleTime = CronExpression.EVERY_30_MINUTES,
     jobName,
   }: CreateJobDto): Promise<CronJob> {
     if (!scheduleTime || !jobName) {
@@ -35,7 +35,7 @@ export class CronjobService {
     }
   }
 
-  async startCronJob({ scheduleTime = CronExpression.EVERY_10_MINUTES, jobName }: CreateJobDto) {
+  async startCronJob({ scheduleTime = CronExpression.EVERY_30_MINUTES, jobName }: CreateJobDto) {
     try {
       const job = await this.getOrCreateCronJob({ scheduleTime, jobName });
       job.start();

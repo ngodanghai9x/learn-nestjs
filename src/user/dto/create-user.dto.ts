@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { ERole } from 'src/common/constants/role';
 export class CreateUserDto {
   @ApiProperty()
   username: string;
@@ -14,4 +15,7 @@ export class CreateUserDto {
 
   @ApiProperty()
   moreDetail: string;
+
+  @ApiProperty({ enum: ERole, default: [], isArray: true })
+  roles?: ERole[] = [];
 }

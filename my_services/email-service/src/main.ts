@@ -6,6 +6,10 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 const port = 3006;
 const host = 'localhost';
 let microServicePort = 3007;
+type INestMicroserviceAdv = {
+  microserviceConfig?: unknown;
+  server?: any;
+};
 
 function setupSwagger(app: INestApplication) {
   // const app = _app as unknown as INestApplication;
@@ -33,7 +37,7 @@ async function bootstrap2Port() {
     logger: ['error', 'warn', 'log'],
   });
 
-  const microservice: INestMicroservice =
+  const microservice: INestMicroservice & INestMicroserviceAdv =
     await NestFactory.createMicroservice<MicroserviceOptions>(AppModule, {
       transport: Transport.TCP,
       // logger: ['error', 'warn', 'log'],
@@ -42,14 +46,18 @@ async function bootstrap2Port() {
         port: microServicePort,
       },
     });
+  await microservice.listen();
+
+  console.log(`microservice`, {
+    microserviceConfig: microservice?.microserviceConfig,
+    messageHandlers: microservice?.server?.messageHandlers,
+  });
   // const app = await NestFactory.createApplication(microservice);
   // const app = new NestApplication(microservice.httpServer);
   // await app.init(microservice);
   // const app1 = await microservice.init();
   // setupSwagger(app1 as unknown as INestApplication);
   setupSwagger(app);
-
-  await microservice.listen();
 
   await app.listen(port, host, () => logging(logger, port, host));
 }
@@ -60,20 +68,25 @@ async function bootstrap1Port() {
   });
   microServicePort = port;
 
-  const microservice: INestMicroservice =
+  const microservice: INestMicroservice & INestMicroserviceAdv =
     app.connectMicroservice<MicroserviceOptions>({
       transport: Transport.TCP,
       options: {
         host,
-        port,
+        port: microServicePort,
       },
     });
+
+  console.log(`microservice`, {
+    microserviceConfig: microservice?.microserviceConfig,
+    messageHandlers: microservice?.server?.messageHandlers,
+  });
 
   setupSwagger(app);
 
   await app.startAllMicroservices();
+  // await app.listen(port, host, () => logging(logger, port, host));
   logging(logger, port, host);
 }
 
 bootstrap1Port();
-// bootstrap2Port();
