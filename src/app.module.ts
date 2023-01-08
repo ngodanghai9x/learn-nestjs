@@ -53,20 +53,12 @@ import { CronjobModule } from './cronjob/cronjob.module';
           database: configService.get('PG_DATABASE'),
           autoLoadEntities: true,
           // synchronize: true,
-          // entities: ['src/entity/**/*.ts'],
-          // entities: [__dirname + '../entity/*.ts'],
-          // entities: ['../entity/User.ts'],
-          // keepConnectionAlive: true,
           logging: ['error'],
           // extra: {
           //   connectionLimit: +configService.get('PG_CONNECT_LIMIT'),
           // },
           migrationsTableName: 'migrations', // default table name
           migrations: [join(process.cwd(), 'migration/*.ts')],
-          // migrations: ['/..migration/*.ts'],
-          // cli: {
-          //   migrationsDir: 'migration',
-          // },
         };
       },
     }),

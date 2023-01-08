@@ -4,6 +4,10 @@ export class Init1671965498960 implements MigrationInterface {
   name = 'Init1671965498960';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
+    // await queryRunner.query(`DROP TABLE "migrations"`);
+    await queryRunner.query(`DROP TABLE IF EXISTS "user_details"`);
+    await queryRunner.query(`DROP TABLE IF EXISTS "users"`);
+    await queryRunner.query(`DROP TABLE IF EXISTS "roles"`);
     await queryRunner.query(
       `CREATE TABLE "user_details" ("id" SERIAL NOT NULL, "more_detail" character varying, "user_id" integer NOT NULL, CONSTRAINT "REL_ef1a1915f99bcf7a87049f7449" UNIQUE ("user_id"), CONSTRAINT "PK_fb08394d3f499b9e441cab9ca51" PRIMARY KEY ("id"))`,
     );
@@ -26,8 +30,8 @@ export class Init1671965498960 implements MigrationInterface {
     await queryRunner.query(
       `ALTER TABLE "user_details" DROP CONSTRAINT "FK_ef1a1915f99bcf7a87049f74494"`,
     );
-    await queryRunner.query(`DROP TABLE "roles"`);
-    await queryRunner.query(`DROP TABLE "users"`);
-    await queryRunner.query(`DROP TABLE "user_details"`);
+    await queryRunner.query(`DROP TABLE IF EXISTS "roles"`);
+    await queryRunner.query(`DROP TABLE IF EXISTS "users"`);
+    await queryRunner.query(`DROP TABLE IF EXISTS "user_details"`);
   }
 }
