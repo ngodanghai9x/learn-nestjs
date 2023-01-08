@@ -14,6 +14,7 @@ import { RolesGuard } from './common/guards/roles.guard';
 import { BullModule } from '@nestjs/bull';
 import { ExternalModule } from './external/external.module';
 import { CronjobModule } from './cronjob/cronjob.module';
+import { MicroServicesModule } from './micro-services/micro-services.module';
 
 @Module({
   imports: [
@@ -72,6 +73,7 @@ import { CronjobModule } from './cronjob/cronjob.module';
     UserModule,
     ExternalModule,
     CronjobModule,
+    MicroServicesModule,
   ],
   controllers: [AppController],
   providers: [

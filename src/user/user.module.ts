@@ -13,6 +13,7 @@ import { EQueue } from 'src/common/constants/queue';
 import { UserProcessor } from './user.processor';
 import { IdentityService } from './services/identity.service';
 import { FileController } from './controllers/file.controller';
+import { MicroServicesModule } from 'src/micro-services/micro-services.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { FileController } from './controllers/file.controller';
     BullModule.registerQueue({
       name: EQueue.User,
     }),
+    MicroServicesModule,
   ],
   controllers: [UserController, FileController],
   providers: [

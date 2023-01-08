@@ -16,12 +16,16 @@ import { HttpExceptionFilter } from 'src/common/filters/http-exception.filter';
 import { MyForbiddenException } from 'src/common/exceptions/forbidden.exception';
 import { ApiTags } from '@nestjs/swagger/dist';
 import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor.ts';
+import { EmailSvService } from 'src/micro-services/email-sv/email-sv.service';
 
 @ApiTags('user')
 @Controller('user')
 @UseInterceptors(LoggingInterceptor)
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private readonly emailSvService: EmailSvService,
+  ) {}
 
   @Get('testFilter')
   // @UseFilters(HttpExceptionFilter)
@@ -51,8 +55,13 @@ export class UserController {
     return this.userService.update(+id, updateUserDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+  @Post('sendEmail')
+  sendEmail() {
+    return this.emailSvService.sendEmail();
+  }
+
+  @Post('emitSendEmail')
+  emitSendEmail() {
+    return this.emailSvService.emitSendEmail();
   }
 }

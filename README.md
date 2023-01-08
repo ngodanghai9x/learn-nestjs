@@ -8,6 +8,9 @@
 yarn
 ```
 
+## Naming convention
+[Guide](https://narhakobyan.github.io/awesome-nest-boilerplate/docs/naming-cheatsheet.html#english-language)
+
 ## Migration
 [Guide](https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/)
 ```bash
