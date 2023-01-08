@@ -23,7 +23,7 @@ export class CronjobInitializerService implements OnModuleInit {
     await this.userService.initUser();
     await this.cronjobService.startCronJob({
       jobName: 'MyJob123',
-      scheduleTime: '*/30 * * * * *',
+      // scheduleTime: '*/30 * * * * *',
     });
     await this.utilityService.sleep(1234, true);
     this.commonService.doNothing();

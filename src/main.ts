@@ -53,8 +53,8 @@ async function bootstrap() {
   applyMiddleware(app);
 
   await app.listen(port, () => {
-    Logger.log(`Server is running on port: ${port}`);
-    logger.log(`Swagger is running on: http://${host}:${port}/swagger`);
+    Logger.log(`Main server is running on port: ${port}`);
+    logger.log(`Main swagger is running on: http://${host}:${port}/swagger`);
   });
 
   await runService(app);

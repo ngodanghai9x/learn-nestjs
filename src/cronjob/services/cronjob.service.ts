@@ -4,7 +4,7 @@ import { CronExpression } from '@nestjs/schedule/dist';
 import { CronJob } from 'cron';
 interface CreateJobDto {
   jobName: string;
-  scheduleTime: string;
+  scheduleTime?: string;
 }
 @Injectable()
 export class CronjobService {
@@ -12,7 +12,7 @@ export class CronjobService {
   constructor(private schedulerRegistry: SchedulerRegistry) {}
 
   async getOrCreateCronJob({
-    scheduleTime = CronExpression.EVERY_30_SECONDS,
+    scheduleTime = CronExpression.EVERY_10_MINUTES,
     jobName,
   }: CreateJobDto): Promise<CronJob> {
     if (!scheduleTime || !jobName) {
@@ -35,9 +35,9 @@ export class CronjobService {
     }
   }
 
-  async startCronJob(task: CreateJobDto) {
+  async startCronJob({ scheduleTime = CronExpression.EVERY_10_MINUTES, jobName }: CreateJobDto) {
     try {
-      const job = await this.getOrCreateCronJob(task);
+      const job = await this.getOrCreateCronJob({ scheduleTime, jobName });
       job.start();
     } catch (error) {
       throw error;
