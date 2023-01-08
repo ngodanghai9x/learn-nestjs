@@ -1,0 +1,43 @@
+PS F:\MyRepositories\learn-nestjs> yarn ts-node ./node_modules/typeorm/cli migration:generate ./migrations/ChangeUser -d ./typeOrm.config.ts
+yarn run v1.22.19
+$ F:\MyRepositories\learn-nestjs\node_modules\.bin\ts-node ./node_modules/typeorm/cli migration:generate ./migrations/ChangeUser -d ./typeOrm.config.ts
+[Nest] 16888  - 01/08/2023, 10:17:09 AM     LOG [127.0.0.1] 🚀 ~  configService.get('PG_HOST')
+Error during migration generation:
+DataTypeNotSupportedError: Data type "smallmoney" in "User.lockedMoney" is not supported by "postgres" database.
+    at F:\MyRepositories\learn-nestjs\node_modules\src\metadata-builder\EntityMetadataValidator.ts:136:31
+    at EntityMetadataValidator.validate (F:\MyRepositories\learn-nestjs\node_modules\src\metadata-builder\EntityMetadataValidator.ts:128:18)
+    at F:\MyRepositories\learn-nestjs\node_modules\src\metadata-builder\EntityMetadataValidator.ts:43:18
+    at Array.forEach (<anonymous>)
+    at EntityMetadataValidator.validateMany (F:\MyRepositories\learn-nestjs\node_modules\src\metadata-builder\EntityMetadataValidator.ts:42:25)
+    at DataSource.buildMetadatas (F:\MyRepositories\learn-nestjs\node_modules\src\data-source\DataSource.ts:689:33)
+    at async Object.handler (F:\MyRepositories\learn-nestjs\node_modules\src\commands\MigrationGenerateCommand.ts:82:13)
+error Command failed with exit code 1.
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+PS F:\MyRepositories\learn-nestjs> yarn ts-node ./node_modules/typeorm/cli migration:generate ./migrations/ChangeUser -d ./typeOrm.config.ts
+yarn run v1.22.19
+$ F:\MyRepositories\learn-nestjs\node_modules\.bin\ts-node ./node_modules/typeorm/cli migration:generate ./migrations/ChangeUser -d ./typeOrm.config.ts
+[Nest] 12404  - 01/08/2023, 10:17:52 AM     LOG [127.0.0.1] 🚀 ~  configService.get('PG_HOST')
+Migration F:\MyRepositories\learn-nestjs\migrations/1673147868791-ChangeUser.ts has been generated successfully.
+Done in 5.09s.
+PS F:\MyRepositories\learn-nestjs> yarn ts-node ./node_modules/typeorm/cli -d ./typeOrm.config.ts migration:run
+yarn run v1.22.19
+$ F:\MyRepositories\learn-nestjs\node_modules\.bin\ts-node ./node_modules/typeorm/cli -d ./typeOrm.config.ts migration:run
+[Nest] 16268  - 01/08/2023, 10:19:02 AM     LOG [127.0.0.1] 🚀 ~  configService.get('PG_HOST')
+query: SELECT * FROM current_schema()
+query: SELECT version();
+query: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = 'public' AND "table_name" = 'migrations'
+query: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+1 migrations are already loaded in the database.
+2 migrations were found in the source code.
+Init1671965498960 is the last executed migration. It was executed on Sun Dec 25 2022 17:51:38 GMT+0700 (Indochina Time).
+1 migrations are new migrations must be executed.
+query: START TRANSACTION
+query: ALTER TABLE "users" DROP COLUMN "locked_money"
+query: ALTER TABLE "users" ADD "decimal" numeric
+query: ALTER TABLE "users" DROP COLUMN "money"
+query: ALTER TABLE "users" ADD "money" money
+query: ALTER TABLE "users" ALTER COLUMN "user_status" SET DEFAULT ''
+query: INSERT INTO "migrations"("timestamp", "name") VALUES ($1, $2) -- PARAMETERS: [1673147868791,"ChangeUser1673147868791"]
+Migration ChangeUser1673147868791 has been  executed successfully.
+query: COMMIT
+Done in 5.85s.

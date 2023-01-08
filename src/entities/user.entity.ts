@@ -45,7 +45,7 @@ export class User {
   // userDetailId: number;
 
   @OneToOne(() => UserDetail)
-  userDetail: UserDetail;
+  userDetail?: UserDetail;
 
   @Column({ name: 'role_id' })
   roleId: number;
@@ -70,18 +70,21 @@ export class User {
   @IsNumberString()
   bankNumber: string;
 
-  @Column({ name: 'money', nullable: true })
+  @Column({ name: 'money', nullable: true, type: 'money' })
   money: number;
 
-  @Column({ name: 'locked_money', nullable: true })
-  lockedMoney: number;
+  // @Column({ name: 'locked_money', nullable: true, type: 'smallmoney' })
+  // lockedMoney: number;
+
+  @Column({ name: 'decimal', nullable: true, type: 'decimal' })
+  decimal: number;
 
   @Column({ name: 'anti_phishing_code', nullable: true })
   @IsAlphanumeric()
   @MaxLength(20)
   antiPhishingCode: string;
 
-  @Column({ name: 'user_status', nullable: false })
+  @Column({ name: 'user_status', nullable: false, default: '' })
   @IsString()
   @MaxLength(20)
   userStatus: string;
@@ -94,6 +97,7 @@ export class User {
   })
   createdAt: Date;
 
+  // @Column("timestamp", { precision: 3, default: () => "CURRENT_TIMESTAMP(3)", onUpdate: "CURRENT_TIMESTAMP(3)"})
   @UpdateDateColumn({
     name: 'updated_at',
     type: 'timestamp',

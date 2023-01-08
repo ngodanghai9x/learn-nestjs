@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-npm install
+yarn
 ```
 
 ## Migration
@@ -13,15 +13,15 @@ npm install
 ```bash
 ./node_modules/.bin/typeorm migration:create ./migrations/Init 
 
-npx ts-node ./node_modules/typeorm/cli migration:generate ./migrations/Init -d ./typeOrm.config.ts
+yarn ts-node ./node_modules/typeorm/cli migration:generate ./migrations/Init -d ./typeOrm.config.ts
 ./node_modules/.bin/typeorm migration:generate ./src/migrations/Init -d ./typeOrm.config.ts
-npx typeorm migration:generate ./src/migrations/Init -d ./typeOrm.config.ts
+yarn typeorm migration:generate ./src/migrations/Init -d ./typeOrm.config.ts
 
 ./node_modules/.bin/typeorm -d ./typeOrm.config.ts migration:run
-npx ts-node ./node_modules/typeorm/cli -d ./typeOrm.config.ts migration:run
+yarn ts-node ./node_modules/typeorm/cli -d ./typeOrm.config.ts migration:run
 
 node_modules/.bin/typeorm migration:revert
-npx ts-node ./node_modules/typeorm/cli -d ./typeOrm.config.ts migration:revert
+yarn ts-node ./node_modules/typeorm/cli -d ./typeOrm.config.ts migration:revert
 
 ```
 
@@ -29,28 +29,28 @@ npx ts-node ./node_modules/typeorm/cli -d ./typeOrm.config.ts migration:revert
 
 ```bash
 # development
-$ npm run start
+$ yarn start
 
 # watch mode
-$ npm run dev
-$ npm run start:dev
+$ yarn dev
+$ yarn start:dev
 
 # production mode
-$ npm run prod
-$ npm run start:prod
+$ yarn prod
+$ yarn start:prod
 ```
 
 ## Test
 
 ```bash
 # unit tests
-$ npm run test
+$ yarn test
 
 # e2e tests
-$ npm run test:e2e
+$ yarn test:e2e
 
 # test coverage
-$ npm run test:cov
+$ yarn test:cov
 ```
 
 ## Structure
