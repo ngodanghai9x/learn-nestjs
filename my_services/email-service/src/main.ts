@@ -1,8 +1,10 @@
+/* eslint-disable prefer-const */
 import { NestApplication, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { INestApplication, INestMicroservice, Logger } from '@nestjs/common';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
 const port = 3006;
 const host = 'localhost';
 let microServicePort = 3007;
@@ -66,7 +68,7 @@ async function bootstrap1Port() {
   const app = await NestFactory.create(AppModule, {
     logger: ['error', 'warn', 'log'],
   });
-  microServicePort = port;
+  // microServicePort = port;
 
   const microservice: INestMicroservice & INestMicroserviceAdv =
     app.connectMicroservice<MicroserviceOptions>({
@@ -85,8 +87,8 @@ async function bootstrap1Port() {
   setupSwagger(app);
 
   await app.startAllMicroservices();
-  // await app.listen(port, host, () => logging(logger, port, host));
-  logging(logger, port, host);
+  await app.listen(port, host, () => logging(logger, port, host));
+  // logging(logger, port, host);
 }
 
 bootstrap1Port();
