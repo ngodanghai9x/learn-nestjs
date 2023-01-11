@@ -17,7 +17,6 @@ export class CronjobInitializerService implements OnModuleInit {
 
   async onModuleInit() {
     this.logger.log('Cronjob scheduler has been initialized.');
-
     await this.userService.initQueue();
     await this.userService.initRoles();
     await this.userService.initUser();
@@ -27,5 +26,15 @@ export class CronjobInitializerService implements OnModuleInit {
     });
     await this.utilityService.sleep(1234, true);
     this.commonService.doNothing();
+    // this.listenSse();
+  }
+
+  /** @deprecated EventSource only exist on browser env */
+  listenSse() {
+    const eventSource = new EventSource('http://localhost:3005/notification/high-level');
+    eventSource.onmessage = (e) => {
+      console.log('e', e);
+      this.logger.log('New message', JSON.parse(e?.data));
+    };
   }
 }

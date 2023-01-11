@@ -15,6 +15,7 @@ import { BullModule } from '@nestjs/bull';
 import { ExternalModule } from './external/external.module';
 import { CronjobModule } from './cronjob/cronjob.module';
 import { MicroServicesModule } from './micro-services/micro-services.module';
+import { NotificationModule } from './notification/notification.module';
 
 @Module({
   imports: [
@@ -74,6 +75,7 @@ import { MicroServicesModule } from './micro-services/micro-services.module';
     ExternalModule,
     CronjobModule,
     MicroServicesModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [

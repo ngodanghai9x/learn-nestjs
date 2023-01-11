@@ -34,6 +34,10 @@ function applyMiddleware(app: INestApplication) {
   // Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately. Generally, Helmet is just a collection of smaller middleware functions that set security-related HTTP headers (read more).
   app.use(helmet());
   app.use(loggerMiddleware);
+  app.enableCors({
+    origin: '*',
+    // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  });
   // const { httpAdapter } = app.get(HttpAdapterHost<any>);
   // app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
   // app.useGlobalInterceptors(new LoggingInterceptor());
