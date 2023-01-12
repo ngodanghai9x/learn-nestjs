@@ -1,6 +1,8 @@
 import { INestApplication, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
+import { join } from 'path';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/all-exception.filter';
@@ -17,6 +19,12 @@ function setupSwagger(app: INestApplication) {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);
+}
+
+function setupViewEngine(app: NestExpressApplication) {
+  app.useStaticAssets(join(__dirname, '..', '..', 'public'));
+  app.setBaseViewsDir(join(__dirname, '..', '..', 'views'));
+  app.setViewEngine('ejs');
 }
 
 async function runService(app: INestApplication) {
@@ -44,7 +52,7 @@ function applyMiddleware(app: INestApplication) {
 }
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
     logger: ['error', 'warn', 'log'],
   });
   const logger = new Logger('bootstrap');
@@ -54,6 +62,7 @@ async function bootstrap() {
   const host = configService.get('HOST');
 
   setupSwagger(app);
+  setupViewEngine(app);
   applyMiddleware(app);
 
   await app.listen(port, host, () => {

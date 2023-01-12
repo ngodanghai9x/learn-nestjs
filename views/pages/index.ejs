@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body class="container">
+
+<header>
+  <%- include('../partials/header'); %>
+</header>
+
+<main>
+  <div class="row">
+    <div class="col-sm-8">
+      <div class="jumbotron">
+        <h1><%= headline %></h1>
+        <p><%= tagline %></p>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <!-- <%- include('../partials/sidebar', { links: [{ href: '/', text: 'Text Link 0' }] }); %> -->
+      <%- include('../partials/sidebar'); %>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <%- include('../partials/footer'); %>
+</footer>
+
+</body>
+</html>

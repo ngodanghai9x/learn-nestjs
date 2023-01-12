@@ -16,6 +16,7 @@ import { ExternalModule } from './external/external.module';
 import { CronjobModule } from './cronjob/cronjob.module';
 import { MicroServicesModule } from './micro-services/micro-services.module';
 import { NotificationModule } from './notification/notification.module';
+import { EjsModule } from './ejs/ejs.module';
 
 @Module({
   imports: [
@@ -76,6 +77,7 @@ import { NotificationModule } from './notification/notification.module';
     CronjobModule,
     MicroServicesModule,
     NotificationModule,
+    EjsModule,
   ],
   controllers: [AppController],
   providers: [

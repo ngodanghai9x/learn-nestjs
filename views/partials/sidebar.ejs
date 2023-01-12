@@ -1,0 +1,7 @@
+<div class="list-group">
+  <a href="#" class="list-group-item active">Links</a>
+
+  <% links.forEach(function(link) { %>
+  <a href="<%= link.href %>" target="_blank" class="list-group-item"><%= link.text %></a>
+  <% }); %>
+</div>
