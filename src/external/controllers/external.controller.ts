@@ -11,7 +11,20 @@ export class ExternalController {
 
   @Get('pokemon/:id')
   async getPokemon(@Param('id') idOrName: string) {
+    // return this.externalService.getPokemon(idOrName);
     const data = await firstValueFrom(this.externalService.getPokemon(idOrName));
+    return data;
+  }
+
+  @Get('pokemon2')
+  async getPokemon2() {
+    const data = await this.externalService.getPokemon2();
+    return data;
+  }
+
+  @Get('pokemon3')
+  async getPokemon3() {
+    const data = await this.externalService.getPokemon3();
     return data;
   }
 

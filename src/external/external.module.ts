@@ -7,9 +7,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 @Module({
   imports: [
     // ConfigModule,
-    HttpModule.register({
-      timeout: 5000,
-      maxRedirects: 5,
+    HttpModule.registerAsync({
+      useFactory: () => ({
+        timeout: 15000,
+        maxRedirects: 10,
+      }),
     }),
     HttpModule.registerAsync({
       imports: [ConfigModule],

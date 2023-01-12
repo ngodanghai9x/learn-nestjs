@@ -29,13 +29,12 @@ function setupViewEngine(app: NestExpressApplication) {
 
 async function runService(app: INestApplication) {
   const externalService = app.get(ExternalService); // get any service (AppService)
-  const worldIndexes = await externalService
-    .getWorldIndexes2()
-    .then((res) => res.data)
+  await externalService
+    .getPokemon3()
+    .then((res) => Logger.log('Get getPokemon3 success'))
     .catch((err) => {
       Logger.error(err);
     });
-  Logger.log('Get worldIndexes success');
 }
 
 function applyMiddleware(app: INestApplication) {
