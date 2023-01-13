@@ -63,7 +63,7 @@ export class ExternalService {
     // const resp = await this.httpService.axiosRef.get(`${this.pokeUri}/pokemon/3`);
     // const resp = await this.httpService.axiosRef.get(`${this.pokeUri}/pokemon/3`, { headers });
 
-    console.log('🚀  ~ getPokemon3 ~ resp', resp?.data);
+    // console.log('🚀  ~ getPokemon3 ~ resp', resp?.data);
     return resp?.data;
   }
 
