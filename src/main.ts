@@ -66,7 +66,9 @@ async function bootstrap() {
 
   await app.listen(port, host, () => {
     Logger.log(`Main server is running on port: ${port}`);
-    logger.log(`Main swagger is running on: http://${host}:${port}/swagger`);
+    // logger.log(`Main swagger is running on: http://${host}:${port}/swagger`);
+    console.debug(`Main swagger is running on: http://${host}:${port}/swagger`);
+    console.debug(`process= ${process.cwd()}`);
   });
 
   await runService(app);
