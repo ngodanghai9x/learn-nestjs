@@ -30,6 +30,7 @@ export class JwtAuthGuard extends AuthGuard('jwt') implements CanActivate {
   ) {
     Logger.log(JwtAuthGuard.name, `handleRequest`, err, user, info, status);
     // You can throw an exception based on either "info" or "err" arguments
+    err = err || info instanceof Error ? info : null;
     if (err || !user) {
       throw err || new UnauthorizedException();
     }

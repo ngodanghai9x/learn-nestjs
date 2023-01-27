@@ -1,6 +1,11 @@
 import { Controller, UseFilters, Query, Request, Logger } from '@nestjs/common';
-import { Post, UseGuards, Get, Body } from '@nestjs/common/decorators';
-import { ApiOperation, ApiTags } from '@nestjs/swagger/dist/decorators';
+import { Post, UseGuards, Get, Body, Headers } from '@nestjs/common/decorators';
+import {
+  ApiBasicAuth,
+  ApiBearerAuth,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger/dist/decorators';
 import { ApiBody } from '@nestjs/swagger/dist/decorators/api-body.decorator';
 import { ApiQuery } from '@nestjs/swagger/dist/decorators/api-query.decorator';
 import { ERole } from 'src/common/constants/role';
@@ -27,11 +32,20 @@ export class AuthController {
   }
 
   // @UseGuards(AuthGuard('jwt'))
+  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @ApiQuery({ name: 'abc1', type: Number })
   @Get('status')
   getStatus() {
     return 'authenticated';
+  }
+
+  @ApiBasicAuth()
+  @Get('status2')
+  getStatus2(@Headers('Authorization') authHeader: string) {
+    const basic = authHeader.split('Basic ')[1] || '';
+    const [username, password] = Buffer.from(basic, 'base64').toString().split(':');
+    return basic + ' ' + 'authenticated' + JSON.stringify({ username, password });
   }
 
   @Get('testFilter')

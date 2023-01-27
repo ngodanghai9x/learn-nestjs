@@ -106,7 +106,11 @@ export class UserService {
 
   async findOne(idOrEmail: string) {
     return this.userRepository.findOne({
-      where: [{ email: idOrEmail }, Number.isInteger(+idOrEmail) ? { id: +idOrEmail } : {}],
+      where: [
+        { email: idOrEmail },
+        { username: idOrEmail },
+        Number.isInteger(+idOrEmail) ? { id: +idOrEmail } : {},
+      ],
       relations: {
         // userDetail: true,
         role: true,

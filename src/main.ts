@@ -13,6 +13,8 @@ import { ExternalService } from './external/services/external.service';
 
 function setupSwagger(app: INestApplication) {
   const config = new DocumentBuilder()
+    .addBasicAuth()
+    .addBearerAuth()
     .setTitle('Main server')
     .setDescription('Learn nestjs')
     .setVersion('1.0')
