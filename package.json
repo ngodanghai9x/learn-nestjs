@@ -21,6 +21,7 @@
     "db:migrate": "ts-node ./node_modules/typeorm/cli -d ./typeOrm.config.ts migration:run",
     "db:revert": "ts-node ./node_modules/typeorm/cli -d ./typeOrm.config.ts migration:revert",
     "db:generate": "exit 1 && yarn ts-node ./node_modules/typeorm/cli migration:generate -d ./typeOrm.config.ts ./migrations/Init",
+    "doc:generate": "npx @compodoc/compodoc -p tsconfig.json -s",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
@@ -63,6 +64,7 @@
     "rxjs": "^7.2.0"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.19",
     "@nestjs/cli": "^9.0.0",
     "@nestjs/schematics": "^9.0.0",
     "@nestjs/testing": "^9.0.0",
