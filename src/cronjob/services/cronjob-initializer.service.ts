@@ -16,17 +16,21 @@ export class CronjobInitializerService implements OnModuleInit {
   ) {}
 
   async onModuleInit() {
-    this.logger.log('Cronjob scheduler has been initialized.');
-    await this.userService.initQueue();
-    await this.userService.initRoles();
-    await this.userService.initUser();
-    await this.cronjobService.startCronJob({
-      jobName: 'MyJob123',
-      // scheduleTime: '*/30 * * * * *',
-    });
-    await this.utilityService.sleep(1234, true);
-    this.commonService.doNothing();
-    // this.listenSse();
+    try {
+      this.logger.log('Cronjob scheduler has been initialized.');
+      await this.userService.initQueue();
+      await this.userService.initRoles();
+      await this.userService.initUser();
+      await this.cronjobService.startCronJob({
+        jobName: 'MyJob123',
+        // scheduleTime: '*/30 * * * * *',
+      });
+      await this.utilityService.sleep(1234, true);
+      this.commonService.doNothing();
+      // this.listenSse();
+    } catch (error) {
+      this.logger.error('Cronjob scheduler has FAIL while initializing.');
+    }
   }
 
   /** @deprecated EventSource only exist on browser env */

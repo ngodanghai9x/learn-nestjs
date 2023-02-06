@@ -17,6 +17,11 @@ import { CronjobModule } from './cronjob/cronjob.module';
 import { MicroServicesModule } from './micro-services/micro-services.module';
 import { NotificationModule } from './notification/notification.module';
 import { EjsModule } from './ejs/ejs.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+console.log('🚀 ~ file: app.module.ts:21 ~ ServeStaticModule', {
+  ['process.cwd()']: process.cwd(),
+  ['__dirname']: __dirname,
+});
 
 @Module({
   imports: [
@@ -70,6 +75,11 @@ import { EjsModule } from './ejs/ejs.module';
         host: 'localhost',
         port: 6379,
       },
+    }),
+    ServeStaticModule.forRoot({
+      // no required because this app already implements useStaticAssets in public folder
+      rootPath: join(process.cwd(), 'static'),
+      // rootPath: join(__dirname, '..', 'static'),
     }),
     AuthModule,
     UserModule,
