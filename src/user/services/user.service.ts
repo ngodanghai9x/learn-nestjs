@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { User } from 'src/entities/user.entity';
-import { DataSource, Repository } from 'typeorm';
+import { And, DataSource, Not, Raw, Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { UserDetail } from 'src/entities/user_detail.entity';
 import { Role } from 'src/entities/role.entity';
@@ -105,11 +105,32 @@ export class UserService {
   }
 
   async findOne(idOrEmail: string) {
+    const loadedPosts = await this.userRepository.findBy({
+      decimal: Raw('money - 4'),
+      birthday: Raw((alias) => `${alias} > NOW()`),
+      email: Raw((alias) => `${alias} IN (:...emails)`, {
+        emails: ['Go To Statement Considered Harmful', 'Structured Programming'],
+      }),
+    });
     return this.userRepository.findOne({
+      // where: {
+      //   id: +idOrEmail,
+      //   role: {
+      //     roleName: Not('admin'),
+      //   },
+      // },
       where: [
         { email: idOrEmail },
         { username: idOrEmail },
-        Number.isInteger(+idOrEmail) ? { id: +idOrEmail } : {},
+        // { or: [], and: [] },
+        Number.isInteger(+idOrEmail)
+          ? {
+              id: +idOrEmail,
+              role: {
+                roleName: Not('user'),
+              },
+            }
+          : {},
       ],
       relations: {
         // userDetail: true,

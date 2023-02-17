@@ -70,8 +70,8 @@ export class User {
   @IsNumberString()
   bankNumber: string;
 
-  @Column({ name: 'money', nullable: true, type: 'money' })
-  money: number;
+  // @Column({ name: 'money', nullable: true, type: 'money' })
+  // money: number;
 
   // @Column({ name: 'locked_money', nullable: true, type: 'smallmoney' })
   // lockedMoney: number;
