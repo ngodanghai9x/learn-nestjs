@@ -11,13 +11,12 @@ import { join } from 'path';
 config();
 
 const configService = new ConfigService();
-Logger.log(`🚀 ~  configService.get('PG_HOST')`, configService.get('PG_HOST'));
 // https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/
-const isWorkDesktop = process.cwd().includes('C:\\Repos\\Mine\\learn-nestjs');
-console.log('🚀 ~ file: typeOrm.config.ts:17 ~ isWorkDesktop', isWorkDesktop);
+const isUseMysqlDB = process.cwd().includes('C:\\Repos\\Mine\\learn-nestjs');
+Logger.log('🚀 ~ file: typeOrm.config.ts:17 ~ isUseMysqlDB' + isUseMysqlDB);
 
 export default new DataSource(
-  isWorkDesktop
+  isUseMysqlDB
     ? {
         type: 'mysql',
         host: configService.get('MYSQL_HOST'),

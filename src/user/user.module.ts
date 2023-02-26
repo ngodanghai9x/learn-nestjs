@@ -14,6 +14,8 @@ import { UserProcessor } from './user.processor';
 import { IdentityService } from './services/identity.service';
 import { FileController } from './controllers/file.controller';
 import { MicroServicesModule } from 'src/micro-services/micro-services.module';
+import { UserResolver } from './resolvers/user.resolver';
+import { DateScalar } from 'src/common/scalars/date.scalar';
 
 @Module({
   imports: [
@@ -29,6 +31,8 @@ import { MicroServicesModule } from 'src/micro-services/micro-services.module';
     UserService,
     UserProcessor,
     IdentityService,
+    UserResolver,
+    DateScalar,
     {
       // apply entire app, not only UserModule
       provide: APP_FILTER,

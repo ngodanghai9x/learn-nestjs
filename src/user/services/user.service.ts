@@ -100,18 +100,24 @@ export class UserService {
     }
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async findAll() {
+    const users = await this.userRepository.find({
+      relations: {
+        role: true,
+        userDetail: true,
+      },
+    });
+    return users;
   }
 
   async findOne(idOrEmail: string) {
-    const loadedPosts = await this.userRepository.findBy({
-      decimal: Raw('money - 4'),
-      birthday: Raw((alias) => `${alias} > NOW()`),
-      email: Raw((alias) => `${alias} IN (:...emails)`, {
-        emails: ['Go To Statement Considered Harmful', 'Structured Programming'],
-      }),
-    });
+    // const loadedPosts = await this.userRepository.findBy({
+    //   // decimal: Raw('money - 4'),
+    //   birthday: Raw((alias) => `${alias} > NOW()`),
+    //   email: Raw((alias) => `${alias} IN (:...emails)`, {
+    //     emails: ['Go To Statement Considered Harmful', 'Structured Programming'],
+    //   }),
+    // });
     return this.userRepository.findOne({
       // where: {
       //   id: +idOrEmail,
@@ -126,14 +132,14 @@ export class UserService {
         Number.isInteger(+idOrEmail)
           ? {
               id: +idOrEmail,
-              role: {
-                roleName: Not('user'),
-              },
+              // role: {
+              //   roleName: Not('user'),
+              // },
             }
           : {},
       ],
       relations: {
-        // userDetail: true,
+        userDetail: true,
         role: true,
       },
     });

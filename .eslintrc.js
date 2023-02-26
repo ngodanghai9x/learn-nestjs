@@ -25,6 +25,7 @@ module.exports = {
     'mysql-migrations/*',
     'postgres-migrations/*',
     'migrations/*',
+    'my_logs/*',
     'node_modules/*',
   ],
   rules: {

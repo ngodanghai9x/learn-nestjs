@@ -1,0 +1,52 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Role {
+  id: ID!
+  roleName: String!
+  description: String
+  users: User!
+}
+
+type UserDetail {
+  id: ID!
+  moreDetail: String
+  user: User!
+}
+
+type User {
+  id: ID!
+  username: String!
+  password: String!
+  userDetail: UserDetail!
+  roleId: ID!
+  role: Role!
+  email: String!
+  phone: String
+  birthday: Date
+  bankNumber: String
+  decimal: Int
+  antiPhishingCode: String
+  userStatus: String!
+  createdAt: Timestamp!
+  updatedAt: Timestamp!
+  users: [User!]!
+}
+
+"""
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
+"""
+scalar Timestamp
+
+"""Date custom scalar type"""
+scalar Date
+
+type Query {
+  user(id: String!): User!
+  users: [User!]!
+}
+
+type Mutation {
+  removeUser(id: Int!): Boolean!
+}
