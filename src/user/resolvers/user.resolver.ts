@@ -1,12 +1,24 @@
-import { NotFoundException } from '@nestjs/common';
+import { HttpException, HttpStatus, NotFoundException } from '@nestjs/common';
 import { Args, Mutation, Query, ResolveField, Resolver, Subscription } from '@nestjs/graphql';
+// import { GraphQLUpload, Upload } from 'graphql-upload';
+import GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
+import Upload from 'graphql-upload/Upload.js';
+import { FileUpload } from 'graphql-upload/processRequest.js';
 // import { PubSub } from 'graphql-subscriptions';
-// import { NewUserInput } from './dto/new-user.input';
-// import { UserArgs } from './dto/users.args';
 import { UserService } from '../services/user.service';
 import { User } from 'src/entities/user.entity';
+import { createWriteStream } from 'fs';
+import { join } from 'path';
 
 // const pubSub = new PubSub();
+
+// @InputType()
+// export class CreateCatInput {
+//   @Field(() => String)
+//   name: string;
+//   @Field(() => GraphQLUpload)
+//   file: Promise<Upload>;
+// }
 
 @Resolver((of) => User)
 export class UserResolver {
@@ -39,6 +51,46 @@ export class UserResolver {
   async removeUser(@Args('id') id: number) {
     return this.usersService.remove(id);
   }
+
+  @Mutation(() => String)
+  async uploadFile(
+    @Args({ name: 'file', type: () => GraphQLUpload })
+    file: FileUpload,
+  ): Promise<string> {
+    return new Promise(async (resolve) => {
+      const { createReadStream, filename, mimetype, encoding } = file;
+      console.log('🚀 ~ file: user.resolver.ts:61 ', {
+        filename,
+        mimetype,
+        encoding,
+      });
+      const stream = createReadStream();
+      // Xử lý stream tùy ý
+      stream
+        .pipe(createWriteStream(join(process.cwd(), `./public/upload/${filename}`)))
+        .on('finish', () => resolve(`File ${filename} đã được upload thành công.`))
+        .on('error', () => {
+          new HttpException('Could not save image', HttpStatus.BAD_REQUEST);
+        });
+    });
+  }
+
+  // async create({ name, file }: CreateCatInput) {
+  //   const { createReadStream, filename } = await file;
+  //   return new Promise(async (resolve) => {
+  //     createReadStream()
+  //       .pipe(createWriteStream(join(process.cwd(), `./public/upload/${filename}`)))
+  //       .on('finish', () =>
+  //         resolve({
+  //           name,
+  //           filename,
+  //         }),
+  //       )
+  //       .on('error', () => {
+  //         new HttpException('Could not save image', HttpStatus.BAD_REQUEST);
+  //       });
+  //   });
+  // }
 
   // @Subscription((returns) => User)
   // userAdded() {

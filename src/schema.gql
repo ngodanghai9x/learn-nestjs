@@ -49,4 +49,8 @@ type Query {
 
 type Mutation {
   removeUser(id: Int!): Boolean!
+  uploadFile(file: Upload!): String!
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload

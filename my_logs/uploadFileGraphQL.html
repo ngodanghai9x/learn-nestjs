@@ -1,0 +1,1213 @@
+<html class="dark" style="color-scheme: dark;"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>GraphQL File Upload.</title><meta name="next-head-count" content="3"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="preload" href="/fonts/Signifier-Regular.otf" as="font" crossorigin=""><link rel="preload" href="/fonts/Sohne-Buch.otf" as="font" crossorigin=""><link rel="preload" href="/fonts/Sohne-Halbfett.otf" as="font" crossorigin=""><link rel="preload" href="/fonts/SohneMono-Buch.otf" as="font" crossorigin=""><link rel="preload" href="/fonts/SohneMono-Halbfett.otf" as="font" crossorigin=""><link rel="preload" href="/fonts/KaTeX_Caligraphic-Bold.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Caligraphic-Regular.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Fraktur-Bold.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Fraktur-Regular.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Main-Bold.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Main-BoldItalic.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Main-Italic.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Main-Regular.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Math-BoldItalic.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Math-Italic.woff" as="font"><link rel="preload" href="/fonts/KaTeX_SansSerif-Bold.woff" as="font"><link rel="preload" href="/fonts/KaTeX_SansSerif-Italic.woff" as="font"><link rel="preload" href="/fonts/KaTeX_SansSerif-Regular.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Script-Regular.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Size1-Regular.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Size2-Regular.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Size3-Regular.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Size4-Regular.woff" as="font"><link rel="preload" href="/fonts/KaTeX_Typewriter-Regular.woff" as="font"><meta name="description" content="A conversational AI system that listens, learns, and challenges"><meta property="og:title" content="ChatGPT"><meta property="og:image" content="https://openai.com/content/images/2022/11/ChatGPT.jpg"><meta property="og:description" content="A conversational AI system that listens, learns, and challenges"><meta property="og:url" content="https://chat.openai.com"><link rel="preload" href="/_next/static/css/1be3f5157479e354.css" as="style"><link rel="stylesheet" href="/_next/static/css/1be3f5157479e354.css" data-n-g=""><noscript data-n-css=""></noscript><script defer="" nomodule="" src="/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"></script><script src="/_next/static/chunks/webpack-acc3e4381194a571.js" defer=""></script><script src="/_next/static/chunks/framework-7a789ee31d2a7534.js" defer=""></script><script src="/_next/static/chunks/main-149b337e061b4d04.js" defer=""></script><script src="/_next/static/chunks/pages/_app-dedfe8ecfffebe40.js" defer=""></script><script src="/_next/static/chunks/1f110208-44a6f43ddc5e9011.js" defer=""></script><script src="/_next/static/chunks/762-8a07cc8650f560d4.js" defer=""></script><script src="/_next/static/chunks/979-429205346ba16ee3.js" defer=""></script><script src="/_next/static/chunks/424-7f7835d330adbaab.js" defer=""></script><script src="/_next/static/chunks/271-47b1899a62a6d998.js" defer=""></script><script src="/_next/static/chunks/875-7f46e56c461a6f28.js" defer=""></script><script src="/_next/static/chunks/798-92621067ddb78625.js" defer=""></script><script src="/_next/static/chunks/814-f4965bec58d0356a.js" defer=""></script><script src="/_next/static/chunks/358-5b3f7a3f873dcbe0.js" defer=""></script><script src="/_next/static/chunks/501-60013caa55a17c96.js" defer=""></script><script src="/_next/static/chunks/544-11adb675082500d6.js" defer=""></script><script src="/_next/static/chunks/pages/chat/%5B%5B...chatId%5D%5D-d62ec262f15cc4ed.js" defer=""></script><script src="/_next/static/tRqJ74mbYplBLD7Nl0qNL/_buildManifest.js" defer=""></script><script src="/_next/static/tRqJ74mbYplBLD7Nl0qNL/_ssgManifest.js" defer=""></script><meta name="react-scroll-to-bottom:version" content="4.2.0"><style data-emotion="react-scroll-to-bottom--css-njiyz" data-s=""></style><style>*, ::before, ::after {
+    --tw-border-spacing-x: 0;
+    --tw-border-spacing-y: 0;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    --tw-pan-x:  ;
+    --tw-pan-y:  ;
+    --tw-pinch-zoom:  ;
+    --tw-scroll-snap-strictness: proximity;
+    --tw-ordinal:  ;
+    --tw-slashed-zero:  ;
+    --tw-numeric-figure:  ;
+    --tw-numeric-spacing:  ;
+    --tw-numeric-fraction:  ;
+    --tw-ring-inset:  ;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgb(59 130 246 / 0.5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-colored: 0 0 #0000;
+    --tw-blur:  ;
+    --tw-brightness:  ;
+    --tw-contrast:  ;
+    --tw-grayscale:  ;
+    --tw-hue-rotate:  ;
+    --tw-invert:  ;
+    --tw-saturate:  ;
+    --tw-sepia:  ;
+    --tw-drop-shadow:  ;
+    --tw-backdrop-blur:  ;
+    --tw-backdrop-brightness:  ;
+    --tw-backdrop-contrast:  ;
+    --tw-backdrop-grayscale:  ;
+    --tw-backdrop-hue-rotate:  ;
+    --tw-backdrop-invert:  ;
+    --tw-backdrop-opacity:  ;
+    --tw-backdrop-saturate:  ;
+    --tw-backdrop-sepia:  
+}
+code {
+    border-radius: .3em;
+    padding: .1em;
+    white-space: normal;
+	
+    word-wrap: normal;
+    background: none;
+    color: #fff;
+    -webkit-hyphens: none;
+    hyphens: none;
+    line-height: 1.5;
+    tab-size: 4;
+    text-align: left;
+    white-space: pre;
+    word-break: normal;
+    word-spacing: normal;
+}
+::backdrop {
+    --tw-border-spacing-x: 0;
+    --tw-border-spacing-y: 0;
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+    --tw-pan-x:  ;
+    --tw-pan-y:  ;
+    --tw-pinch-zoom:  ;
+    --tw-scroll-snap-strictness: proximity;
+    --tw-ordinal:  ;
+    --tw-slashed-zero:  ;
+    --tw-numeric-figure:  ;
+    --tw-numeric-spacing:  ;
+    --tw-numeric-fraction:  ;
+    --tw-ring-inset:  ;
+    --tw-ring-offset-width: 0px;
+    --tw-ring-offset-color: #fff;
+    --tw-ring-color: rgb(59 130 246 / 0.5);
+    --tw-ring-offset-shadow: 0 0 #0000;
+    --tw-ring-shadow: 0 0 #0000;
+    --tw-shadow: 0 0 #0000;
+    --tw-shadow-colored: 0 0 #0000;
+    --tw-blur:  ;
+    --tw-brightness:  ;
+    --tw-contrast:  ;
+    --tw-grayscale:  ;
+    --tw-hue-rotate:  ;
+    --tw-invert:  ;
+    --tw-saturate:  ;
+    --tw-sepia:  ;
+    --tw-drop-shadow:  ;
+    --tw-backdrop-blur:  ;
+    --tw-backdrop-brightness:  ;
+    --tw-backdrop-contrast:  ;
+    --tw-backdrop-grayscale:  ;
+    --tw-backdrop-hue-rotate:  ;
+    --tw-backdrop-invert:  ;
+    --tw-backdrop-opacity:  ;
+    --tw-backdrop-saturate:  ;
+    --tw-backdrop-sepia:  
+}
+.gpt-center-with-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+.gpt-sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border-width: 0 !important
+}
+.gpt-fixed {
+    position: fixed !important
+}
+.gpt-absolute {
+    position: absolute !important
+}
+.gpt-relative {
+    position: relative !important
+}
+.gpt-top-0 {
+    top: 0px !important
+}
+.gpt-left-0 {
+    left: 0px !important
+}
+.gpt-bottom-6 {
+    bottom: 24px !important
+}
+.gpt-right-6 {
+    right: 24px !important
+}
+.-gpt-top-2 {
+    top: -8px !important
+}
+.-gpt-right-2 {
+    right: -8px !important
+}
+.-gpt-bottom-1 {
+    bottom: -4px !important
+}
+.gpt-right-1 {
+    right: 4px !important
+}
+.gpt-z-\[99999999\] {
+    z-index: 99999999 !important
+}
+.gpt-z-50 {
+    z-index: 50 !important
+}
+.gpt-z-10 {
+    z-index: 10 !important
+}
+.gpt-z-20 {
+    z-index: 20 !important
+}
+.gpt-m-3 {
+    margin: 12px !important
+}
+.gpt-my-auto {
+    margin-top: auto !important;
+    margin-bottom: auto !important
+}
+.gpt-my-2 {
+    margin-top: 8px !important;
+    margin-bottom: 8px !important
+}
+.gpt-my-3 {
+    margin-top: 12px !important;
+    margin-bottom: 12px !important
+}
+.gpt-mb-2 {
+    margin-bottom: 8px !important
+}
+.gpt-mt-2 {
+    margin-top: 8px !important
+}
+.gpt-ml-3 {
+    margin-left: 12px !important
+}
+.gpt-mt-4 {
+    margin-top: 16px !important
+}
+.gpt-ml-2 {
+    margin-left: 8px !important
+}
+.gpt-mb-4 {
+    margin-bottom: 16px !important
+}
+.gpt-mb-3 {
+    margin-bottom: 12px !important
+}
+.gpt-ml-auto {
+    margin-left: auto !important
+}
+.gpt-mt-6 {
+    margin-top: 24px !important
+}
+.gpt-mr-1 {
+    margin-right: 4px !important
+}
+.gpt-box-border {
+    box-sizing: border-box !important
+}
+.gpt-flex {
+    display: flex !important
+}
+.gpt-inline-flex {
+    display: inline-flex !important
+}
+.gpt-h-screen {
+    height: 100vh !important
+}
+.gpt-h-4 {
+    height: 16px !important
+}
+.gpt-h-full {
+    height: 100% !important
+}
+.gpt-h-5 {
+    height: 20px !important
+}
+.gpt-h-12 {
+    height: 48px !important
+}
+.gpt-h-40 {
+    height: 160px !important
+}
+.gpt-h-7 {
+    height: 28px !important
+}
+.gpt-h-6 {
+    height: 24px !important
+}
+.gpt-h-8 {
+    height: 32px !important
+}
+.gpt-max-h-28 {
+    max-height: 112px !important
+}
+.gpt-max-h-12 {
+    max-height: 48px !important
+}
+.gpt-max-h-80 {
+    max-height: 320px !important
+}
+.gpt-min-h-\[48px\] {
+    min-height: 48px !important
+}
+.gpt-min-h-\[42px\] {
+    min-height: 42px !important
+}
+.gpt-min-h-\[20rem\] {
+    min-height: 20rem !important
+}
+.gpt-min-h-\[5rem\] {
+    min-height: 5rem !important
+}
+.gpt-w-14 {
+    width: 56px !important
+}
+.gpt-w-full {
+    width: 100% !important
+}
+.gpt-w-\[600px_\!important\] {
+    width: 600px !important
+}
+.gpt-w-4 {
+    width: 16px !important
+}
+.gpt-w-5 {
+    width: 20px !important
+}
+.gpt-w-3 {
+    width: 12px !important
+}
+.gpt-w-7 {
+    width: 28px !important
+}
+.gpt-w-6 {
+    width: 24px !important
+}
+.gpt-w-11 {
+    width: 44px !important
+}
+.gpt-w-12 {
+    width: 48px !important
+}
+.gpt-w-8 {
+    width: 32px !important
+}
+.gpt-min-w-\[320px\] {
+    min-width: 320px !important
+}
+.gpt-max-w-\[200px\] {
+    max-width: 200px !important
+}
+.gpt-max-w-\[600px\] {
+    max-width: 600px !important
+}
+.gpt-flex-1 {
+    flex: 1 1 0% !important
+}
+@keyframes gpt-fade-in-merlinGUI {
+    from {
+        opacity: 0;
+        transform: translateY(100px) scale(0.8)
+    }
+    to {
+        opacity: 1;
+        transform: none scale(1)
+    }
+}
+.gpt-animate-fade-in-merlinGUI {
+    animation: gpt-fade-in-merlinGUI 200ms 0ms ease forwards !important
+}
+@keyframes gpt-fade-out-merlinGUI {
+    from {
+        opacity: 1;
+        transform: none scale(1)
+    }
+    to {
+        opacity: 0;
+        transform: translateY(100px) scale(0.8)
+    }
+}
+.gpt-animate-fade-out-merlinGUI {
+    animation: gpt-fade-out-merlinGUI 200ms 0ms ease forwards !important
+}
+@keyframes gpt-fade-in-2 {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+.gpt-animate-fade-in-2 {
+    animation: gpt-fade-in-2 300ms 0ms ease-in forwards !important
+}
+@keyframes gpt-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.8)
+    }
+    to {
+        opacity: 1;
+        transform: none scale(1)
+    }
+}
+.gpt-animate-fade-in {
+    animation: gpt-fade-in 300ms 0ms ease forwards !important
+}
+@keyframes gpt-fade-out {
+    from {
+        opacity: 1;
+        transform: none scale(1)
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.8)
+    }
+}
+.gpt-animate-fade-out {
+    animation: gpt-fade-out 300ms 0ms ease forwards !important
+}
+.gpt-cursor-pointer {
+    cursor: pointer !important
+}
+.gpt-cursor-not-allowed {
+    cursor: not-allowed !important
+}
+.gpt-cursor-grab {
+    cursor: grab !important
+}
+.gpt-select-none {
+    -webkit-user-select: none !important;
+       -moz-user-select: none !important;
+            user-select: none !important
+}
+.gpt-resize-none {
+    resize: none !important
+}
+.gpt-flex-row {
+    flex-direction: row !important
+}
+.gpt-flex-row-reverse {
+    flex-direction: row-reverse !important
+}
+.gpt-flex-col {
+    flex-direction: column !important
+}
+.gpt-items-start {
+    align-items: flex-start !important
+}
+.gpt-items-center {
+    align-items: center !important
+}
+.gpt-items-stretch {
+    align-items: stretch !important
+}
+.gpt-justify-start {
+    justify-content: flex-start !important
+}
+.gpt-justify-end {
+    justify-content: flex-end !important
+}
+.gpt-justify-center {
+    justify-content: center !important
+}
+.gpt-justify-between {
+    justify-content: space-between !important
+}
+.gpt-gap-2 {
+    gap: 8px !important
+}
+.gpt-gap-4 {
+    gap: 16px !important
+}
+.gpt-gap-6 {
+    gap: 24px !important
+}
+.gpt-gap-3 {
+    gap: 12px !important
+}
+.gpt-gap-1 {
+    gap: 4px !important
+}
+.gpt-overflow-hidden {
+    overflow: hidden !important
+}
+.gpt-overflow-x-auto {
+    overflow-x: auto !important
+}
+.gpt-overflow-y-auto {
+    overflow-y: auto !important
+}
+.gpt-overflow-x-hidden {
+    overflow-x: hidden !important
+}
+.gpt-overflow-y-hidden {
+    overflow-y: hidden !important
+}
+.gpt-overflow-y-visible {
+    overflow-y: visible !important
+}
+.gpt-text-ellipsis {
+    text-overflow: ellipsis !important
+}
+.gpt-whitespace-nowrap {
+    white-space: nowrap !important
+}
+.gpt-break-words {
+    overflow-wrap: break-word !important
+}
+.gpt-rounded-full {
+    border-radius: 9999px !important
+}
+.gpt-rounded-lg {
+    border-radius: 8px !important
+}
+.gpt-rounded {
+    border-radius: 4px !important
+}
+.gpt-rounded-md {
+    border-radius: 6px !important
+}
+.gpt-rounded-2xl {
+    border-radius: 16px !important
+}
+.gpt-rounded-xl {
+    border-radius: 12px !important
+}
+.gpt-rounded-3xl {
+    border-radius: 24px !important
+}
+.gpt-rounded-t-xl {
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important
+}
+.gpt-border {
+    border-width: 1px !important
+}
+.gpt-border-\[0px\] {
+    border-width: 0px !important
+}
+.gpt-border-b {
+    border-bottom-width: 1px !important
+}
+.gpt-border-t {
+    border-top-width: 1px !important
+}
+.gpt-border-t-0 {
+    border-top-width: 0px !important
+}
+.gpt-border-solid {
+    border-style: solid !important
+}
+.gpt-border-none {
+    border-style: none !important
+}
+.gpt-border-slate-300 {
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(203 213 225 / var(--tw-border-opacity)) !important
+}
+.gpt-border-slate-700 {
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(51 65 85 / var(--tw-border-opacity)) !important
+}
+.gpt-border-violet-700 {
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(109 40 217 / var(--tw-border-opacity)) !important
+}
+.gpt-border-b-slate-300 {
+    --tw-border-opacity: 1 !important;
+    border-bottom-color: rgb(203 213 225 / var(--tw-border-opacity)) !important
+}
+.gpt-border-t-slate-300 {
+    --tw-border-opacity: 1 !important;
+    border-top-color: rgb(203 213 225 / var(--tw-border-opacity)) !important
+}
+.gpt-bg-gray-800 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-gray-200 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(229 231 235 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-transparent {
+    background-color: transparent !important
+}
+.gpt-bg-slate-300 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(203 213 225 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-slate-100 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(241 245 249 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-slate-200 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(226 232 240 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-slate-800 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(30 41 59 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-slate-700 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(51 65 85 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-white {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-red-700 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(185 28 28 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-slate-900 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(15 23 42 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-violet-600 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(124 58 237 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-slate-400 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(148 163 184 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-violet-800 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(91 33 182 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-slate-600 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(71 85 105 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-slate-500 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(100 116 139 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-green-100 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(220 252 231 / var(--tw-bg-opacity)) !important
+}
+.gpt-bg-opacity-10 {
+    --tw-bg-opacity: 0.1 !important
+}
+.gpt-bg-gradient-to-br {
+    background-image: linear-gradient(to bottom right, var(--tw-gradient-stops)) !important
+}
+.gpt-bg-btn-gradient {
+    background-image: linear-gradient(45deg, #facc15, #db2777, #7e22ce, #5b21b6) !important
+}
+.gpt-bg-gradient-to-b {
+    background-image: linear-gradient(to bottom, var(--tw-gradient-stops)) !important
+}
+.gpt-from-purple-700 {
+    --tw-gradient-from: #7e22ce !important;
+    --tw-gradient-to: rgb(126 34 206 / 0) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important
+}
+.gpt-from-purple-900 {
+    --tw-gradient-from: #581c87 !important;
+    --tw-gradient-to: rgb(88 28 135 / 0) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important
+}
+.gpt-from-blue-700 {
+    --tw-gradient-from: #1d4ed8 !important;
+    --tw-gradient-to: rgb(29 78 216 / 0) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important
+}
+.gpt-from-amber-500 {
+    --tw-gradient-from: #f59e0b !important;
+    --tw-gradient-to: rgb(245 158 11 / 0) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important
+}
+.gpt-via-pink-500 {
+    --tw-gradient-to: rgb(236 72 153 / 0) !important;
+    --tw-gradient-stops: var(--tw-gradient-from), #ec4899, var(--tw-gradient-to) !important
+}
+.gpt-to-fuchsia-600 {
+    --tw-gradient-to: #c026d3 !important
+}
+.gpt-to-purple-900 {
+    --tw-gradient-to: #581c87 !important
+}
+.gpt-to-blue-500 {
+    --tw-gradient-to: #3b82f6 !important
+}
+.gpt-to-violet-800 {
+    --tw-gradient-to: #5b21b6 !important
+}
+.gpt-to-amber-800 {
+    --tw-gradient-to: #92400e !important
+}
+.gpt-bg-right-bottom {
+    background-position: right bottom !important
+}
+.gpt-fill-slate-50 {
+    fill: #f8fafc !important
+}
+.gpt-p-\[2px\] {
+    padding: 2px !important
+}
+.gpt-p-2 {
+    padding: 8px !important
+}
+.gpt-p-3 {
+    padding: 12px !important
+}
+.gpt-p-0 {
+    padding: 0px !important
+}
+.gpt-p-1 {
+    padding: 4px !important
+}
+.gpt-p-\[1px\] {
+    padding: 1px !important
+}
+.gpt-py-1 {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important
+}
+.gpt-px-4 {
+    padding-left: 16px !important;
+    padding-right: 16px !important
+}
+.gpt-py-2 {
+    padding-top: 8px !important;
+    padding-bottom: 8px !important
+}
+.gpt-py-3 {
+    padding-top: 12px !important;
+    padding-bottom: 12px !important
+}
+.gpt-px-3 {
+    padding-left: 12px !important;
+    padding-right: 12px !important
+}
+.gpt-px-2 {
+    padding-left: 8px !important;
+    padding-right: 8px !important
+}
+.gpt-px-1 {
+    padding-left: 4px !important;
+    padding-right: 4px !important
+}
+.gpt-py-4 {
+    padding-top: 16px !important;
+    padding-bottom: 16px !important
+}
+.gpt-pt-\[7\%\] {
+    padding-top: 7% !important
+}
+.gpt-pt-\[3\%\] {
+    padding-top: 3% !important
+}
+.gpt-pr-8 {
+    padding-right: 32px !important
+}
+.gpt-text-left {
+    text-align: left !important
+}
+.gpt-text-center {
+    text-align: center !important
+}
+.gpt-font-sans {
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important
+}
+.gpt-text-xs {
+    font-size: 12px !important;
+    line-height: 16px !important
+}
+.gpt-text-sm {
+    font-size: 14px !important;
+    line-height: 20px !important
+}
+.gpt-text-base {
+    font-size: 16px !important;
+    line-height: 24px !important
+}
+.gpt-text-lg {
+    font-size: 18px !important;
+    line-height: 28px !important
+}
+.gpt-text-xl {
+    font-size: 20px !important;
+    line-height: 28px !important
+}
+.gpt-font-medium {
+    font-weight: 500 !important
+}
+.gpt-font-normal {
+    font-weight: 400 !important
+}
+.gpt-font-light {
+    font-weight: 300 !important
+}
+.gpt-tracking-wide {
+    letter-spacing: 0.025em !important
+}
+.gpt-text-slate-50 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(248 250 252 / var(--tw-text-opacity)) !important
+}
+.gpt-text-black {
+    --tw-text-opacity: 1 !important;
+    color: rgb(0 0 0 / var(--tw-text-opacity)) !important
+}
+.gpt-text-gray-900 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(17 24 39 / var(--tw-text-opacity)) !important
+}
+.gpt-text-green-500 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(34 197 94 / var(--tw-text-opacity)) !important
+}
+.gpt-text-slate-700 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(51 65 85 / var(--tw-text-opacity)) !important
+}
+.gpt-text-slate-900 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(15 23 42 / var(--tw-text-opacity)) !important
+}
+.gpt-text-slate-500 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(100 116 139 / var(--tw-text-opacity)) !important
+}
+.gpt-text-green-700 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(21 128 61 / var(--tw-text-opacity)) !important
+}
+.gpt-text-gray-400 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(156 163 175 / var(--tw-text-opacity)) !important
+}
+.gpt-text-violet-600 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(124 58 237 / var(--tw-text-opacity)) !important
+}
+.gpt-text-neutral-800 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(38 38 38 / var(--tw-text-opacity)) !important
+}
+.gpt-text-slate-100 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(241 245 249 / var(--tw-text-opacity)) !important
+}
+.gpt-text-slate-300 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(203 213 225 / var(--tw-text-opacity)) !important
+}
+.gpt-text-green-800 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(22 101 52 / var(--tw-text-opacity)) !important
+}
+.gpt-text-amber-700 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(180 83 9 / var(--tw-text-opacity)) !important
+}
+.gpt-underline {
+    text-decoration-line: underline !important
+}
+.gpt-underline-offset-2 {
+    text-underline-offset: 2px !important
+}
+.gpt-opacity-0 {
+    opacity: 0 !important
+}
+.gpt-shadow-none {
+    --tw-shadow: 0 0 #0000 !important;
+    --tw-shadow-colored: 0 0 #0000 !important;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important
+}
+.gpt-outline-none {
+    outline: 2px solid transparent !important;
+    outline-offset: 2px !important
+}
+.gpt-blur-sm {
+    --tw-blur: blur(4px) !important;
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow) !important
+}
+.gpt-drop-shadow-3xl {
+    --tw-drop-shadow: drop-shadow(0 35px 35px rgba(0, 0, 0, 0.4)) !important;
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow) !important
+}
+.gpt-backdrop-blur {
+    --tw-backdrop-blur: blur(8px) !important;
+    -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia) !important;
+            backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia) !important
+}
+.gpt-transition-colors {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition-duration: 150ms !important
+}
+.gpt-transition-all {
+    transition-property: all !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition-duration: 150ms !important
+}
+.gpt-transition-opacity {
+    transition-property: opacity !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition-duration: 150ms !important
+}
+.gpt-duration-200 {
+    transition-duration: 200ms !important
+}
+.gpt-duration-300 {
+    transition-duration: 300ms !important
+}
+.gpt-duration-75 {
+    transition-duration: 75ms !important
+}
+.gpt-duration-500 {
+    transition-duration: 500ms !important
+}
+.gpt-duration-700 {
+    transition-duration: 700ms !important
+}
+.gpt-ease-in {
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1) !important
+}
+.\[border-bottom-style\:solid\] {
+    border-bottom-style: solid
+}
+.\[border-top-style\:solid\] {
+    border-top-style: solid
+}
+.\[border-style\:solid\] {
+    border-style: solid
+}
+.\[background-size\:400\%_400\%\] {
+    background-size: 400% 400%
+}
+.placeholder\:gpt-text-base::-moz-placeholder {
+    font-size: 16px !important;
+    line-height: 24px !important
+}
+.placeholder\:gpt-text-base::placeholder {
+    font-size: 16px !important;
+    line-height: 24px !important
+}
+.placeholder\:gpt-text-slate-400::-moz-placeholder {
+    --tw-text-opacity: 1 !important;
+    color: rgb(148 163 184 / var(--tw-text-opacity)) !important
+}
+.placeholder\:gpt-text-slate-400::placeholder {
+    --tw-text-opacity: 1 !important;
+    color: rgb(148 163 184 / var(--tw-text-opacity)) !important
+}
+.after\:gpt-absolute::after {
+    content: var(--tw-content) !important;
+    position: absolute !important
+}
+.after\:gpt-top-\[2px\]::after {
+    content: var(--tw-content) !important;
+    top: 2px !important
+}
+.after\:gpt-left-\[2px\]::after {
+    content: var(--tw-content) !important;
+    left: 2px !important
+}
+.after\:gpt-h-5::after {
+    content: var(--tw-content) !important;
+    height: 20px !important
+}
+.after\:gpt-w-5::after {
+    content: var(--tw-content) !important;
+    width: 20px !important
+}
+.after\:gpt-rounded-full::after {
+    content: var(--tw-content) !important;
+    border-radius: 9999px !important
+}
+.after\:gpt-border::after {
+    content: var(--tw-content) !important;
+    border-width: 1px !important
+}
+.after\:gpt-border-gray-300::after {
+    content: var(--tw-content) !important;
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(209 213 219 / var(--tw-border-opacity)) !important
+}
+.after\:gpt-bg-white::after {
+    content: var(--tw-content) !important;
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity)) !important
+}
+.after\:gpt-transition-colors::after {
+    content: var(--tw-content) !important;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke !important;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1) !important;
+    transition-duration: 150ms !important
+}
+.after\:gpt-content-\[\'\'\]::after {
+    --tw-content: '' !important;
+    content: var(--tw-content) !important
+}
+.hover\:gpt-bg-slate-600:hover {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(71 85 105 / var(--tw-bg-opacity)) !important
+}
+.hover\:gpt-bg-slate-700:hover {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(51 65 85 / var(--tw-bg-opacity)) !important
+}
+.hover\:gpt-bg-slate-300:hover {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(203 213 225 / var(--tw-bg-opacity)) !important
+}
+.hover\:gpt-bg-slate-500:hover {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(100 116 139 / var(--tw-bg-opacity)) !important
+}
+.hover\:gpt-bg-left-top:hover {
+    background-position: left top !important
+}
+.gpt-group:hover .group-hover\:gpt-opacity-100 {
+    opacity: 1 !important
+}
+.gpt-peer:checked ~ .peer-checked\:gpt-bg-blue-700 {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(29 78 216 / var(--tw-bg-opacity)) !important
+}
+.gpt-peer:checked ~ .peer-checked\:after\:gpt-translate-x-full::after {
+    content: var(--tw-content) !important;
+    --tw-translate-x: 100% !important;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important
+}
+.gpt-peer:checked ~ .peer-checked\:after\:gpt-border-white::after {
+    content: var(--tw-content) !important;
+    --tw-border-opacity: 1 !important;
+    border-color: rgb(255 255 255 / var(--tw-border-opacity)) !important
+}
+@media (prefers-color-scheme: dark) {
+    .dark\:gpt-border {
+        border-width: 1px !important
+    }
+    .dark\:gpt-border-none {
+        border-style: none !important
+    }
+    .dark\:gpt-border-slate-700 {
+        --tw-border-opacity: 1 !important;
+        border-color: rgb(51 65 85 / var(--tw-border-opacity)) !important
+    }
+    .dark\:gpt-border-gray-600 {
+        --tw-border-opacity: 1 !important;
+        border-color: rgb(75 85 99 / var(--tw-border-opacity)) !important
+    }
+    .dark\:gpt-border-b-slate-700 {
+        --tw-border-opacity: 1 !important;
+        border-bottom-color: rgb(51 65 85 / var(--tw-border-opacity)) !important
+    }
+    .dark\:gpt-border-t-slate-700 {
+        --tw-border-opacity: 1 !important;
+        border-top-color: rgb(51 65 85 / var(--tw-border-opacity)) !important
+    }
+    .dark\:gpt-border-t-slate-600 {
+        --tw-border-opacity: 1 !important;
+        border-top-color: rgb(71 85 105 / var(--tw-border-opacity)) !important
+    }
+    .dark\:gpt-bg-gray-800 {
+        --tw-bg-opacity: 1 !important;
+        background-color: rgb(31 41 55 / var(--tw-bg-opacity)) !important
+    }
+    .dark\:gpt-bg-slate-900 {
+        --tw-bg-opacity: 1 !important;
+        background-color: rgb(15 23 42 / var(--tw-bg-opacity)) !important
+    }
+    .dark\:gpt-bg-slate-700 {
+        --tw-bg-opacity: 1 !important;
+        background-color: rgb(51 65 85 / var(--tw-bg-opacity)) !important
+    }
+    .dark\:gpt-bg-slate-800 {
+        --tw-bg-opacity: 1 !important;
+        background-color: rgb(30 41 59 / var(--tw-bg-opacity)) !important
+    }
+    .dark\:gpt-bg-slate-300 {
+        --tw-bg-opacity: 1 !important;
+        background-color: rgb(203 213 225 / var(--tw-bg-opacity)) !important
+    }
+    .dark\:gpt-bg-\[\#0F172A_\!important\] {
+        background-color: #0F172A !important
+    }
+    .dark\:gpt-bg-gray-700 {
+        --tw-bg-opacity: 1 !important;
+        background-color: rgb(55 65 81 / var(--tw-bg-opacity)) !important
+    }
+    .dark\:gpt-bg-slate-600 {
+        --tw-bg-opacity: 1 !important;
+        background-color: rgb(71 85 105 / var(--tw-bg-opacity)) !important
+    }
+    .dark\:gpt-bg-green-900 {
+        --tw-bg-opacity: 1 !important;
+        background-color: rgb(20 83 45 / var(--tw-bg-opacity)) !important
+    }
+    .dark\:gpt-text-slate-200 {
+        --tw-text-opacity: 1 !important;
+        color: rgb(226 232 240 / var(--tw-text-opacity)) !important
+    }
+    .dark\:gpt-text-gray-200 {
+        --tw-text-opacity: 1 !important;
+        color: rgb(229 231 235 / var(--tw-text-opacity)) !important
+    }
+    .dark\:gpt-text-slate-50 {
+        --tw-text-opacity: 1 !important;
+        color: rgb(248 250 252 / var(--tw-text-opacity)) !important
+    }
+    .dark\:gpt-text-slate-100 {
+        --tw-text-opacity: 1 !important;
+        color: rgb(241 245 249 / var(--tw-text-opacity)) !important
+    }
+    .dark\:gpt-text-green-500 {
+        --tw-text-opacity: 1 !important;
+        color: rgb(34 197 94 / var(--tw-text-opacity)) !important
+    }
+    .dark\:gpt-text-slate-400 {
+        --tw-text-opacity: 1 !important;
+        color: rgb(148 163 184 / var(--tw-text-opacity)) !important
+    }
+    .dark\:gpt-text-slate-900 {
+        --tw-text-opacity: 1 !important;
+        color: rgb(15 23 42 / var(--tw-text-opacity)) !important
+    }
+    .dark\:gpt-text-gray-300 {
+        --tw-text-opacity: 1 !important;
+        color: rgb(209 213 219 / var(--tw-text-opacity)) !important
+    }
+    .dark\:gpt-text-slate-500 {
+        --tw-text-opacity: 1 !important;
+        color: rgb(100 116 139 / var(--tw-text-opacity)) !important
+    }
+    .dark\:gpt-text-green-200 {
+        --tw-text-opacity: 1 !important;
+        color: rgb(187 247 208 / var(--tw-text-opacity)) !important
+    }
+    .dark\:gpt-text-amber-500 {
+        --tw-text-opacity: 1 !important;
+        color: rgb(245 158 11 / var(--tw-text-opacity)) !important
+    }
+    .dark\:gpt-outline-none {
+        outline: 2px solid transparent !important;
+        outline-offset: 2px !important
+    }
+    .dark\:hover\:gpt-bg-gray-700:hover {
+        --tw-bg-opacity: 1 !important;
+        background-color: rgb(55 65 81 / var(--tw-bg-opacity)) !important
+    }
+    .dark\:hover\:gpt-bg-slate-700:hover {
+        --tw-bg-opacity: 1 !important;
+        background-color: rgb(51 65 85 / var(--tw-bg-opacity)) !important
+    }
+}
+.\[\&\>\*\]\:gpt-px-2>* {
+    padding-left: 8px !important;
+    padding-right: 8px !important
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hc3NldHMvc3R5bGVzL2dsb2JhbC5jc3MiLCI8bm8gc291cmNlPiJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUFBLHdCQUFjO0lBQWQsd0JBQWM7SUFBZCxtQkFBYztJQUFkLG1CQUFjO0lBQWQsY0FBYztJQUFkLGNBQWM7SUFBZCxjQUFjO0lBQWQsZUFBYztJQUFkLGVBQWM7SUFBZCxhQUFjO0lBQWQsYUFBYztJQUFkLGtCQUFjO0lBQWQsc0NBQWM7SUFBZCxlQUFjO0lBQWQsb0JBQWM7SUFBZCxzQkFBYztJQUFkLHVCQUFjO0lBQWQsd0JBQWM7SUFBZCxrQkFBYztJQUFkLDJCQUFjO0lBQWQsNEJBQWM7SUFBZCxzQ0FBYztJQUFkLGtDQUFjO0lBQWQsMkJBQWM7SUFBZCxzQkFBYztJQUFkLDhCQUFjO0lBQWQsWUFBYztJQUFkLGtCQUFjO0lBQWQsZ0JBQWM7SUFBZCxpQkFBYztJQUFkLGtCQUFjO0lBQWQsY0FBYztJQUFkLGdCQUFjO0lBQWQsYUFBYztJQUFkLG1CQUFjO0lBQWQscUJBQWM7SUFBZCwyQkFBYztJQUFkLHlCQUFjO0lBQWQsMEJBQWM7SUFBZCwyQkFBYztJQUFkLHVCQUFjO0lBQWQsd0JBQWM7SUFBZCx5QkFBYztJQUFkO0FBQWM7QUFBZDtJQUFBLHdCQUFjO0lBQWQsd0JBQWM7SUFBZCxtQkFBYztJQUFkLG1CQUFjO0lBQWQsY0FBYztJQUFkLGNBQWM7SUFBZCxjQUFjO0lBQWQsZUFBYztJQUFkLGVBQWM7SUFBZCxhQUFjO0lBQWQsYUFBYztJQUFkLGtCQUFjO0lBQWQsc0NBQWM7SUFBZCxlQUFjO0lBQWQsb0JBQWM7SUFBZCxzQkFBYztJQUFkLHVCQUFjO0lBQWQsd0JBQWM7SUFBZCxrQkFBYztJQUFkLDJCQUFjO0lBQWQsNEJBQWM7SUFBZCxzQ0FBYztJQUFkLGtDQUFjO0lBQWQsMkJBQWM7SUFBZCxzQkFBYztJQUFkLDhCQUFjO0lBQWQsWUFBYztJQUFkLGtCQUFjO0lBQWQsZ0JBQWM7SUFBZCxpQkFBYztJQUFkLGtCQUFjO0lBQWQsY0FBYztJQUFkLGdCQUFjO0lBQWQsYUFBYztJQUFkLG1CQUFjO0lBQWQscUJBQWM7SUFBZCwyQkFBYztJQUFkLHlCQUFjO0lBQWQsMEJBQWM7SUFBZCwyQkFBYztJQUFkLHVCQUFjO0lBQWQsd0JBQWM7SUFBZCx5QkFBYztJQUFkO0FBQWM7QUFNWjtJQUFBLGFBQW1EO0lBQW5ELG1CQUFtRDtJQUFuRDtBQUFtRDtBQUpyRDtJQUFBLDZCQUFtQjtJQUFuQixxQkFBbUI7SUFBbkIsc0JBQW1CO0lBQW5CLHFCQUFtQjtJQUFuQix1QkFBbUI7SUFBbkIsMkJBQW1CO0lBQW5CLGlDQUFtQjtJQUFuQiw4QkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBLDJCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDBCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDJCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtRQUFBLFVBQW1CO1FBQW5CO0lBQW1CO0lBQW5CO1FBQUEsVUFBbUI7UUFBbkI7SUFBbUI7QUFBQTtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7UUFBQSxVQUFtQjtRQUFuQjtJQUFtQjtJQUFuQjtRQUFBLFVBQW1CO1FBQW5CO0lBQW1CO0FBQUE7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO1FBQUE7SUFBbUI7SUFBbkI7UUFBQTtJQUFtQjtBQUFBO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtRQUFBLFVBQW1CO1FBQW5CO0lBQW1CO0lBQW5CO1FBQUEsVUFBbUI7UUFBbkI7SUFBbUI7QUFBQTtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7UUFBQSxVQUFtQjtRQUFuQjtJQUFtQjtJQUFuQjtRQUFBLFVBQW1CO1FBQW5CO0lBQW1CO0FBQUE7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBLG9DQUFtQjtPQUFuQixpQ0FBbUI7WUFBbkI7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUEsdUNBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQSxpQ0FBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSxpQ0FBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSxpQ0FBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSxpQ0FBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSxpQ0FBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSw2QkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSw2QkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDZCQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUEsc0NBQW1CO0lBQW5CLGdEQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLHNDQUFtQjtJQUFuQiwrQ0FBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSxzQ0FBbUI7SUFBbkIsK0NBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsc0NBQW1CO0lBQW5CLGdEQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBLGdEQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUEsMkJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsNkJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsMkJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsNEJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsNkJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsNEJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsNEJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsNEJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUEsMEJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsMEJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsMEJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsMEJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsMEJBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSwrQkFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQSxpQ0FBbUI7SUFBbkIseUNBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEseUNBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsK0JBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsd0VBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsd0NBQW1CO0lBQW5CLDBSQUFtQjtZQUFuQjtBQUFtQjtBQUFuQjtJQUFBLDBHQUFtQjtJQUFuQixtRUFBbUI7SUFBbkI7QUFBbUI7QUFBbkI7SUFBQSxtQ0FBbUI7SUFBbkIsbUVBQW1CO0lBQW5CO0FBQW1CO0FBQW5CO0lBQUEsdUNBQW1CO0lBQW5CLG1FQUFtQjtJQUFuQjtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBQW5CO0lBQUE7QUFBbUI7QUFBbkI7SUFBQTtBQUFtQjtBQUFuQjtJQUFBO0FBQW1CO0FBRm5CO0lBQUEsMkJDQUE7SURBQTtDQ0FBO0FEQUE7SUFBQSwyQkNBQTtJREFBO0NDQUE7QURBQTtJQUFBLGdDQ0FBO0lEQUE7Q0NBQTtBREFBO0lBQUEsZ0NDQUE7SURBQTtDQ0FBO0FEQUE7SUFBQSxzQ0NBQTtJREFBO0NDQUE7QURBQTtJQUFBLHNDQ0FBO0lEQUE7Q0NBQTtBREFBO0lBQUEsc0NDQUE7SURBQTtDQ0FBO0FEQUE7SUFBQSxzQ0NBQTtJREFBO0NDQUE7QURBQTtJQUFBLHNDQ0FBO0lEQUE7Q0NBQTtBREFBO0lBQUEsc0NDQUE7SURBQTtDQ0FBO0FEQUE7SUFBQSxzQ0NBQTtJREFBO0NDQUE7QURBQTtJQUFBLHNDQ0FBO0lEQUEsa0NDQUE7SURBQTtDQ0FBO0FEQUE7SUFBQSxzQ0NBQTtJREFBLDhCQ0FBO0lEQUE7Q0NBQTtBREFBO0lBQUEsc0NDQUE7SURBQSwyR0NBQTtJREFBLG9FQ0FBO0lEQUE7Q0NBQTtBREFBO0lBQUEsNEJDQUE7SURBQTtDQ0FBO0FEQUE7SUFBQSw4QkNBQTtJREFBO0NDQUE7QURBQTtJQUFBLDhCQ0FBO0lEQUE7Q0NBQTtBREFBO0lBQUEsOEJDQUE7SURBQTtDQ0FBO0FEQUE7SUFBQSw4QkNBQTtJREFBO0NDQUE7QURBQTtJQUFBO0NDQUE7QURBQTtJQUFBO0NDQUE7QURBQTtJQUFBLDhCQ0FBO0lEQUE7Q0NBQTtBREFBO0lBQUEsc0NDQUE7SURBQSxrQ0NBQTtJREFBO0NDQUE7QURBQTtJQUFBLHNDQ0FBO0lEQUEsa0NDQUE7SURBQTtDQ0FBO0FEQUE7SUFBQTtRQUFBO0tDQUE7SURBQTtRQUFBO0tDQUE7SURBQTtRQUFBLGtDQ0FBO1FEQUE7S0NBQTtJREFBO1FBQUEsa0NDQUE7UURBQTtLQ0FBO0lEQUE7UUFBQSxrQ0NBQTtRREFBO0tDQUE7SURBQTtRQUFBLGtDQ0FBO1FEQUE7S0NBQTtJREFBO1FBQUEsa0NDQUE7UURBQTtLQ0FBO0lEQUE7UUFBQSw4QkNBQTtRREFBO0tDQUE7SURBQTtRQUFBLDhCQ0FBO1FEQUE7S0NBQTtJREFBO1FBQUEsOEJDQUE7UURBQTtLQ0FBO0lEQUE7UUFBQSw4QkNBQTtRREFBO0tDQUE7SURBQTtRQUFBLDhCQ0FBO1FEQUE7S0NBQTtJREFBO1FBQUE7S0NBQTtJREFBO1FBQUEsOEJDQUE7UURBQTtLQ0FBO0lEQUE7UUFBQSw4QkNBQTtRREFBO0tDQUE7SURBQTtRQUFBLDhCQ0FBO1FEQUE7S0NBQTtJREFBO1FBQUEsZ0NDQUE7UURBQTtLQ0FBO0lEQUE7UUFBQSxnQ0NBQTtRREFBO0tDQUE7SURBQTtRQUFBLGdDQ0FBO1FEQUE7S0NBQTtJREFBO1FBQUEsZ0NDQUE7UURBQTtLQ0FBO0lEQUE7UUFBQSxnQ0NBQTtRREFBO0tDQUE7SURBQTtRQUFBLGdDQ0FBO1FEQUE7S0NBQTtJREFBO1FBQUEsZ0NDQUE7UURBQTtLQ0FBO0lEQUE7UUFBQSxnQ0NBQTtRREFBO0tDQUE7SURBQTtRQUFBLGdDQ0FBO1FEQUE7S0NBQTtJREFBO1FBQUEsZ0NDQUE7UURBQTtLQ0FBO0lEQUE7UUFBQSxnQ0NBQTtRREFBO0tDQUE7SURBQTtRQUFBLDBDQ0FBO1FEQUE7S0NBQTtJREFBO1FBQUEsOEJDQUE7UURBQTtLQ0FBO0lEQUE7UUFBQSw4QkNBQTtRREFBO0tDQUE7Q0FBQTtBREFBO0lBQUEsNkJDQUE7SURBQTtDQ0FBIiwic291cmNlc0NvbnRlbnQiOlsiQHRhaWx3aW5kIGJhc2U7XG5AdGFpbHdpbmQgY29tcG9uZW50cztcbkB0YWlsd2luZCB1dGlsaXRpZXM7XG5cbkBsYXllciBjb21wb25lbnRzIHtcblx0LmdwdC1jZW50ZXItd2l0aC1mbGV4IHtcblx0XHRAYXBwbHkgZ3B0LWZsZXggZ3B0LWp1c3RpZnktY2VudGVyIGdwdC1pdGVtcy1jZW50ZXI7XG5cdH1cbn1cbiIsbnVsbF0sInNvdXJjZVJvb3QiOiIifQ== */</style></head><body data-new-gr-c-s-check-loaded="14.1027.0" data-gr-ext-installed="" data-new-gr-c-s-loaded="14.1027.0"><div id="__next"><script>!function(){try{var d=document.documentElement,c=d.classList;c.remove('light','dark');var e=localStorage.getItem('theme');if('system'===e||(!e&&true)){var t='(prefers-color-scheme: dark)',m=window.matchMedia(t);if(m.media!==t||m.matches){d.style.colorScheme = 'dark';c.add('dark')}else{d.style.colorScheme = 'light';c.add('light')}}else if(e){c.add(e|| '')}if(e==='light'||e==='dark')d.style.colorScheme=e}catch(e){}}()</script><div class="overflow-hidden w-full h-full relative"><div class="flex h-full flex-1 flex-col md:pl-[260px]"><main class="relative h-full w-full transition-width flex flex-col overflow-hidden items-stretch flex-1"><div class="flex-1 overflow-hidden"><div class="react-scroll-to-bottom--css-njiyz-79elbk h-full dark:bg-gray-800"><div class="react-scroll-to-bottom--css-njiyz-1n7m0yu"><div class="flex flex-col items-center text-sm dark:bg-gray-800"><div class="w-full border-b border-black/10 dark:border-gray-900/50 text-gray-800 dark:text-gray-100 group dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 m-auto md:max-w-2xl lg:max-w-2xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0"><div class="w-[30px] flex flex-col relative items-end"><div class="relative flex"><span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"><span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"><img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e" style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"></span><img alt="share2duy@gmail.com" srcset="/_next/image?url=https%3A%2F%2Fs.gravatar.com%2Favatar%2F8490bb0bf3d90f32e887b2e6a4d7a567%3Fs%3D480%26r%3Dpg%26d%3Dhttps%253A%252F%252Fcdn.auth0.com%252Favatars%252Fsh.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fs.gravatar.com%2Favatar%2F8490bb0bf3d90f32e887b2e6a4d7a567%3Fs%3D480%26r%3Dpg%26d%3Dhttps%253A%252F%252Fcdn.auth0.com%252Favatars%252Fsh.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fs.gravatar.com%2Favatar%2F8490bb0bf3d90f32e887b2e6a4d7a567%3Fs%3D480%26r%3Dpg%26d%3Dhttps%253A%252F%252Fcdn.auth0.com%252Favatars%252Fsh.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" class="rounded-sm" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"></span></div></div><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">code hướng dẫn truyền file bằng graphQL</div></div><div class="text-gray-400 flex self-end lg:self-center justify-center mt-2 gap-3 md:gap-4 lg:gap-1 lg:absolute lg:top-0 lg:translate-x-full lg:right-0 lg:mt-0 lg:pl-2 visible"><button class="p-1 rounded-md hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 disabled:dark:hover:text-gray-400 md:invisible md:group-hover:visible"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button></div><div class="flex justify-between"></div></div></div></div><div class="w-full border-b border-black/10 dark:border-gray-900/50 text-gray-800 dark:text-gray-100 group bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 m-auto md:max-w-2xl lg:max-w-2xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0"><div class="w-[30px] flex flex-col relative items-end"><div class="relative h-[30px] w-[30px] p-1 rounded-sm text-white flex items-center justify-center" style="background-color: rgb(16, 163, 127);"><svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" class="h-6 w-6"><path d="M37.5324 16.8707C37.9808 15.5241 38.1363 14.0974 37.9886 12.6859C37.8409 11.2744 37.3934 9.91076 36.676 8.68622C35.6126 6.83404 33.9882 5.3676 32.0373 4.4985C30.0864 3.62941 27.9098 3.40259 25.8215 3.85078C24.8796 2.7893 23.7219 1.94125 22.4257 1.36341C21.1295 0.785575 19.7249 0.491269 18.3058 0.500197C16.1708 0.495044 14.0893 1.16803 12.3614 2.42214C10.6335 3.67624 9.34853 5.44666 8.6917 7.47815C7.30085 7.76286 5.98686 8.3414 4.8377 9.17505C3.68854 10.0087 2.73073 11.0782 2.02839 12.312C0.956464 14.1591 0.498905 16.2988 0.721698 18.4228C0.944492 20.5467 1.83612 22.5449 3.268 24.1293C2.81966 25.4759 2.66413 26.9026 2.81182 28.3141C2.95951 29.7256 3.40701 31.0892 4.12437 32.3138C5.18791 34.1659 6.8123 35.6322 8.76321 36.5013C10.7141 37.3704 12.8907 37.5973 14.9789 37.1492C15.9208 38.2107 17.0786 39.0587 18.3747 39.6366C19.6709 40.2144 21.0755 40.5087 22.4946 40.4998C24.6307 40.5054 26.7133 39.8321 28.4418 38.5772C30.1704 37.3223 31.4556 35.5506 32.1119 33.5179C33.5027 33.2332 34.8167 32.6547 35.9659 31.821C37.115 30.9874 38.0728 29.9178 38.7752 28.684C39.8458 26.8371 40.3023 24.6979 40.0789 22.5748C39.8556 20.4517 38.9639 18.4544 37.5324 16.8707ZM22.4978 37.8849C20.7443 37.8874 19.0459 37.2733 17.6994 36.1501C17.7601 36.117 17.8666 36.0586 17.936 36.0161L25.9004 31.4156C26.1003 31.3019 26.2663 31.137 26.3813 30.9378C26.4964 30.7386 26.5563 30.5124 26.5549 30.2825V19.0542L29.9213 20.998C29.9389 21.0068 29.9541 21.0198 29.9656 21.0359C29.977 21.052 29.9842 21.0707 29.9867 21.0902V30.3889C29.9842 32.375 29.1946 34.2791 27.7909 35.6841C26.3872 37.0892 24.4838 37.8806 22.4978 37.8849ZM6.39227 31.0064C5.51397 29.4888 5.19742 27.7107 5.49804 25.9832C5.55718 26.0187 5.66048 26.0818 5.73461 26.1244L13.699 30.7248C13.8975 30.8408 14.1233 30.902 14.3532 30.902C14.583 30.902 14.8088 30.8408 15.0073 30.7248L24.731 25.1103V28.9979C24.7321 29.0177 24.7283 29.0376 24.7199 29.0556C24.7115 29.0736 24.6988 29.0893 24.6829 29.1012L16.6317 33.7497C14.9096 34.7416 12.8643 35.0097 10.9447 34.4954C9.02506 33.9811 7.38785 32.7263 6.39227 31.0064ZM4.29707 13.6194C5.17156 12.0998 6.55279 10.9364 8.19885 10.3327C8.19885 10.4013 8.19491 10.5228 8.19491 10.6071V19.808C8.19351 20.0378 8.25334 20.2638 8.36823 20.4629C8.48312 20.6619 8.64893 20.8267 8.84863 20.9404L18.5723 26.5542L15.206 28.4979C15.1894 28.5089 15.1703 28.5155 15.1505 28.5173C15.1307 28.5191 15.1107 28.516 15.0924 28.5082L7.04046 23.8557C5.32135 22.8601 4.06716 21.2235 3.55289 19.3046C3.03862 17.3858 3.30624 15.3413 4.29707 13.6194ZM31.955 20.0556L22.2312 14.4411L25.5976 12.4981C25.6142 12.4872 25.6333 12.4805 25.6531 12.4787C25.6729 12.4769 25.6928 12.4801 25.7111 12.4879L33.7631 17.1364C34.9967 17.849 36.0017 18.8982 36.6606 20.1613C37.3194 21.4244 37.6047 22.849 37.4832 24.2684C37.3617 25.6878 36.8382 27.0432 35.9743 28.1759C35.1103 29.3086 33.9415 30.1717 32.6047 30.6641C32.6047 30.5947 32.6047 30.4733 32.6047 30.3889V21.188C32.6066 20.9586 32.5474 20.7328 32.4332 20.5338C32.319 20.3348 32.154 20.1698 31.955 20.0556ZM35.3055 15.0128C35.2464 14.9765 35.1431 14.9142 35.069 14.8717L27.1045 10.2712C26.906 10.1554 26.6803 10.0943 26.4504 10.0943C26.2206 10.0943 25.9948 10.1554 25.7963 10.2712L16.0726 15.8858V11.9982C16.0715 11.9783 16.0753 11.9585 16.0837 11.9405C16.0921 11.9225 16.1048 11.9068 16.1207 11.8949L24.1719 7.25025C25.4053 6.53903 26.8158 6.19376 28.2383 6.25482C29.6608 6.31589 31.0364 6.78077 32.2044 7.59508C33.3723 8.40939 34.2842 9.53945 34.8334 10.8531C35.3826 12.1667 35.5464 13.6095 35.3055 15.0128ZM14.2424 21.9419L10.8752 19.9981C10.8576 19.9893 10.8423 19.9763 10.8309 19.9602C10.8195 19.9441 10.8122 19.9254 10.8098 19.9058V10.6071C10.8107 9.18295 11.2173 7.78848 11.9819 6.58696C12.7466 5.38544 13.8377 4.42659 15.1275 3.82264C16.4173 3.21869 17.8524 2.99464 19.2649 3.1767C20.6775 3.35876 22.0089 3.93941 23.1034 4.85067C23.0427 4.88379 22.937 4.94215 22.8668 4.98473L14.9024 9.58517C14.7025 9.69878 14.5366 9.86356 14.4215 10.0626C14.3065 10.2616 14.2466 10.4877 14.2479 10.7175L14.2424 21.9419ZM16.071 17.9991L20.4018 15.4978L24.7325 17.9975V22.9985L20.4018 25.4983L16.071 22.9985V17.9991Z" fill="currentColor"></path></svg></div></div><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Để truyền file bằng GraphQL, bạn cần sử dụng kiểu dữ liệu <code>Upload</code> được hỗ trợ bởi các thư viện GraphQL. Trong hướng dẫn này, tôi sẽ sử dụng Node.js và thư viện Apollo GraphQL để minh họa việc truyền file.</p><p>Đầu tiên, bạn cần cài đặt Apollo Server và các thư viện cần thiết để xử lý file. Bạn có thể cài đặt chúng bằng cách chạy các lệnh sau trong terminal:</p><pre><div class="bg-black mb-4 rounded-md"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans"><button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>Copy code</button></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs">npm install apollo-server graphql apollo-upload-server multer graphql-upload
+</code></div></div></pre><p>Tiếp theo, tạo một file <code>server.js</code> với nội dung sau:</p><pre><div class="bg-black mb-4 rounded-md"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans"><span class="">javascript</span><button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>Copy code</button></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-javascript"><span class="hljs-keyword">const</span> { <span class="hljs-title class_">ApolloServer</span>, gql } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"apollo-server"</span>);
+<span class="hljs-keyword">const</span> { createReadStream } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"fs"</span>);
+<span class="hljs-keyword">const</span> { resolve } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"path"</span>);
+<span class="hljs-keyword">const</span> { <span class="hljs-title class_">ApolloServerPluginLandingPageGraphQLPlayground</span> } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"apollo-server-core"</span>);
+<span class="hljs-keyword">const</span> { <span class="hljs-title class_">ApolloServerPluginLandingPageDisabled</span> } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"apollo-server-core"</span>);
+<span class="hljs-keyword">const</span> { graphqlUploadExpress } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"graphql-upload"</span>);
+<span class="hljs-keyword">const</span> multer = <span class="hljs-built_in">require</span>(<span class="hljs-string">"multer"</span>);
+
+<span class="hljs-keyword">const</span> typeDefs = gql<span class="hljs-string">`
+  scalar Upload
+
+  type Query {
+    hello: String
+  }
+
+  type Mutation {
+    uploadFile(file: Upload!): String
+  }
+`</span>;
+
+<span class="hljs-keyword">const</span> resolvers = {
+  <span class="hljs-title class_">Query</span>: {
+    <span class="hljs-attr">hello</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-string">"Hello world!"</span>,
+  },
+
+  <span class="hljs-title class_">Mutation</span>: {
+    <span class="hljs-attr">uploadFile</span>: <span class="hljs-keyword">async</span> (parent, { file }) =&gt; {
+      <span class="hljs-keyword">const</span> { createWriteStream, unlink } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"fs"</span>);
+      <span class="hljs-keyword">const</span> { <span class="hljs-attr">v4</span>: uuidv4 } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"uuid"</span>);
+      <span class="hljs-keyword">const</span> { filename, mimetype, createReadStream } = <span class="hljs-keyword">await</span> file;
+      <span class="hljs-keyword">const</span> stream = <span class="hljs-title function_">createReadStream</span>();
+      <span class="hljs-keyword">const</span> id = <span class="hljs-title function_">uuidv4</span>();
+      <span class="hljs-keyword">const</span> path = <span class="hljs-string">`./uploads/<span class="hljs-subst">${id}</span>-<span class="hljs-subst">${filename}</span>`</span>;
+      <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span>
+        stream
+          .<span class="hljs-title function_">pipe</span>(<span class="hljs-title function_">createWriteStream</span>(path))
+          .<span class="hljs-title function_">on</span>(<span class="hljs-string">"finish"</span>, <span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">resolve</span>())
+          .<span class="hljs-title function_">on</span>(<span class="hljs-string">"error"</span>, <span class="hljs-function">(<span class="hljs-params">error</span>) =&gt;</span> {
+            <span class="hljs-title function_">unlink</span>(path, <span class="hljs-function">() =&gt;</span> {});
+            <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(error);
+          })
+      );
+      <span class="hljs-keyword">return</span> <span class="hljs-string">`http://localhost:4000/<span class="hljs-subst">${path}</span>`</span>;
+    },
+  },
+};
+
+<span class="hljs-keyword">const</span> server = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ApolloServer</span>({
+  typeDefs,
+  resolvers,
+  <span class="hljs-attr">plugins</span>: [process.<span class="hljs-property">env</span>.<span class="hljs-property">NODE_ENV</span> === <span class="hljs-string">"production"</span> ? <span class="hljs-title class_">ApolloServerPluginLandingPageDisabled</span>() : <span class="hljs-title class_">ApolloServerPluginLandingPageGraphQLPlayground</span>()],
+});
+
+<span class="hljs-keyword">const</span> upload = <span class="hljs-title function_">multer</span>();
+
+server.<span class="hljs-title function_">start</span>().<span class="hljs-title function_">then</span>(<span class="hljs-function">() =&gt;</span> {
+  server.<span class="hljs-title function_">applyMiddleware</span>({
+    <span class="hljs-attr">app</span>: upload.<span class="hljs-title function_">none</span>(),
+    <span class="hljs-attr">path</span>: <span class="hljs-string">"/graphql"</span>,
+  });
+});
+
+</code></div></div></pre><p>Trong file <code>server.js</code> này, chúng ta định nghĩa kiểu dữ liệu <code>Upload</code> là một scalar, định nghĩa một truy vấn đơn giản để kiểm tra server đã hoạt động hay chưa và định nghĩa một mutation để truyền file. Trong mutation này, chúng ta sử dụng thư viện <code>multer</code> để xử lý file và lưu file vào thư mục <code>uploads</code>. Sau đó, mutation sẽ trả về đường dẫn đến file vừa được lưu.</p><p>Bây giờ, để kiểm tra server đã hoạt động chưa, bạn hãy ch</p></div></div></div><div class="flex justify-between"><div class="text-gray-400 flex self-end lg:self-center justify-center mt-2 gap-3 md:gap-4 lg:gap-1 lg:absolute lg:top-0 lg:translate-x-full lg:right-0 lg:mt-0 lg:pl-2 visible"><button class="p-1 rounded-md hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 disabled:dark:hover:text-gray-400"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg></button><button class="p-1 rounded-md hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 disabled:dark:hover:text-gray-400"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path></svg></button></div></div></div></div></div><div class="w-full border-b border-black/10 dark:border-gray-900/50 text-gray-800 dark:text-gray-100 group dark:bg-gray-800"><div class="text-base gap-4 md:gap-6 m-auto md:max-w-2xl lg:max-w-2xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0"><div class="w-[30px] flex flex-col relative items-end"><div class="relative flex"><span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"><span style="box-sizing: border-box; display: block; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"><img alt="" aria-hidden="true" src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e" style="display: block; max-width: 100%; width: initial; height: initial; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"></span><img alt="share2duy@gmail.com" srcset="/_next/image?url=https%3A%2F%2Fs.gravatar.com%2Favatar%2F8490bb0bf3d90f32e887b2e6a4d7a567%3Fs%3D480%26r%3Dpg%26d%3Dhttps%253A%252F%252Fcdn.auth0.com%252Favatars%252Fsh.png&amp;w=32&amp;q=75 1x, /_next/image?url=https%3A%2F%2Fs.gravatar.com%2Favatar%2F8490bb0bf3d90f32e887b2e6a4d7a567%3Fs%3D480%26r%3Dpg%26d%3Dhttps%253A%252F%252Fcdn.auth0.com%252Favatars%252Fsh.png&amp;w=64&amp;q=75 2x" src="/_next/image?url=https%3A%2F%2Fs.gravatar.com%2Favatar%2F8490bb0bf3d90f32e887b2e6a4d7a567%3Fs%3D480%26r%3Dpg%26d%3Dhttps%253A%252F%252Fcdn.auth0.com%252Favatars%252Fsh.png&amp;w=64&amp;q=75" decoding="async" data-nimg="intrinsic" class="rounded-sm" style="position: absolute; inset: 0px; box-sizing: border-box; padding: 0px; border: none; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"></span></div></div><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap">code hướng dẫn upload file bằng graphQL trong nestjs</div></div><div class="text-gray-400 flex self-end lg:self-center justify-center mt-2 gap-3 md:gap-4 lg:gap-1 lg:absolute lg:top-0 lg:translate-x-full lg:right-0 lg:mt-0 lg:pl-2 visible"><button class="p-1 rounded-md hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 disabled:dark:hover:text-gray-400 md:invisible md:group-hover:visible"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></button></div><div class="flex justify-between"></div></div></div></div><div class="w-full border-b border-black/10 dark:border-gray-900/50 text-gray-800 dark:text-gray-100 group bg-gray-50 dark:bg-[#444654]"><div class="text-base gap-4 md:gap-6 m-auto md:max-w-2xl lg:max-w-2xl xl:max-w-3xl p-4 md:py-6 flex lg:px-0"><div class="w-[30px] flex flex-col relative items-end"><div class="relative h-[30px] w-[30px] p-1 rounded-sm text-white flex items-center justify-center" style="background-color: rgb(16, 163, 127);"><svg width="41" height="41" viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" class="h-6 w-6"><path d="M37.5324 16.8707C37.9808 15.5241 38.1363 14.0974 37.9886 12.6859C37.8409 11.2744 37.3934 9.91076 36.676 8.68622C35.6126 6.83404 33.9882 5.3676 32.0373 4.4985C30.0864 3.62941 27.9098 3.40259 25.8215 3.85078C24.8796 2.7893 23.7219 1.94125 22.4257 1.36341C21.1295 0.785575 19.7249 0.491269 18.3058 0.500197C16.1708 0.495044 14.0893 1.16803 12.3614 2.42214C10.6335 3.67624 9.34853 5.44666 8.6917 7.47815C7.30085 7.76286 5.98686 8.3414 4.8377 9.17505C3.68854 10.0087 2.73073 11.0782 2.02839 12.312C0.956464 14.1591 0.498905 16.2988 0.721698 18.4228C0.944492 20.5467 1.83612 22.5449 3.268 24.1293C2.81966 25.4759 2.66413 26.9026 2.81182 28.3141C2.95951 29.7256 3.40701 31.0892 4.12437 32.3138C5.18791 34.1659 6.8123 35.6322 8.76321 36.5013C10.7141 37.3704 12.8907 37.5973 14.9789 37.1492C15.9208 38.2107 17.0786 39.0587 18.3747 39.6366C19.6709 40.2144 21.0755 40.5087 22.4946 40.4998C24.6307 40.5054 26.7133 39.8321 28.4418 38.5772C30.1704 37.3223 31.4556 35.5506 32.1119 33.5179C33.5027 33.2332 34.8167 32.6547 35.9659 31.821C37.115 30.9874 38.0728 29.9178 38.7752 28.684C39.8458 26.8371 40.3023 24.6979 40.0789 22.5748C39.8556 20.4517 38.9639 18.4544 37.5324 16.8707ZM22.4978 37.8849C20.7443 37.8874 19.0459 37.2733 17.6994 36.1501C17.7601 36.117 17.8666 36.0586 17.936 36.0161L25.9004 31.4156C26.1003 31.3019 26.2663 31.137 26.3813 30.9378C26.4964 30.7386 26.5563 30.5124 26.5549 30.2825V19.0542L29.9213 20.998C29.9389 21.0068 29.9541 21.0198 29.9656 21.0359C29.977 21.052 29.9842 21.0707 29.9867 21.0902V30.3889C29.9842 32.375 29.1946 34.2791 27.7909 35.6841C26.3872 37.0892 24.4838 37.8806 22.4978 37.8849ZM6.39227 31.0064C5.51397 29.4888 5.19742 27.7107 5.49804 25.9832C5.55718 26.0187 5.66048 26.0818 5.73461 26.1244L13.699 30.7248C13.8975 30.8408 14.1233 30.902 14.3532 30.902C14.583 30.902 14.8088 30.8408 15.0073 30.7248L24.731 25.1103V28.9979C24.7321 29.0177 24.7283 29.0376 24.7199 29.0556C24.7115 29.0736 24.6988 29.0893 24.6829 29.1012L16.6317 33.7497C14.9096 34.7416 12.8643 35.0097 10.9447 34.4954C9.02506 33.9811 7.38785 32.7263 6.39227 31.0064ZM4.29707 13.6194C5.17156 12.0998 6.55279 10.9364 8.19885 10.3327C8.19885 10.4013 8.19491 10.5228 8.19491 10.6071V19.808C8.19351 20.0378 8.25334 20.2638 8.36823 20.4629C8.48312 20.6619 8.64893 20.8267 8.84863 20.9404L18.5723 26.5542L15.206 28.4979C15.1894 28.5089 15.1703 28.5155 15.1505 28.5173C15.1307 28.5191 15.1107 28.516 15.0924 28.5082L7.04046 23.8557C5.32135 22.8601 4.06716 21.2235 3.55289 19.3046C3.03862 17.3858 3.30624 15.3413 4.29707 13.6194ZM31.955 20.0556L22.2312 14.4411L25.5976 12.4981C25.6142 12.4872 25.6333 12.4805 25.6531 12.4787C25.6729 12.4769 25.6928 12.4801 25.7111 12.4879L33.7631 17.1364C34.9967 17.849 36.0017 18.8982 36.6606 20.1613C37.3194 21.4244 37.6047 22.849 37.4832 24.2684C37.3617 25.6878 36.8382 27.0432 35.9743 28.1759C35.1103 29.3086 33.9415 30.1717 32.6047 30.6641C32.6047 30.5947 32.6047 30.4733 32.6047 30.3889V21.188C32.6066 20.9586 32.5474 20.7328 32.4332 20.5338C32.319 20.3348 32.154 20.1698 31.955 20.0556ZM35.3055 15.0128C35.2464 14.9765 35.1431 14.9142 35.069 14.8717L27.1045 10.2712C26.906 10.1554 26.6803 10.0943 26.4504 10.0943C26.2206 10.0943 25.9948 10.1554 25.7963 10.2712L16.0726 15.8858V11.9982C16.0715 11.9783 16.0753 11.9585 16.0837 11.9405C16.0921 11.9225 16.1048 11.9068 16.1207 11.8949L24.1719 7.25025C25.4053 6.53903 26.8158 6.19376 28.2383 6.25482C29.6608 6.31589 31.0364 6.78077 32.2044 7.59508C33.3723 8.40939 34.2842 9.53945 34.8334 10.8531C35.3826 12.1667 35.5464 13.6095 35.3055 15.0128ZM14.2424 21.9419L10.8752 19.9981C10.8576 19.9893 10.8423 19.9763 10.8309 19.9602C10.8195 19.9441 10.8122 19.9254 10.8098 19.9058V10.6071C10.8107 9.18295 11.2173 7.78848 11.9819 6.58696C12.7466 5.38544 13.8377 4.42659 15.1275 3.82264C16.4173 3.21869 17.8524 2.99464 19.2649 3.1767C20.6775 3.35876 22.0089 3.93941 23.1034 4.85067C23.0427 4.88379 22.937 4.94215 22.8668 4.98473L14.9024 9.58517C14.7025 9.69878 14.5366 9.86356 14.4215 10.0626C14.3065 10.2616 14.2466 10.4877 14.2479 10.7175L14.2424 21.9419ZM16.071 17.9991L20.4018 15.4978L24.7325 17.9975V22.9985L20.4018 25.4983L16.071 22.9985V17.9991Z" fill="currentColor"></path></svg></div></div><div class="relative flex w-[calc(100%-50px)] flex-col gap-1 md:gap-3 lg:w-[calc(100%-115px)]"><div class="flex flex-grow flex-col gap-3"><div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap"><div class="markdown prose w-full break-words dark:prose-invert dark"><p>Để upload file bằng GraphQL trong NestJS, bạn có thể sử dụng thư viện <code>graphql-upload</code>. Trong hướng dẫn này, tôi sẽ hướng dẫn cách upload file bằng GraphQL trong NestJS bằng cách sử dụng thư viện này.</p><p>Đầu tiên, bạn cần cài đặt thư viện <code>graphql-upload</code> bằng lệnh sau:</p><pre><div class="bg-black mb-4 rounded-md"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans"><button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>Copy code</button></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs">npm install graphql-upload
+</code></div></div></pre><p>Tiếp theo, bạn cần định nghĩa <code>graphqlUploadExpress</code> middleware trong <code>main.ts</code> để sử dụng thư viện <code>graphql-upload</code>. Bạn có thể định nghĩa middleware như sau:</p><pre><div class="bg-black mb-4 rounded-md"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans"><span class="">typescript</span><button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>Copy code</button></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-typescript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">NestFactory</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/core'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">AppModule</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'./app.module'</span>;
+<span class="hljs-keyword">import</span> { graphqlUploadExpress } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-upload'</span>;
+
+<span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">bootstrap</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> app = <span class="hljs-keyword">await</span> <span class="hljs-title class_">NestFactory</span>.<span class="hljs-title function_">create</span>(<span class="hljs-title class_">AppModule</span>);
+  app.<span class="hljs-title function_">use</span>(<span class="hljs-title function_">graphqlUploadExpress</span>({ <span class="hljs-attr">maxFileSize</span>: <span class="hljs-number">10000000</span>, <span class="hljs-attr">maxFiles</span>: <span class="hljs-number">10</span> }));
+  <span class="hljs-keyword">await</span> app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>);
+}
+<span class="hljs-title function_">bootstrap</span>();
+</code></div></div></pre><p>Trong đoạn code trên, chúng ta sử dụng <code>graphqlUploadExpress</code> middleware với các tùy chọn để giới hạn kích thước file và số lượng file tối đa.</p><p>Tiếp theo, trong module của bạn, hãy import <code>GraphQLUpload</code> scalar từ <code>graphql-upload</code> và định nghĩa mutation để upload file. Ví dụ như sau:</p><pre><div class="bg-black mb-4 rounded-md"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans"><span class="">typescript</span><button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>Copy code</button></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-typescript"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Resolver</span>, <span class="hljs-title class_">Mutation</span>, <span class="hljs-title class_">Args</span>, <span class="hljs-title class_">Query</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'@nestjs/graphql'</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">GraphQLUpload</span>, <span class="hljs-title class_">FileUpload</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">'graphql-upload'</span>;
+
+<span class="hljs-meta">@Resolver</span>()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AppResolver</span> {
+  <span class="hljs-meta">@Mutation</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title class_">String</span>)
+  <span class="hljs-keyword">async</span> <span class="hljs-title function_">uploadFile</span>(
+    <span class="hljs-meta">@Args</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">'file'</span>, <span class="hljs-attr">type</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title class_">GraphQLUpload</span> })
+    <span class="hljs-attr">file</span>: <span class="hljs-title class_">FileUpload</span>,
+  ): <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">string</span>&gt; {
+    <span class="hljs-keyword">const</span> { createReadStream, filename } = file;
+    <span class="hljs-keyword">const</span> stream = <span class="hljs-title function_">createReadStream</span>();
+    <span class="hljs-comment">// Xử lý stream tùy theo nhu cầu của bạn</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`File <span class="hljs-subst">${filename}</span> đã được upload thành công.`</span>;
+  }
+}
+</code></div></div></pre><p>Trong đoạn code trên, chúng ta định nghĩa mutation để upload file bằng cách sử dụng scalar <code>GraphQLUpload</code> và tham số <code>file</code> có kiểu <code>FileUpload</code> từ thư viện <code>graphql-upload</code>. Sau đó, chúng ta có thể xử lý stream của file và trả về kết quả tùy thuộc vào nhu cầu của bạn.</p><p>Bây giờ bạn có thể thực hiện các yêu cầu GraphQL để upload file bằng GraphQL trong NestJS. Ví dụ như sau:</p><pre><div class="bg-black mb-4 rounded-md"><div class="flex items-center relative text-gray-200 bg-gray-800 px-4 py-2 text-xs font-sans"><span class="">graphql</span><button class="flex ml-auto gap-2"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>Copy code</button></div><div class="p-4 overflow-y-auto"><code class="!whitespace-pre hljs language-graphql"><span class="hljs-keyword">mutation</span> uploadFile<span class="hljs-punctuation">(</span><span class="hljs-variable">$file</span>: Upload<span class="hljs-punctuation">!</span><span class="hljs-punctuation">)</span> <span class="hljs-punctuation">{</span>
+  uploadFile<span class="hljs-punctuation">(</span><span class="hljs-symbol">file</span><span class="hljs-punctuation">:</span> <span class="hljs-variable">$file</span>)
+<span class="hljs-punctuation">}</span>
+</code></div></div></pre><p>Lưu ý rằng, bạn cần sử dụng <code>multipart/form-data</code> để gửi file trong yêu cầu GraphQL. Bạn cũng có thể sử dụng thư viện <code>apollo-upload-client</code> để upload file bằng GraphQL trong các ứng dụng client.</p></div></div></div><div class="flex justify-between"><div class="text-gray-400 flex self-end lg:self-center justify-center mt-2 gap-3 md:gap-4 lg:gap-1 lg:absolute lg:top-0 lg:translate-x-full lg:right-0 lg:mt-0 lg:pl-2 visible"><button class="p-1 rounded-md hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 disabled:dark:hover:text-gray-400"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg></button><button class="p-1 rounded-md hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-200 disabled:dark:hover:text-gray-400"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"></path></svg></button></div></div></div></div></div><div class="w-full h-32 md:h-48 flex-shrink-0"></div></div><button class="cursor-pointer absolute right-6 bottom-[124px] md:bottom-[120px] z-10 rounded-full border border-gray-200 bg-gray-50 text-gray-600 dark:border-white/10 dark:bg-white/10 dark:text-gray-200"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 m-1" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg></button></div><button class="react-scroll-to-bottom--css-njiyz-1tj0vk3 scroll-convo" type="button"></button></div></div><div class="absolute bottom-0 left-0 w-full border-t md:border-t-0 dark:border-white/20 md:border-transparent md:dark:border-transparent md:bg-vert-light-gradient bg-white dark:bg-gray-800 md:!bg-transparent dark:md:bg-vert-dark-gradient"><form class="stretch mx-2 flex flex-row gap-3 pt-2 last:mb-2 md:last:mb-6 lg:mx-auto lg:max-w-3xl lg:pt-6"><div class="relative flex h-full flex-1 md:flex-col"><div class="flex ml-1 mt-1.5 md:w-full md:m-auto md:mb-2 gap-0 md:gap-2 justify-center"><button class="btn flex justify-center gap-2 btn-neutral border-0 md:border"><svg stroke="currentColor" fill="none" stroke-width="1.5" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-3 w-3" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="1 4 1 10 7 10"></polyline><polyline points="23 20 23 14 17 14"></polyline><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"></path></svg>Regenerate response</button></div><div class="flex flex-col w-full py-2 flex-grow md:py-3 md:pl-4 relative border border-black/10 bg-white dark:border-gray-900/50 dark:text-white dark:bg-gray-700 rounded-md shadow-[0_0_10px_rgba(0,0,0,0.10)] dark:shadow-[0_0_15px_rgba(0,0,0,0.10)]"><textarea tabindex="0" data-id="request-:r1:-1" rows="1" class="m-0 w-full resize-none border-0 bg-transparent p-0 pl-2 pr-7 focus:ring-0 focus-visible:ring-0 dark:bg-transparent md:pl-0" style="max-height: 200px; height: 24px; overflow-y: hidden;"></textarea><button class="absolute p-1 rounded-md text-gray-500 bottom-1.5 right-1 md:bottom-2.5 md:right-2 hover:bg-gray-100 dark:hover:text-gray-400 dark:hover:bg-gray-900 disabled:hover:bg-transparent dark:disabled:hover:bg-transparent"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 mr-1" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button></div></div></form><div class="px-3 pt-2 pb-3 text-center text-xs text-black/50 dark:text-white/50 md:px-4 md:pt-3 md:pb-6"><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noreferrer" class="underline">ChatGPT Feb 13 Version</a>. Free Research Preview. Our goal is to make AI systems more natural and safe to interact with. Your feedback will help us improve.</div></div></main></div><div class="dark hidden bg-gray-900 md:fixed md:inset-y-0 md:flex md:w-[260px] md:flex-col"><div class="flex h-full min-h-0 flex-col "><div class="scrollbar-trigger flex h-full w-full flex-1 items-start border-white/20"><nav class="flex h-full flex-1 flex-col space-y-1 p-2"><a class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm mb-2 flex-shrink-0 border border-white/20"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>New chat</a><div class="flex-col flex-1 overflow-y-auto border-b border-white/20 -mr-2"><div class="flex flex-col gap-2 text-gray-100 text-sm"><a class="flex py-3 px-3 items-center gap-3 relative rounded-md cursor-pointer break-all pr-14 bg-gray-800 hover:bg-gray-800 group animate-flash"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><div class="flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative">GraphQL File Upload.</div><div class="absolute flex right-1 z-10 text-gray-300 visible"><button class="p-1 hover:text-white"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></button><button class="p-1 hover:text-white"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg></button></div></a><a class="flex py-3 px-3 items-center gap-3 relative rounded-md hover:bg-[#2A2B32] cursor-pointer break-all hover:pr-4 group"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><div class="flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative">Tìm việc bị lừa<div class="absolute inset-y-0 right-0 w-8 z-10 bg-gradient-to-l from-gray-900 group-hover:from-[#2A2B32]"></div></div></a><a class="flex py-3 px-3 items-center gap-3 relative rounded-md hover:bg-[#2A2B32] cursor-pointer break-all hover:pr-4 group"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><div class="flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative">Clarification needed.<div class="absolute inset-y-0 right-0 w-8 z-10 bg-gradient-to-l from-gray-900 group-hover:from-[#2A2B32]"></div></div></a><a class="flex py-3 px-3 items-center gap-3 relative rounded-md hover:bg-[#2A2B32] cursor-pointer break-all hover:pr-4 group"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><div class="flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative">LaunchPad Particle Effects.<div class="absolute inset-y-0 right-0 w-8 z-10 bg-gradient-to-l from-gray-900 group-hover:from-[#2A2B32]"></div></div></a><a class="flex py-3 px-3 items-center gap-3 relative rounded-md hover:bg-[#2A2B32] cursor-pointer break-all hover:pr-4 group"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><div class="flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative">Detecting finger collisions.<div class="absolute inset-y-0 right-0 w-8 z-10 bg-gradient-to-l from-gray-900 group-hover:from-[#2A2B32]"></div></div></a><a class="flex py-3 px-3 items-center gap-3 relative rounded-md hover:bg-[#2A2B32] cursor-pointer break-all hover:pr-4 group"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><div class="flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative">Làm việc cho người giàu.<div class="absolute inset-y-0 right-0 w-8 z-10 bg-gradient-to-l from-gray-900 group-hover:from-[#2A2B32]"></div></div></a><a class="flex py-3 px-3 items-center gap-3 relative rounded-md hover:bg-[#2A2B32] cursor-pointer break-all hover:pr-4 group"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><div class="flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative">Cube Falling Missed Counter.<div class="absolute inset-y-0 right-0 w-8 z-10 bg-gradient-to-l from-gray-900 group-hover:from-[#2A2B32]"></div></div></a><a class="flex py-3 px-3 items-center gap-3 relative rounded-md hover:bg-[#2A2B32] cursor-pointer break-all hover:pr-4 group"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><div class="flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative">Trợ lý ảo giúp việc<div class="absolute inset-y-0 right-0 w-8 z-10 bg-gradient-to-l from-gray-900 group-hover:from-[#2A2B32]"></div></div></a><a class="flex py-3 px-3 items-center gap-3 relative rounded-md hover:bg-[#2A2B32] cursor-pointer break-all hover:pr-4 group"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><div class="flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative">Rich People's Destinations<div class="absolute inset-y-0 right-0 w-8 z-10 bg-gradient-to-l from-gray-900 group-hover:from-[#2A2B32]"></div></div></a><a class="flex py-3 px-3 items-center gap-3 relative rounded-md hover:bg-[#2A2B32] cursor-pointer break-all hover:pr-4 group"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg><div class="flex-1 text-ellipsis max-h-5 overflow-hidden break-all relative">New chat<div class="absolute inset-y-0 right-0 w-8 z-10 bg-gradient-to-l from-gray-900 group-hover:from-[#2A2B32]"></div></div></a></div></div><a class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>Clear conversations</a><a class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"><span class="flex w-full flex-row justify-between"><span class="gold-new-button flex items-center gap-3"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Upgrade to Plus</span><span class="rounded-md bg-yellow-200 py-0.5 px-1.5 text-xs font-medium uppercase text-gray-800">NEW</span></span></a><a class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>Light mode</a><a href="https://help.openai.com/en/collections/3742473-chatgpt" target="_blank" class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>Updates &amp; FAQ</a><a class="flex py-3 px-3 items-center gap-3 rounded-md hover:bg-gray-500/10 transition-colors duration-200 text-white cursor-pointer text-sm"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>Log out</a></nav></div></div></div></div><div class="absolute top-0 left-0 right-0 z-[2]"></div></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"user":{"id":"user-AFBtVZb7JQRcYRJlk4qH7mtH","name":"share2duy@gmail.com","email":"share2duy@gmail.com","image":"https://s.gravatar.com/avatar/8490bb0bf3d90f32e887b2e6a4d7a567?s=480\u0026r=pg\u0026d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fsh.png","picture":"https://s.gravatar.com/avatar/8490bb0bf3d90f32e887b2e6a4d7a567?s=480\u0026r=pg\u0026d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fsh.png","groups":[]},"accessToken":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik1UaEVOVUpHTkVNMVFURTRNMEZCTWpkQ05UZzVNRFUxUlRVd1FVSkRNRU13UmtGRVFrRXpSZyJ9.eyJodHRwczovL2FwaS5vcGVuYWkuY29tL3Byb2ZpbGUiOnsiZW1haWwiOiJzaGFyZTJkdXlAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImdlb2lwX2NvdW50cnkiOiJWTiJ9LCJodHRwczovL2FwaS5vcGVuYWkuY29tL2F1dGgiOnsidXNlcl9pZCI6InVzZXItQUZCdFZaYjdKUVJjWVJKbGs0cUg3bXRIIn0sImlzcyI6Imh0dHBzOi8vYXV0aDAub3BlbmFpLmNvbS8iLCJzdWIiOiJhdXRoMHw2M2I4MTlhODRiZDhlN2Y5NWU0NmJkNWYiLCJhdWQiOlsiaHR0cHM6Ly9hcGkub3BlbmFpLmNvbS92MSIsImh0dHBzOi8vb3BlbmFpLm9wZW5haS5hdXRoMGFwcC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNjc3Mzc5NzE0LCJleHAiOjE2Nzg1ODkzMTQsImF6cCI6IlRkSkljYmUxNldvVEh0Tjk1bnl5d2g1RTR5T282SXRHIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCBtb2RlbC5yZWFkIG1vZGVsLnJlcXVlc3Qgb3JnYW5pemF0aW9uLnJlYWQgb2ZmbGluZV9hY2Nlc3MifQ.x50a3iwoG3Yt-tp7DyPIP-QbBGuFg56fjznFDRPpeZpDNw2ZZczEHGvlth0uZWS41B4uM80nhvowj5K8mVnvpkd0FRTsg3nA6DBqozJPTQclWnmXeCuJUKWrwzfM4dlZK91grIxSkfQQf7TaOk0jfUsjQFOukZEub5l1QOCYlMJy5ir7GuAEkjBaDiU7Bv3dvHcZbCRxFmC3zjIN0oyJxhWEjfQbxOSHv0HMzVh-855XBg-89ouB3RKfkIpGmKyOPZURvLTNA4QcVqc4N3Nw_CXHT3QgniVk5HZoCwPM73o7eiBL_T-RBMbAV2y74TGKZoQiqxzC6r8McfS0gpZPFg","features":["system_message"],"serviceStatus":{},"accountStatusResponse":{"account_plan":{"is_paid_subscription_active":false,"subscription_plan":"chatgptfreeplan","account_user_role":"account-owner"},"user_country":"VN","features":["system_message"]},"userCountry":"VN","geoOk":true,"isUserInCanPayGroup":true,"showcasePlusUpdate":true,"shouldShowPaidAnnouncement":true},"__N_SSP":true},"page":"/chat/[[...chatId]]","query":{},"buildId":"tRqJ74mbYplBLD7Nl0qNL","isFallback":false,"gssp":true,"scriptLoader":[]}</script><next-route-announcer><p aria-live="assertive" id="__next-route-announcer__" role="alert" style="border: 0px; clip: rect(0px, 0px, 0px, 0px); height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px; white-space: nowrap; overflow-wrap: normal;">New chat</p></next-route-announcer><div portal-container=""><span class="pointer-events-none fixed inset-0 z-[60] mx-auto my-2 flex max-w-[560px] flex-col items-stretch justify-start md:pb-5"></span></div><div id="merlinExt-merlinGUI" class="merlinExt merlinGUI"></div><div id="merlinExt-selectContextBtn" class="merlinExt selectContextBtn"></div></body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>

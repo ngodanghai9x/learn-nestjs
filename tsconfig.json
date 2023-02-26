@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "CommonJS",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -13,6 +13,8 @@
     "incremental": true,
     "noImplicitAny": false,
     "noFallthroughCasesInSwitch": false,
+    "allowJs": true,
+    "maxNodeModuleJsDepth": 10,
 
     /* Interop Constraints */
     // "isolatedModules": true,                          /* Ensure that each file can be safely transpiled without relying on other imports. */

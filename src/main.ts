@@ -2,12 +2,16 @@ import { INestApplication, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { join } from 'path';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+// import { graphqlUploadExpress } from 'graphql-upload';
+// import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
+import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.js';
 import helmet from 'helmet';
+import { join } from 'path';
+
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/all-exception.filter';
 import { loggerMiddleware } from './common/middlewares/logger.middleware';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 // import { SwaggerModule } from '@nestjs/swagger/dist';
 import { ExternalService } from './external/services/external.service';
 
@@ -47,6 +51,10 @@ function applyMiddleware(app: INestApplication) {
     origin: '*',
     // methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   });
+  app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
+  // https://dev.to/elbarryamine/how-to-upload-files-with-nestjs-and-graphql-2iig
+  // https://stephen-knutter.github.io/2020-02-07-nestjs-graphql-file-upload/
+
   // const { httpAdapter } = app.get(HttpAdapterHost<any>);
   // app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
   // app.useGlobalInterceptors(new LoggingInterceptor());
