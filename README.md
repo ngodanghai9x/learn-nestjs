@@ -8,6 +8,13 @@
 yarn
 ```
 
+## Issues
+### There are some problems with graphql-upload dependencies
+#### Solutions: 
+##### #1: Change `import("koa").Context` to `any` in (~\learn-nestjs\node_modules\graphql-upload\graphqlUploadKoa.js) [Can use patch-package]
+##### #2: install @types/koa as dev dependencies
+
+
 ## Naming convention
 [Guide](https://narhakobyan.github.io/awesome-nest-boilerplate/docs/naming-cheatsheet.html#english-language)
 

@@ -1,0 +1,51 @@
+b5f2fe3 (HEAD -> main, origin/main, origin/HEAD) impl graphql-upload (only v14 stable), add postman to use formdata + graphql
+80eae1b impl graphql, date scalar, fix relation one-one (can get both side now)
+fcf65e3 support two type db (switchable), find where relations
+930a850 test sendgrid
+4d4f532 impl static server (same with impl mvc- useStaticAssets)
+e693d06 implement authen for swagger
+288e708 add Compodoc
+23ed47d add migrations for Many-to-many relations with custom properties
+76c1d2e add launch.json for debug on vscode
+ac3afad test responseType axios, return a binary file with res.end buffer
+6f20418 add map to fix http module
+cd4449a implement ejs view engine
+1e94d72 implement sse to push noti (still weird, calling complete() will spam noti)
+fbe9110 http port != tcp port
+bf1c2cf refactor architecture micro service; omit, pick, partial func from swagger
+0337f09 integrate micro service via tcp protocol
+187113c implement swagger into email micro-service
+8c41149 init email micro-service
+a1605c0 migration generate change table
+8e03366 update migrations (no need import each file)
+8285fa6 implement Common, Utility module
+c102f18 implement job scheduler, switch to Logger instead of console.log
+3548fd8 refactor bootstrap, write query findOne
+93bdfd1 call external api (error: AxiosError: unexpected end of file;  TypeError: Converting circular structure to JSON), seem bug on @nestjs/axios
+4308813 switch to yarn, reorder code
+3cc5883 reorder entities
+c9dea29 fix auth: login (local strategy)
+35e7c51 [upgrade] init data
+5ced53e File validation
+7d7803d File upload decorators
+f27b182 impl upload files
+980c7ed add migration logs dont use queue because not install redis yet (avoid blocked start application)
+b5e6624 impl db migrations
+b8c437e change db
+bfc62f9 demo circle depenecies
+f226350 demo
+5867f63 pp
+46f042b impl bull queue
+54e7347 impl interceptor, add ultis (sleep, retry promise)
+fb62818 imple authorz by role (create + use decorator, guard, import provider)
+7832120 add helmet (protect header), csrf, swagger
+5b77fce impl custom Exception filters, testing scope filter
+e1c25e6 move guards to common, add own exception
+bc30cfe (origin/prod) update db relation 1 to 1, imp transaction to save records with relationship (#1)
+35ae840 fix unit test: - Repository<User> : getRepositoryToken(User) - DataSource: getDataSourceToken() - ConfigService: ConfigModule
+89209ef impl middleware
+717c7c5 adv jwt auth
+d3c0a5d impl demo basic (local) auth and jwt auth
+e663bfb refactor services, controllers
+9910fcb add ConfigModule TypeOrmModule mysql2
+38c101e (origin/init) init app
