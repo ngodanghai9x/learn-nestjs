@@ -50,6 +50,15 @@ $ yarn prod
 $ yarn start:prod
 ```
 
+## Deploy docker
+```bash
+docker build -t be-server:v1.0.0 .
+docker images
+docker run -p 3005:3005 be-server:v1.0.0
+
+docker compose up
+```
+
 ## Test
 
 ```bash

@@ -7,6 +7,7 @@
     "**/*spec.ts",
     "my_services",
     "my_logs",
+    "documentation",
     "migrations",
     "mysql-migrations",
     "postgres-migrations",

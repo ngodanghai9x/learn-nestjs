@@ -12,25 +12,11 @@ config();
 
 const configService = new ConfigService();
 // https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/
-const isUseMysqlDB = process.cwd().includes('C:\\Repos\\Mine\\learn-nestjs');
-Logger.log('🚀 ~ file: typeOrm.config.ts:17 ~ isUseMysqlDB' + isUseMysqlDB);
+const isUsePostgres = false;
 
 export default new DataSource(
-  isUseMysqlDB
+  isUsePostgres
     ? {
-        type: 'mysql',
-        host: configService.get('MYSQL_HOST'),
-        port: configService.get('MYSQL_PORT'),
-        username: configService.get('MYSQL_USERNAME'),
-        password: configService.get('MYSQL_PASSWORD'),
-        database: configService.get('MYSQL_DATABASE'),
-        entities: [join(process.cwd(), 'src/entities/*.ts')],
-        // autoLoadEntities: true,
-        logging: ['error'],
-        migrationsTableName: 'migrations', // default table name
-        migrations: [join(process.cwd(), 'mysql-migrations/*.ts')],
-      }
-    : {
         type: 'postgres',
         host: configService.get('PG_HOST'),
         port: configService.get('PG_PORT'),
@@ -53,5 +39,18 @@ export default new DataSource(
         // extra: {
         //   connectionLimit: +configService.get('PG_CONNECT_LIMIT'),
         // },
+      }
+    : {
+        type: 'mysql',
+        host: configService.get('MYSQL_HOST'),
+        port: configService.get('MYSQL_PORT'),
+        username: configService.get('MYSQL_USERNAME'),
+        password: configService.get('MYSQL_PASSWORD'),
+        database: configService.get('MYSQL_DATABASE'),
+        entities: [join(process.cwd(), 'src/entities/*.ts')],
+        // autoLoadEntities: true,
+        logging: ['error'],
+        migrationsTableName: 'migrations', // default table name
+        migrations: [join(process.cwd(), 'mysql-migrations/*.ts')],
       },
 );

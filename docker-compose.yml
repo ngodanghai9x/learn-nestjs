@@ -1,0 +1,37 @@
+version: "3"
+services:
+  db-service:
+    build:
+      context: ./my_services/database
+      dockerfile: Dockerfile
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+
+  be-service:
+    # point to dockerfile
+    build: .
+    ports:
+      - "3005:3005"
+    environment:
+      NODE_ENV: production
+      MYSQL_HOST: db-service
+    volumes:
+      - .:/app
+    command: yarn prod
+    depends_on:
+      - db-service
+      
+# creates a Docker volume called "db_data" and maps it to the /var/lib/mysql directory inside the container.
+#  This allows the MySQL data to persist across container restarts.
+volumes:
+  db_data:
+
+# networks: 
+#   default: 
+#     external: 
+#       name: external-example 

@@ -22,8 +22,6 @@ import { MicroServicesModule } from './micro-services/micro-services.module';
 import { NotificationModule } from './notification/notification.module';
 import { EjsModule } from './ejs/ejs.module';
 
-const isUseMysqlDB = process.cwd().includes('C:\\Repos\\Mine\\learn-nestjs');
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -35,41 +33,42 @@ const isUseMysqlDB = process.cwd().includes('C:\\Repos\\Mine\\learn-nestjs');
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        if (isUseMysqlDB) {
-          console.log('MYSQL_PORT', configService.get('MYSQL_PORT'));
+        const isUsePostgres = false;
+        if (isUsePostgres) {
+          console.log('PG_PORT', configService.get('PG_PORT'));
           return {
-            type: 'mysql',
-            host: configService.get('MYSQL_HOST'),
-            port: configService.get('MYSQL_PORT'),
-            username: configService.get('MYSQL_USERNAME'),
-            password: configService.get('MYSQL_PASSWORD'),
-            database: configService.get('MYSQL_DATABASE'),
+            type: 'postgres',
+            host: configService.get('PG_HOST'),
+            port: configService.get('PG_PORT'),
+            username: configService.get('PG_USERNAME'),
+            password: configService.get('PG_PASSWORD'),
+            database: configService.get('PG_DATABASE'),
             autoLoadEntities: true,
+            // synchronize: true,
             logging: true,
             // logging: ['error'],
+            // extra: {
+            //   connectionLimit: +configService.get('PG_CONNECT_LIMIT'),
+            // },
             migrationsTableName: 'migrations', // default table name
-            migrations: [join(process.cwd(), 'mysql-migrations/')],
-            // migrations: [join(process.cwd(), 'mysql-migrations/*.ts')],
+            migrations: [join(process.cwd(), 'postgres-migrations/')],
+            // migrations: [join(process.cwd(), 'postgres-migrations/*.ts')],
           };
         }
-        console.log('PG_PORT', configService.get('PG_PORT'));
+        console.log('MYSQL_PORT', configService.get('MYSQL_PORT'));
         return {
-          type: 'postgres',
-          host: configService.get('PG_HOST'),
-          port: configService.get('PG_PORT'),
-          username: configService.get('PG_USERNAME'),
-          password: configService.get('PG_PASSWORD'),
-          database: configService.get('PG_DATABASE'),
+          type: 'mysql',
+          host: configService.get('MYSQL_HOST'),
+          port: configService.get('MYSQL_PORT'),
+          username: configService.get('MYSQL_USERNAME'),
+          password: configService.get('MYSQL_PASSWORD'),
+          database: configService.get('MYSQL_DATABASE'),
           autoLoadEntities: true,
-          // synchronize: true,
           logging: true,
           // logging: ['error'],
-          // extra: {
-          //   connectionLimit: +configService.get('PG_CONNECT_LIMIT'),
-          // },
           migrationsTableName: 'migrations', // default table name
-          migrations: [join(process.cwd(), 'postgres-migrations/')],
-          // migrations: [join(process.cwd(), 'postgres-migrations/*.ts')],
+          migrations: [join(process.cwd(), 'mysql-migrations/')],
+          // migrations: [join(process.cwd(), 'mysql-migrations/*.ts')],
         };
       },
     }),
