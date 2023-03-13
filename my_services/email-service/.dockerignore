@@ -4,5 +4,4 @@ documentation
 my_logs
 my_services
 *.log
-*.
-directives
+*.cmd

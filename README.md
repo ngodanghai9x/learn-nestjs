@@ -52,9 +52,11 @@ $ yarn start:prod
 
 ## Deploy docker
 ```bash
-docker build -t be-server:v1.0.0 .
+docker build -t be-server:1.0 .
+docker build -t email-server:1.0 .
 docker images
-docker run -p 3005:3005 be-server:v1.0.0
+docker run -p 3005:3005 be-server:1.0
+docker run -p 3006:3006 email-server:1.0
 
 docker compose up
 ```

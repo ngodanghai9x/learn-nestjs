@@ -1,9 +1,19 @@
 version: "3"
 services:
+  # db-service:
+  #   build:
+  #     context: ./my_services/database
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3306:3306"
+  #   volumes:
+  #     - db_data:/var/lib/mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: test
+
   db-service:
-    build:
-      context: ./my_services/database
-      dockerfile: Dockerfile
+    image: mysql:8.0.32
     ports:
       - "3306:3306"
     volumes:
@@ -11,6 +21,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: test
+    networks:
+      - my-net
 
   be-service:
     # point to dockerfile
@@ -21,17 +33,28 @@ services:
       NODE_ENV: production
       MYSQL_HOST: db-service
     volumes:
-      - .:/app
+      # - .:/app
+      - ./:/app
     command: yarn prod
+    networks:
+      - my-net
     depends_on:
       - db-service
       
-# creates a Docker volume called "db_data" and maps it to the /var/lib/mysql directory inside the container.
-#  This allows the MySQL data to persist across container restarts.
+# creates a Docker volume called "db_data" and maps it to the /var/lib/mysql directory inside the container. This allows the MySQL data to persist across container restarts.
 volumes:
   db_data:
 
+networks: 
+  my-net:
+    driver: bridge
+
 # networks: 
-#   default: 
-#     external: 
-#       name: external-example 
+#   my-net:
+#     name: my-bridge-net
+#     external: true
+
+# networks:
+#   default:
+#     # Use a custom driver
+#     driver: custom-driver-1

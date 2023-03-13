@@ -11,7 +11,7 @@ import { User } from 'src/entities/user.entity';
 export class LocalAuthGuard extends AuthGuard('local') implements CanActivate {
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     const req = context.switchToHttp().getRequest<Request>();
-    Logger.log(LocalAuthGuard.name, 'switchToHttp', req.body);
+    console.log(LocalAuthGuard.name + 1, 'switchToHttp', (req.body.abc = 3));
 
     // Add your custom authentication logic here
     // for example, call super.logIn(request) to establish a session.
@@ -25,7 +25,7 @@ export class LocalAuthGuard extends AuthGuard('local') implements CanActivate {
     context: ExecutionContext,
     status?: any,
   ) {
-    Logger.log(LocalAuthGuard.name, `handleRequest`, err, user, info, status);
+    console.log(LocalAuthGuard.name + 2, `handleRequest`, err, user, info, status);
     // You can throw an exception based on either "info" or "err" arguments
     if (err || !user) {
       throw err || new UnauthorizedException();

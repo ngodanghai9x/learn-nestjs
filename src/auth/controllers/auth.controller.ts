@@ -24,7 +24,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   // @ApiBody({ type: [LoginInput] })
-  @UseGuards(LocalAuthGuard) // POST: auth/login > LocalStrategy > LocalAuthGuard (append user into req) > login
+  @UseGuards(LocalAuthGuard) // POST: auth/login > LocalAuthGuard1 > LocalStrategy > LocalAuthGuard2 (append user into req) > login
   @Post('login')
   @ApiOperation({ summary: '123summary goes here' })
   async login(@Body() body: LoginInput, @Request() req) {

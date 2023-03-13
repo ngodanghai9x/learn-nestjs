@@ -35,7 +35,7 @@ import { EjsModule } from './ejs/ejs.module';
       useFactory: (configService: ConfigService) => {
         const isUsePostgres = false;
         if (isUsePostgres) {
-          console.log('PG_PORT', configService.get('PG_PORT'));
+          console.log('PG_PORT2', configService.get('PG_PORT'));
           return {
             type: 'postgres',
             host: configService.get('PG_HOST'),
