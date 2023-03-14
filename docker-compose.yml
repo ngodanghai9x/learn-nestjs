@@ -1,61 +1,44 @@
 version: "3"
 services:
-  # db-service:
-  #   build:
-  #     context: ./my_services/database
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "3306:3306"
-  #   volumes:
-  #     - db_data:/var/lib/mysql
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: root
-  #     MYSQL_DATABASE: test
-
   db-service:
-    # image: mysql:8.0.32
     image: ngodanghai9x/mysql-learn-nestjs:8.0.32
     ports:
       - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql
+      - db-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: test
     networks:
       - my-net
 
+  cache-service:
+    image: redis:7.0.9-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - cache-data:/data
+
   be-service:
-    # point to dockerfile
     build: .
     ports:
       - "3005:3005"
     environment:
-      # NODE_ENV: production
       MYSQL_HOST: db-service
+      REDIS_HOST: cache-service
     volumes:
       # - .:/app
       - ./:/app
-    command: yarn prod
     networks:
       - my-net
     depends_on:
       - db-service
+      - cache-service
       
-# creates a Docker volume called "db_data" and maps it to the /var/lib/mysql directory inside the container. This allows the MySQL data to persist across container restarts.
 volumes:
-  db_data:
+  db-data:
+  cache-data:
 
 networks: 
   my-net:
     driver: bridge
-
-# networks: 
-#   my-net:
-#     name: my-bridge-net
-#     external: true
-
-# networks:
-#   default:
-#     # Use a custom driver
-#     driver: custom-driver-1

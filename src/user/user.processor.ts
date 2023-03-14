@@ -9,8 +9,8 @@ export class UserProcessor {
 
   @Process()
   handleTranscode(job: Job) {
-    this.logger.debug('Start transcoding...');
-    this.logger.debug(job.data);
-    this.logger.debug('Transcoding completed');
+    this.logger.log('Start transcoding...');
+    this.logger.log(job.data);
+    this.logger.log('Transcoding completed');
   }
 }

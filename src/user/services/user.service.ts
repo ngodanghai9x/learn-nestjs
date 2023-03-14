@@ -7,7 +7,7 @@ import { And, DataSource, Not, Raw, Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { UserDetail } from 'src/entities/user_detail.entity';
 import { Role } from 'src/entities/role.entity';
-import { Queue } from 'bull';
+import { Queue, JobOptions } from 'bull';
 import { InjectQueue } from '@nestjs/bull';
 import { EQueue, UserMessage } from 'src/common/constants/queue';
 import { IdentityService } from './identity.service';
@@ -34,8 +34,8 @@ export class UserService {
   private readonly logger = new Logger(UserService.name);
 
   async initQueue() {
-    // this.userQueue.add({ age: 1, name: 'abc' }, { priority: 2 });
-    // this.userQueue.add({ age: 2, name: 'abc2' }, { priority: 1 });
+    this.appendQueue({ age: 1, name: 'abc' }, { priority: 2 });
+    this.appendQueue({ age: 2, name: 'abc2' }, { priority: 1 });
     this.remove(123);
     this.identityService.hello(123);
   }
@@ -98,6 +98,11 @@ export class UserService {
     } finally {
       await queryRunner.release();
     }
+  }
+
+  appendQueue(obj: UserMessage, opts?: JobOptions) {
+    this.logger.log(`appendQueue`, obj);
+    this.userQueue.add(obj, opts);
   }
 
   async findAll() {

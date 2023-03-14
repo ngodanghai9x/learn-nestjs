@@ -5,7 +5,7 @@ FROM node:18-alpine
 # Set the working directory to /app
 WORKDIR /app
 
-# copy anything in here into app directory above
+# copy anything in here into app directory above ./ = .
 COPY package.json yarn.lock ./
 RUN yarn
 COPY . .

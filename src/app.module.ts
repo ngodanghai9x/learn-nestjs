@@ -55,7 +55,7 @@ import { EjsModule } from './ejs/ejs.module';
             // migrations: [join(process.cwd(), 'postgres-migrations/*.ts')],
           };
         }
-        console.log('MYSQL_PORT1', configService.get('MYSQL_PORT'));
+        console.log('MYSQL_PORT1', configService.get('MYSQL_PORT'), configService.get('MYSQL_HOST'));
         return {
           type: 'mysql',
           host: configService.get('MYSQL_HOST'),
@@ -72,10 +72,17 @@ import { EjsModule } from './ejs/ejs.module';
         };
       },
     }),
-    BullModule.forRoot({
-      redis: {
-        host: 'localhost',
-        port: 6379,
+    BullModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => {
+        console.log('REDIS_HOST', configService.get('REDIS_HOST'));
+        return {
+          redis: {
+            host: configService.get('REDIS_HOST'),
+            port: +configService.get('REDIS_PORT'),
+          },
+        };
       },
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({

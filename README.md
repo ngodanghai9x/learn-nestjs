@@ -63,9 +63,22 @@ docker-compose up --build
 docker-compose up --force-recreate
 docker-compose up
 
+docker exec -it learn-nestjs-db-service-1 bin/bash
+docker exec -it learn-nestjs-be-service-1 /bin/sh
+docker logs --tail 100 -f learn-nestjs-be-service-1
+
 docker commit learn-nestjs-db-service-1 mysql-learn-nestjs:8.0.32
 docker tag mysql-learn-nestjs:8.0.32 ngodanghai9x/mysql-learn-nestjs:8.0.32
 docker push ngodanghai9x/mysql-learn-nestjs:8.0.32
+
+docker pull postgres:15.2
+docker run --name postgres_container -p 5432:5432 -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=postgres -e POSTGRES_USER=postgres -d postgres:15.2
+
+docker pull mysql:8.0.32
+docker run --name mysql_container -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:8.0.32
+
+docker pull redis:7.0.9-alpine
+docker run --name redis_container -p 6379:6379 -d redis:7.0.9-alpine
 ```
 
 ## Test

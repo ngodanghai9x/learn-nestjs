@@ -6,14 +6,15 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "prebuild": "rimraf dist",
+    "clean": "rimraf dist",
+    "prebuild": "yarn clean",
     "build": "nest build",
     "postbuild": "echo 'build complete'",
 
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/src/main",
+    "start:prod": "node ./dist/src/main.js",
     "dev": "yarn start:dev",
     "prod": "yarn start:prod",
     

@@ -39,6 +39,14 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
+  @Post('queue')
+  appendQueue(@Body() createUserDto: CreateUserDto) {
+    return this.userService.appendQueue({
+      age: +createUserDto.moreDetail || 0,
+      name: createUserDto.username,
+    });
+  }
+
   @Get()
   @UseInterceptors(LoggingInterceptor)
   async findAll(@Query('abc') abc: string) {
