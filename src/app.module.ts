@@ -55,7 +55,7 @@ import { EjsModule } from './ejs/ejs.module';
             // migrations: [join(process.cwd(), 'postgres-migrations/*.ts')],
           };
         }
-        console.log('MYSQL_PORT', configService.get('MYSQL_PORT'));
+        console.log('MYSQL_PORT1', configService.get('MYSQL_PORT'));
         return {
           type: 'mysql',
           host: configService.get('MYSQL_HOST'),

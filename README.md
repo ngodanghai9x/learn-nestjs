@@ -58,7 +58,14 @@ docker images
 docker run -p 3005:3005 be-server:1.0
 docker run -p 3006:3006 email-server:1.0
 
-docker compose up
+docker-compose build --no-cache
+docker-compose up --build
+docker-compose up --force-recreate
+docker-compose up
+
+docker commit learn-nestjs-db-service-1 mysql-learn-nestjs:8.0.32
+docker tag mysql-learn-nestjs:8.0.32 ngodanghai9x/mysql-learn-nestjs:8.0.32
+docker push ngodanghai9x/mysql-learn-nestjs:8.0.32
 ```
 
 ## Test

@@ -7,7 +7,7 @@ WORKDIR /app
 
 # copy anything in here into app directory above
 COPY package.json yarn.lock ./
-RUN yarn install
+RUN yarn
 COPY . .
 
 RUN yarn build

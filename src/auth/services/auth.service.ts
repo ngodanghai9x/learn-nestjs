@@ -28,9 +28,6 @@ export class AuthService {
       };
     } catch (error) {
       throw error;
-      return {
-        access_token: `await this.jwtService.signAsync(payload)`,
-      };
     }
   }
 }

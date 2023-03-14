@@ -13,7 +13,8 @@ services:
   #     MYSQL_DATABASE: test
 
   db-service:
-    image: mysql:8.0.32
+    # image: mysql:8.0.32
+    image: ngodanghai9x/mysql-learn-nestjs:8.0.32
     ports:
       - "3306:3306"
     volumes:
@@ -30,7 +31,7 @@ services:
     ports:
       - "3005:3005"
     environment:
-      NODE_ENV: production
+      # NODE_ENV: production
       MYSQL_HOST: db-service
     volumes:
       # - .:/app

@@ -74,13 +74,13 @@ async function bootstrap() {
   setupViewEngine(app);
   applyMiddleware(app);
 
-  await app.listen(port, host, () => {
+  await app.listen(port, () => {
     Logger.log(`Main server is running on port: ${port}`);
-    // logger.log(`Main swagger is running on: http://${host}:${port}/swagger`);
-    console.debug(`Main swagger is running on: http://${host}:${port}/swagger`);
-    console.debug(`process= ${process.cwd()}`);
+    logger.log(`Main server is running on port: ${port}`);
+    console.log(`Main swagger is running on: http://${host}:${port}/swagger`);
+    console.log(`process= ${process.cwd()}`);
   });
 
-  await runService(app);
+  // await runService(app);
 }
 bootstrap();
