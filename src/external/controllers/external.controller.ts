@@ -39,4 +39,10 @@ export class ExternalController {
     const data = await this.externalService.getWorldIndexes2();
     return data;
   }
+
+  @Get('dog-api')
+  async getDogs() {
+    const data = await this.externalService.getDogs();
+    return data;
+  }
 }

@@ -11,6 +11,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       useFactory: () => ({
         timeout: 15000,
         maxRedirects: 10,
+        responseType: 'json',
       }),
     }),
     HttpModule.registerAsync({
