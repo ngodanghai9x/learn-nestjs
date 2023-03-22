@@ -17,6 +17,8 @@ import { LocalAuthGuard } from 'src/common/guards/local-auth.guard';
 import { RolesGuard } from 'src/common/guards/roles.guard';
 import { LoginInput } from 'src/common/interfaces/requests';
 import { AuthService } from '../services/auth.service';
+import { JwtInfo } from 'src/common/decorators/jwt-info.decorator';
+import { User } from 'src/entities/user.entity';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -35,13 +37,17 @@ export class AuthController {
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @ApiQuery({ name: 'abc1', type: Number })
-  @Get('status')
-  getStatus() {
-    return 'authenticated';
+  @Get('jwtAuth')
+  getStatus(@Request() req, @JwtInfo() jwtInfo: User) {
+    return {
+      mes: 'authenticated',
+      reqUser: req.user,
+      jwtInfo,
+    };
   }
 
   @ApiBasicAuth()
-  @Get('status2')
+  @Get('basicAuth')
   getStatus2(@Headers('Authorization') authHeader: string) {
     const basic = authHeader.split('Basic ')[1] || '';
     const [username, password] = Buffer.from(basic, 'base64').toString().split(':');
@@ -58,7 +64,7 @@ export class AuthController {
 
   @HasRoles(ERole.Admin)
   @UseGuards(RolesGuard)
-  @Get('testAuthorz')
+  @Get('isAdmin')
   testAuthorz(@Query('roles') roles: string[]) {
     Logger.log('testAuthorz roles', roles);
     return 'authenticated';

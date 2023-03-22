@@ -15,6 +15,7 @@ services:
   db-service:
     image: ngodanghai9x/mysql-learn-nestjs:8.0.32
     # image: mysql:8.0.32
+    container_name: nestjs2_db_container
     ports:
       - "3306:3306"
     volumes:
@@ -27,6 +28,7 @@ services:
 
   cache-service:
     image: redis:7.0.9-alpine
+    container_name: nestjs2_cache_container
     # command: redis-server --include /usr/local/etc/redis/redis.conf
     ports:
       - "6379:6379"

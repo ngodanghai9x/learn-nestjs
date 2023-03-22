@@ -2,6 +2,7 @@ version: "3"
 services:
   db-service:
     image: ngodanghai9x/mysql-learn-nestjs:8.0.32
+    container_name: nestjs_db_container
     ports:
       - "3306:3306"
     volumes:
@@ -14,6 +15,7 @@ services:
 
   cache-service:
     image: redis:7.0.9-alpine
+    container_name: nestjs_cache_container
     ports:
       - "6379:6379"
     volumes:
@@ -21,6 +23,7 @@ services:
 
   be-service:
     build: .
+    container_name: nestjs_be_container
     ports:
       - "3005:3005"
     environment:

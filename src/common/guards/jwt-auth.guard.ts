@@ -36,4 +36,11 @@ export class JwtAuthGuard extends AuthGuard('jwt') implements CanActivate {
     }
     return { ...user, from: JwtAuthGuard.name } as any;
   }
+
+  getAuthenticateOptions() {
+    console.log(JwtAuthGuard.name, `getAuthenticateOptions`);
+    return {
+      property: 'user',
+    };
+  }
 }
