@@ -8,6 +8,10 @@
 yarn
 ```
 
+## Cache 
+[Set up Cache Manager](https://www.tomray.dev/nestjs-caching-redis)
+[Cache Interceptor](https://www.codewithvlad.com/blog/nestjs-caching-with-redis)
+
 ## Issues
 ### There are some problems with graphql-upload dependencies
 #### Solutions: 
@@ -48,6 +52,10 @@ $ yarn start:dev
 # production mode
 $ yarn prod
 $ yarn start:prod
+
+mysql -uroot --password="root" -h 127.0.0.1 -P 3306
+mysql -u mysql --password="mysql" -h 127.0.0.1 -P 3306
+mysql -u <username> -h <hostname> -P <port> <database> -p
 ```
 
 ## Deploy docker

@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { BullModule } from '@nestjs/bull';
+import { RedisModule } from '@nestjs-modules/ioredis';
 import { join } from 'path';
 
 import { AppController } from './app.controller';
@@ -55,7 +56,11 @@ import { EjsModule } from './ejs/ejs.module';
             // migrations: [join(process.cwd(), 'postgres-migrations/*.ts')],
           };
         }
-        console.log('MYSQL_PORT1', configService.get('MYSQL_PORT'), configService.get('MYSQL_HOST'));
+        console.log(
+          'MYSQL_PORT1',
+          configService.get('MYSQL_PORT'),
+          configService.get('MYSQL_HOST'),
+        );
         return {
           type: 'mysql',
           host: configService.get('MYSQL_HOST'),
@@ -81,6 +86,19 @@ import { EjsModule } from './ejs/ejs.module';
           redis: {
             host: configService.get('REDIS_HOST'),
             port: +configService.get('REDIS_PORT'),
+          },
+        };
+      },
+    }),
+    RedisModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => {
+        const host = configService.get('REDIS_HOST');
+        const port = +configService.get('REDIS_PORT');
+        return {
+          config: {
+            url: `redis://${host}:${port}`,
           },
         };
       },

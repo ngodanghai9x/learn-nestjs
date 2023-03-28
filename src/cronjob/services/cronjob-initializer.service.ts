@@ -27,6 +27,7 @@ export class CronjobInitializerService implements OnModuleInit {
       });
       await this.utilityService.sleep(1234, true);
       this.commonService.doNothing();
+      this.commonService.testCache();
       // this.listenSse();
     } catch (error) {
       this.logger.error('Cronjob scheduler has FAIL while initializing.');

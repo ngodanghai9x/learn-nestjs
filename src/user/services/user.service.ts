@@ -9,6 +9,7 @@ import { UserDetail } from 'src/entities/user_detail.entity';
 import { Role } from 'src/entities/role.entity';
 import { Queue, JobOptions } from 'bull';
 import { InjectQueue } from '@nestjs/bull';
+import { InjectRedis, Redis } from '@nestjs-modules/ioredis';
 import { EQueue, UserMessage } from 'src/common/constants/queue';
 import { IdentityService } from './identity.service';
 import { ERole } from 'src/common/constants/role';
@@ -27,6 +28,8 @@ export class UserService {
     @Inject(forwardRef(() => IdentityService))
     private readonly identityService: IdentityService,
     private readonly configService: ConfigService,
+    @InjectRedis()
+    private readonly redis: Redis,
     @InjectQueue(EQueue.User)
     private readonly userQueue: Queue<UserMessage>,
   ) {}
