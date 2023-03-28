@@ -7,7 +7,8 @@ WORKDIR /app
 
 # copy anything in here into app directory above ./ = .
 COPY package.json yarn.lock ./
-RUN yarn
+# like npm ci (clean install)
+RUN yarn install --frozen-lockfile
 COPY . .
 
 RUN yarn build
