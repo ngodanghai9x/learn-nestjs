@@ -17,6 +17,7 @@ import { MyForbiddenException } from 'src/common/exceptions/forbidden.exception'
 import { ApiTags } from '@nestjs/swagger/dist';
 import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor.ts';
 import { EmailSvService } from 'src/micro-services/email-sv/email-sv.service';
+import { I18n, I18nContext } from 'nestjs-i18n';
 
 @ApiTags('user')
 @Controller('user')
@@ -32,6 +33,16 @@ export class UserController {
   async testFilter() {
     throw new Error(`123Error`);
     throw new MyForbiddenException();
+  }
+
+  @Get('i18n')
+  async getHello(@I18n() i18n: I18nContext) {
+    return i18n.t('user.cat');
+  }
+
+  @Get('i18n/v2')
+  async getHello2(@I18n() i18n: I18nContext) {
+    return { message: 'user.cat' };
   }
 
   @Post()

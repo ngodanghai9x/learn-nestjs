@@ -38,3 +38,8 @@ lerna-debug.log*
 /migrations-test
 
 .env
+
+# docker 
+dockerVolumes
+dbdata
+redis.conf

@@ -1,0 +1,14 @@
+{
+  "HELLO": "VN: Hello",
+  "PRODUCT": {
+    "NEW": "VN: New Product: {name}"
+  },
+  "ARRAY": [
+    "ONE",
+    "TWO",
+    "THREE"
+  ],
+  "cat": "VN: Cat",
+  "cat_name": "VN: Cat: {name}",
+  "nested": "VN: We go shopping: $t(test.day_interval, {{\"count\": {count} }})"
+}

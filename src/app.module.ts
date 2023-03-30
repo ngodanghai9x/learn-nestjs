@@ -1,10 +1,17 @@
-import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
+import {
+  HttpStatus,
+  MiddlewareConsumer,
+  Module,
+  NestModule,
+  RequestMethod,
+  ValidationPipe,
+} from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { APP_FILTER, APP_GUARD } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { BullModule } from '@nestjs/bull';
 import { RedisModule } from '@nestjs-modules/ioredis';
 import { join } from 'path';
@@ -22,6 +29,50 @@ import { CronjobModule } from './cronjob/cronjob.module';
 import { MicroServicesModule } from './micro-services/micro-services.module';
 import { NotificationModule } from './notification/notification.module';
 import { EjsModule } from './ejs/ejs.module';
+import {
+  AcceptLanguageResolver,
+  HeaderResolver,
+  I18nJsonLoader,
+  I18nModule,
+  QueryResolver,
+} from 'nestjs-i18n';
+import { LoggingInterceptor } from './common/interceptors/logging.interceptor.ts';
+import { GlobalResponseInterceptor } from './common/interceptors/global-response.interceptor';
+import { TrimPipe } from './common/pipes/trim.pipe';
+
+const PIPES = [
+  {
+    provide: APP_PIPE,
+    useClass: TrimPipe,
+  },
+  // {
+  //   provide: APP_PIPE,
+  //   useFactory: () =>
+  //     new ValidationPipe({
+  //       transform: true,
+  //       transformOptions: { enableImplicitConversion: true },
+  //       whitelist: true,
+  //       errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+  //       exceptionFactory: (errors) => new UnprocessableEntityException(errors),
+  //     }),
+  // },
+];
+const FILTERS = [
+  {
+    provide: APP_FILTER,
+    useClass: HttpExceptionFilter,
+  },
+];
+const INTERCEPTORS = [
+  // {
+  //   provide: APP_INTERCEPTOR,
+  //   useClass: LoggingInterceptor,
+  // },
+  {
+    provide: APP_INTERCEPTOR,
+    useClass: GlobalResponseInterceptor,
+  },
+];
 
 @Module({
   imports: [
@@ -115,6 +166,23 @@ import { EjsModule } from './ejs/ejs.module';
       },
       // include: [UserModule, AuthModule],
     }),
+    I18nModule.forRoot({
+      fallbackLanguage: 'vi',
+      fallbacks: {
+        'en-CA': 'fr',
+        'en-*': 'en',
+        'fr-*': 'fr',
+        pt: 'pt-BR',
+      },
+      // loader: I18nJsonLoader,
+      resolvers: [new HeaderResolver(['x-language-code'])],
+      // resolvers: [{ use: QueryResolver, options: ['lang'] }, AcceptLanguageResolver],
+      loaderOptions: {
+        // path: join(__dirname, '/i18n/'),
+        path: join(process.cwd(), 'src', 'i18n'),
+        watch: true,
+      },
+    }),
     ServeStaticModule.forRoot({
       // no required because this app already implements useStaticAssets in public folder
       rootPath: join(process.cwd(), 'static'),
@@ -135,6 +203,9 @@ import { EjsModule } from './ejs/ejs.module';
       provide: APP_GUARD,
       useClass: RolesGuard,
     },
+    // ...PIPES,
+    // ...FILTERS,
+    ...INTERCEPTORS,
   ],
 })
 export class AppModule implements NestModule {
