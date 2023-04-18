@@ -199,10 +199,12 @@ const INTERCEPTORS = [
   controllers: [AppController],
   providers: [
     AppService,
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
+    // this will use this guard global in app
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard,
+    // },
+
     // ...PIPES,
     // ...FILTERS,
     ...INTERCEPTORS,

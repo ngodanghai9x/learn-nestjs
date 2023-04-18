@@ -38,10 +38,11 @@ import { RolesGuard } from 'src/common/guards/roles.guard';
     AuthService,
     LocalStrategy,
     JwtStrategy,
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
+    // this will use this guard global in app
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard,
+    // },
   ],
   controllers: [AuthController],
 })
