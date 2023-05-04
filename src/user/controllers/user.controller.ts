@@ -8,6 +8,8 @@ import {
   Delete,
   Query,
   UseInterceptors,
+  SetMetadata,
+  Req,
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { CreateUserDto } from '../dto/create-user.dto';
@@ -15,9 +17,13 @@ import { UpdateUserDto } from '../dto/update-user.dto';
 import { HttpExceptionFilter } from 'src/common/filters/http-exception.filter';
 import { MyForbiddenException } from 'src/common/exceptions/forbidden.exception';
 import { ApiTags } from '@nestjs/swagger/dist';
-import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor.ts';
+import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor';
 import { EmailSvService } from 'src/micro-services/email-sv/email-sv.service';
 import { I18n, I18nContext } from 'nestjs-i18n';
+import { AppendLogParamInterceptor } from 'src/common/interceptors/append-log-param.interceptor';
+import { Request } from 'express';
+import { AppendLogParamInterceptor2 } from 'src/common/interceptors/append-log-param2.interceptor';
+import { AppendLogParam } from 'src/common/decorators/append-log-param.decorator';
 
 @ApiTags('user')
 @Controller('user')
@@ -35,9 +41,18 @@ export class UserController {
     throw new MyForbiddenException();
   }
 
+  @UseInterceptors(AppendLogParamInterceptor2('hai-haha2'))
+  @AppendLogParam('hai-haha1')
+  // @SetMetadata('customValue', 'hai-haha1')
+  // @UseInterceptors(AppendLogParamInterceptor)
+  // @UseInterceptors(() => new AppendLogParamInterceptor('hai-haha')) // NOT WORKING
   @Get('i18n')
-  async getHello(@I18n() i18n: I18nContext) {
-    return i18n.t('user.cat');
+  async getHello(@I18n() i18n: I18nContext, @Req() req: Request) {
+    return {
+      i18n: i18n.t('user.cat'),
+      appendParm: req['append_log_param'],
+      appendParm2: req['append_log_param2'],
+    };
   }
 
   @Get('i18n/v2')
@@ -59,7 +74,6 @@ export class UserController {
   }
 
   @Get()
-  @UseInterceptors(LoggingInterceptor)
   async findAll(@Query('abc') abc: string) {
     return this.userService.findAll();
   }

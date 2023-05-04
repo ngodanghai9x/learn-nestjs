@@ -9,6 +9,7 @@ export class LoggingInterceptor implements NestInterceptor {
 
     const now = Date.now();
     // if catch error, after may not run
+    // return next.handle();
     return next.handle().pipe(tap(() => Logger.log(`After... ${Date.now() - now}ms`)));
   }
 }

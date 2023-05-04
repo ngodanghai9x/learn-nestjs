@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, UseInterceptors, StreamableFile } from '@n
 import { HttpExceptionFilter } from 'src/common/filters/http-exception.filter';
 import { MyForbiddenException } from 'src/common/exceptions/forbidden.exception';
 import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger/dist';
-import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor.ts';
+import { LoggingInterceptor } from 'src/common/interceptors/logging.interceptor';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { Header, Res, UploadedFile, UploadedFiles } from '@nestjs/common/decorators';
 import { FileFieldsInterceptor, FileInterceptor } from '@nestjs/platform-express/multer';

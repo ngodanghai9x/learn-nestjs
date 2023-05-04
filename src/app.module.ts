@@ -36,7 +36,7 @@ import {
   I18nModule,
   QueryResolver,
 } from 'nestjs-i18n';
-import { LoggingInterceptor } from './common/interceptors/logging.interceptor.ts';
+import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { GlobalResponseInterceptor } from './common/interceptors/global-response.interceptor';
 import { TrimPipe } from './common/pipes/trim.pipe';
 

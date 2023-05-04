@@ -18,6 +18,7 @@
     "prod": "yarn start:prod",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "gen:env": "exit 1 && cp sample.env .env",
     "db:migrate": "ts-node ./node_modules/typeorm/cli -d ./typeOrm.config.ts migration:run",
     "db:revert": "ts-node ./node_modules/typeorm/cli -d ./typeOrm.config.ts migration:revert",
     "db:generate:postgres": "exit 1 && yarn ts-node ./node_modules/typeorm/cli migration:generate -d ./typeOrm.config.ts ./postgres-migrations/Init",
