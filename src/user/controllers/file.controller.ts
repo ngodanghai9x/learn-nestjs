@@ -14,6 +14,7 @@ import type { Response } from 'express';
 import { Logger } from '@nestjs/common';
 import axios, { AxiosResponse } from 'axios';
 import { Readable, Writable } from 'stream';
+import mime = require('mime');
 
 @Controller('file')
 @ApiTags('file')
@@ -99,14 +100,16 @@ export class FileController {
   }
 
   @Get('download')
-  @Header('Content-Type', 'application/json')
-  @Header('Content-Disposition', 'attachment; filename="package.json"')
+  // @Header('Content-Type', 'application/json')
+  // @Header('Content-Disposition', 'attachment; filename="package.json"')
   getStaticFile(@Res({ passthrough: true }) res: Response): StreamableFile {
-    const file = createReadStream(join(process.cwd(), 'package.json'));
-    // res.set({
-    //   'Content-Type': 'application/json',
-    //   'Content-Disposition': 'attachment; filename="package.json"',
-    // });
+    const fullPath = join(process.cwd(), 'package.json');
+    const file = createReadStream(fullPath);
+
+    res.set({
+      'Content-Type': mime.getType(fullPath) || 'application/octet-stream',
+      // 'Content-Disposition': 'attachment; filename="package.json"',
+    });
     return new StreamableFile(file);
   }
 
@@ -179,5 +182,23 @@ export class FileController {
     });
     // return stream.pipe(res);
     return res.end(buffer, 'binary');
+  }
+
+  @Get('download4')
+  getStaticFile4(
+    @Query() getStaticFileDto: GetStaticFileDto,
+    @Res({ passthrough: true }) res: Response,
+  ): StreamableFile {
+    const stream = createReadStream(getStaticFileDto.fullPath);
+
+    //   '': 'application/json',
+    //   'Content-Disposition': 'attachment; filename="package.json"',
+    res.header(
+      'Content-Type',
+      getStaticFileDto.mimeType ||
+        mime.getType(getStaticFileDto.fullPath) ||
+        'application/octet-stream',
+    );
+    return new StreamableFile(stream);
   }
 }

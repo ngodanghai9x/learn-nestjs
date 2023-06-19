@@ -64,6 +64,7 @@
     "graphql-upload": "14",
     "helmet": "^6.0.0",
     "ioredis": "^5.3.1",
+    "mime": "^3.0.0",
     "mysql2": "^2.3.3",
     "nestjs-i18n": "^10.2.6",
     "passport": "^0.6.0",
