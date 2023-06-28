@@ -62,7 +62,7 @@ function applyMiddleware(app: INestApplication) {
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    logger: ['error', 'warn', 'log'],
+    logger: ['error', 'warn', 'debug'],
   });
   const logger = new Logger('bootstrap');
   const configService = app.get(ConfigService); // get any service (AppService)

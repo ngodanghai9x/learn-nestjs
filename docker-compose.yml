@@ -9,7 +9,9 @@ services:
       - db-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: test
+      MYSQL_DATABASE: nestjs
+      MYSQL_USER: nestjs
+      MYSQL_PASSWORD: nestjs
     networks:
       - my-net
 
@@ -29,6 +31,9 @@ services:
     environment:
       MYSQL_HOST: db-service
       REDIS_HOST: cache-service
+      MYSQL_DATABASE: nestjs
+      MYSQL_USER: nestjs
+      MYSQL_PASSWORD: nestjs
     volumes:
       # - .:/app
       - ./:/app

@@ -184,21 +184,21 @@ export class FileController {
     return res.end(buffer, 'binary');
   }
 
-  @Get('download4')
-  getStaticFile4(
-    @Query() getStaticFileDto: GetStaticFileDto,
-    @Res({ passthrough: true }) res: Response,
-  ): StreamableFile {
-    const stream = createReadStream(getStaticFileDto.fullPath);
+  // @Get('download4')
+  // getStaticFile4(
+  //   @Query() getStaticFileDto: GetStaticFileDto,
+  //   @Res({ passthrough: true }) res: Response,
+  // ): StreamableFile {
+  //   const stream = createReadStream(getStaticFileDto.fullPath);
 
-    //   '': 'application/json',
-    //   'Content-Disposition': 'attachment; filename="package.json"',
-    res.header(
-      'Content-Type',
-      getStaticFileDto.mimeType ||
-        mime.getType(getStaticFileDto.fullPath) ||
-        'application/octet-stream',
-    );
-    return new StreamableFile(stream);
-  }
+  //   //   '': 'application/json',
+  //   //   'Content-Disposition': 'attachment; filename="package.json"',
+  //   res.header(
+  //     'Content-Type',
+  //     getStaticFileDto.mimeType ||
+  //       mime.getType(getStaticFileDto.fullPath) ||
+  //       'application/octet-stream',
+  //   );
+  //   return new StreamableFile(stream);
+  // }
 }
