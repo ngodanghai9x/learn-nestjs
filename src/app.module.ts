@@ -85,7 +85,8 @@ const INTERCEPTORS = [
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
-        const isUsePostgres = false;
+        const isUsePostgres = configService.get('DB_TYPE') === 'postgres';
+
         if (isUsePostgres) {
           console.log('PG_PORT2', configService.get('PG_PORT'));
           return {

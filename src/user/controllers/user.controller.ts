@@ -65,6 +65,11 @@ export class UserController {
     return this.userService.create(createUserDto);
   }
 
+  @Post('test-transaction')
+  testTransaction(@Body() createUserDto: CreateUserDto) {
+    return this.userService.testTransaction(createUserDto);
+  }
+
   @Post('queue')
   appendQueue(@Body() createUserDto: CreateUserDto) {
     return this.userService.appendQueue({

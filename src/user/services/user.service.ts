@@ -48,7 +48,10 @@ export class UserService {
     let res = null;
     if (!roles.length) {
       res = await this.roleRepository.save(
-        [ERole.Admin, ERole.User].map((roleName) => ({ roleName, description: 'auto generate' })),
+        [ERole.Admin, ERole.User].map((roleName) => ({
+          roleName,
+          description: 'auto generate',
+        })),
       );
     }
     this.logger.log(`initRoles: ${JSON.stringify(res)}`);
@@ -75,7 +78,9 @@ export class UserService {
     await queryRunner.startTransaction();
     try {
       const { moreDetail, ...createUserDto } = payload;
-      const role = await queryRunner.manager.findOne(Role, { where: { roleName: ERole.User } });
+      const role = await queryRunner.manager.findOne(Role, {
+        where: { roleName: ERole.User },
+      });
       const userResponse = await queryRunner.manager.save(User, {
         ...createUserDto,
         userStatus: 'active',
@@ -93,6 +98,40 @@ export class UserService {
       return {
         userResponse,
         userDetailResponse,
+      };
+    } catch (err) {
+      this.logger.error(err);
+      await queryRunner.rollbackTransaction();
+      throw err;
+    } finally {
+      await queryRunner.release();
+    }
+  }
+
+  async testTransaction(payload: CreateUserDto) {
+    const queryRunner = this.dataSource.createQueryRunner();
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+    try {
+      const { moreDetail, roles, ...createUserDto } = payload;
+      // const role = await queryRunner.manager.findOne(Role, {
+      //   where: { roleName: ERole.User },
+      // });
+      const userResponse = await queryRunner.manager.update(
+        User,
+        {
+          userStatus: 'active',
+          roleId: 1,
+        },
+        createUserDto,
+      );
+
+      this.logger.debug('Saved userResponse id', userResponse);
+
+      await queryRunner.commitTransaction();
+
+      return {
+        userResponse,
       };
     } catch (err) {
       this.logger.error(err);

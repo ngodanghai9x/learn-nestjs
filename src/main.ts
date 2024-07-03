@@ -62,6 +62,7 @@ function applyMiddleware(app: INestApplication) {
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    // logger: ['error', 'warn', 'debug', 'log'],
     logger: ['error', 'warn', 'debug'],
   });
   const logger = new Logger('bootstrap');
@@ -75,10 +76,10 @@ async function bootstrap() {
   applyMiddleware(app);
 
   await app.listen(port, () => {
-    Logger.log(`Main server is running on port: ${port}`);
-    logger.log(`Main server is running on port: ${port}`);
-    console.log(`Main swagger is running on: http://${host}:${port}/swagger`);
-    console.log(`process= ${process.cwd()}`);
+    Logger.debug(`Main server is running on port: ${port}`);
+    logger.debug(`Main server is running on port: ${port}`);
+    console.debug(`Main swagger is running on: http://${host}:${port}/swagger`);
+    console.debug(`process= ${process.cwd()}`);
   });
 
   // await runService(app);

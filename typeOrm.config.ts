@@ -12,7 +12,7 @@ config();
 
 const configService = new ConfigService();
 // https://wanago.io/2022/07/25/api-nestjs-database-migrations-typeorm/
-const isUsePostgres = false;
+const isUsePostgres = configService.get('DB_TYPE') === 'postgres';
 
 export default new DataSource(
   isUsePostgres
