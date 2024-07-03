@@ -5,25 +5,25 @@ import { User } from './user.entity';
 @ObjectType()
 @Entity({ name: 'user_details' })
 export class UserDetail {
-  constructor(partial: Partial<UserDetail>) {
-    Object.assign(this, partial);
-  }
+    constructor(partial: Partial<UserDetail>) {
+        Object.assign(this, partial);
+    }
 
-  @Field((type) => ID, { nullable: false })
-  @PrimaryGeneratedColumn({ name: 'id' })
-  id: number;
+    @Field((type) => ID, { nullable: false })
+    @PrimaryGeneratedColumn({ name: 'id' })
+    id: number;
 
-  @Field({ nullable: true })
-  @Column({ name: 'more_detail', nullable: true })
-  moreDetail: string;
+    @Field({ nullable: true })
+    @Column({ name: 'more_detail', nullable: true })
+    moreDetail: string;
 
-  // one to one force unique??
-  // declare name field or using https://www.npmjs.com/package/typeorm-naming-strategies
-  @Column({ name: 'user_id', unique: false })
-  userId: number;
+    // one to one force unique??
+    // declare name field or using https://www.npmjs.com/package/typeorm-naming-strategies
+    @Column({ name: 'user_id', unique: false })
+    userId: number;
 
-  @Field((type) => User, { nullable: false })
-  @OneToOne(() => User)
-  @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
-  user?: User;
+    @Field((type) => User, { nullable: false })
+    @OneToOne(() => User)
+    @JoinColumn({ name: 'user_id', referencedColumnName: 'id' })
+    user?: User;
 }

@@ -1,15 +1,15 @@
 {
-  "extends": "./tsconfig.json",
-  "exclude": [
-    "node_modules",
-    "test",
-    "dist",
-    "**/*spec.ts",
-    "my_services",
-    "my_logs",
-    "documentation",
-    "migrations",
-    "mysql-migrations",
-    "postgres-migrations",
-  ]
+    "extends": "./tsconfig.json",
+    "exclude": [
+        "node_modules",
+        "test",
+        "dist",
+        "**/*spec.ts",
+        "my_services",
+        "my_logs",
+        "documentation",
+        "migrations",
+        "mysql-migrations",
+        "postgres-migrations",
+    ]
 }

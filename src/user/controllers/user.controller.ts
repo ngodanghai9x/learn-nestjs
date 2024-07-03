@@ -1,16 +1,4 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Query,
-  UseInterceptors,
-  SetMetadata,
-  Req,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UseInterceptors, SetMetadata, Req } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
@@ -29,77 +17,74 @@ import { AppendLogParam } from 'src/common/decorators/append-log-param.decorator
 @Controller('user')
 @UseInterceptors(LoggingInterceptor)
 export class UserController {
-  constructor(
-    private readonly userService: UserService,
-    private readonly emailSvService: EmailSvService,
-  ) {}
+    constructor(private readonly userService: UserService, private readonly emailSvService: EmailSvService) {}
 
-  @Get('testFilter')
-  // @UseFilters(HttpExceptionFilter)
-  async testFilter() {
-    throw new Error(`123Error`);
-    throw new MyForbiddenException();
-  }
+    @Get('testFilter')
+    // @UseFilters(HttpExceptionFilter)
+    async testFilter() {
+        throw new Error(`123Error`);
+        throw new MyForbiddenException();
+    }
 
-  @UseInterceptors(AppendLogParamInterceptor2('hai-haha2'))
-  @AppendLogParam('hai-haha1')
-  // @SetMetadata('customValue', 'hai-haha1')
-  // @UseInterceptors(AppendLogParamInterceptor)
-  // @UseInterceptors(() => new AppendLogParamInterceptor('hai-haha')) // NOT WORKING
-  @Get('i18n')
-  async getHello(@I18n() i18n: I18nContext, @Req() req: Request) {
-    return {
-      i18n: i18n.t('user.cat'),
-      appendParm: req['append_log_param'],
-      appendParm2: req['append_log_param2'],
-    };
-  }
+    @UseInterceptors(AppendLogParamInterceptor2('hai-haha2'))
+    @AppendLogParam('hai-haha1')
+    // @SetMetadata('customValue', 'hai-haha1')
+    // @UseInterceptors(AppendLogParamInterceptor)
+    // @UseInterceptors(() => new AppendLogParamInterceptor('hai-haha')) // NOT WORKING
+    @Get('i18n')
+    async getHello(@I18n() i18n: I18nContext, @Req() req: Request) {
+        return {
+            i18n: i18n.t('user.cat'),
+            appendParm: req['append_log_param'],
+            appendParm2: req['append_log_param2'],
+        };
+    }
 
-  @Get('i18n/v2')
-  async getHello2(@I18n() i18n: I18nContext) {
-    return { message: 'user.cat' };
-  }
+    @Get('i18n/v2')
+    async getHello2(@I18n() i18n: I18nContext) {
+        return { message: 'user.cat' };
+    }
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.userService.create(createUserDto);
-  }
+    @Post()
+    create(@Body() createUserDto: CreateUserDto) {
+        return this.userService.create(createUserDto);
+    }
 
-  @Post('test-transaction')
-  testTransaction(@Body() createUserDto: CreateUserDto) {
-    return this.userService.testTransaction(createUserDto);
-  }
+    @Post('test-transaction')
+    testTransaction(@Body() createUserDto: CreateUserDto) {
+        return this.userService.testTransaction(createUserDto);
+    }
 
-  @Post('queue')
-  appendQueue(@Body() createUserDto: CreateUserDto) {
-    return this.userService.appendQueue({
-      age: +createUserDto.moreDetail || 0,
-      name: createUserDto.username,
-    });
-  }
+    @Post('queue')
+    appendQueue(@Body() createUserDto: CreateUserDto) {
+        return this.userService.appendQueue({
+            age: +createUserDto.moreDetail || 0,
+            name: createUserDto.username,
+        });
+    }
 
-  @Get()
-  async findAll(@Query('abc') abc: string) {
-    return this.userService.findAll();
-  }
+    @Get()
+    async findAll(@Query('abc') abc: string) {
+        return this.userService.findAll();
+    }
 
-  @Get(':idOrEmail')
-  findOne(@Param('idOrEmail') idOrEmail: string) {
-    return this.userService.findOne(idOrEmail);
-  }
+    @Get(':idOrEmail')
+    findOne(@Param('idOrEmail') idOrEmail: string) {
+        return this.userService.findOne(idOrEmail);
+    }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.userService.update(+id, updateUserDto);
-  }
+    @Patch(':id')
+    update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+        return this.userService.update(+id, updateUserDto);
+    }
 
-  @Post('sendEmail')
-  sendEmail() {
-    return this.emailSvService.sendEmail();
-  }
+    @Post('sendEmail')
+    sendEmail() {
+        return this.emailSvService.sendEmail();
+    }
 
-  @Post('emitSendEmail')
-  emitSendEmail() {
-    return this.emailSvService.emitSendEmail();
-  }
+    @Post('emitSendEmail')
+    emitSendEmail() {
+        return this.emailSvService.emitSendEmail();
+    }
 }
