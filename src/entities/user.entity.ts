@@ -86,8 +86,8 @@ export class User {
     // lockedMoney: number;
 
     @Field({ nullable: true })
-    @Column({ name: 'decimal', nullable: true, type: 'decimal' })
-    decimal: number;
+    @Column({ name: 'decimal', nullable: true, type: 'decimal', default: 0 })
+    decimalNum: number;
 
     @Field({ nullable: true })
     @Column({ name: 'anti_phishing_code', nullable: true })

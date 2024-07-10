@@ -50,9 +50,9 @@ export class UserController {
         return this.userService.create(createUserDto);
     }
 
-    @Post('test-transaction')
+    @Post('test-orm')
     testTransaction(@Body() createUserDto: CreateUserDto) {
-        return this.userService.testTransaction(createUserDto);
+        return this.userService.testORM(createUserDto);
     }
 
     @Post('queue')

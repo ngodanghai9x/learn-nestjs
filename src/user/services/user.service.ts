@@ -108,7 +108,7 @@ export class UserService {
         }
     }
 
-    async testTransaction(payload: CreateUserDto) {
+    async testORM(payload: CreateUserDto) {
         const queryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
         await queryRunner.startTransaction();
@@ -125,6 +125,8 @@ export class UserService {
                 },
                 createUserDto,
             );
+
+            const userResponse2 = await queryRunner.manager.increment(User, { id: 1 }, 'decimalNum', 3);
 
             this.logger.debug('Saved userResponse id', userResponse);
 

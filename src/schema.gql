@@ -26,7 +26,7 @@ type User {
   phone: String
   birthday: Date
   bankNumber: String
-  decimal: Int
+  decimalNum: Int
   antiPhishingCode: String
   userStatus: String!
   createdAt: Timestamp!
